@@ -1,11 +1,10 @@
 package sort;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class Sort {
 
-    private static final int NUM = 100000;
+    private static final int NUM = 1000000;
 
     private static void swap(int[] a, int i, int j) {
         int tmp = a[i];
@@ -236,11 +235,57 @@ public class Sort {
         merge(a, tmpArr, start, mid, end);
     }
 
+    /**
+     * 归并排序
+     */
     private static void mergeSort(int[] a) {
         int n = a.length;
         int[] tmpArr = new int[n];
 
         mSort(a, tmpArr, 0, n - 1);
+    }
+
+    /**
+     * 希尔排序（也是一种插入排序）
+     */
+    private static void shellInsertSort(int[] a) {
+        int n = a.length;
+
+        for (int dk = n / 2; dk > 0; dk /= 2) {
+            for (int i = dk; i < n; i++) {
+                int x = a[i];
+                int j;
+                for (j = i - dk; j >= 0 && x < a[j]; j -= dk) {
+                    a[j + dk] = a[j];
+                }
+                a[j + dk] = x;
+            }
+        }
+    }
+
+    /**
+     * 计数排序（特殊的桶排序，每个桶只存放一个元素）
+     */
+    private static void countingSort(int[] a) {
+        int max = Integer.MIN_VALUE;
+        for (int item : a) {
+            if (item > max) {
+                max = item;
+            }
+        }
+        int[] bucket = new int[max + 1];
+
+        for (int item : a) {
+            bucket[item]++;
+        }
+
+        int num = 0;
+        for (int i = 0; i <= max; i++) {
+            while (bucket[i] > 0) {
+                a[num++] = i;
+                bucket[i]--;
+            }
+        }
     }
 
     private static void systemSort(int[] a) {
@@ -284,12 +329,11 @@ public class Sort {
 //        long end = System.currentTimeMillis();
 //        System.out.println("冒泡排序耗时： " + (end - start) + "ms");
 
-//        long start = System.currentTimeMillis();
-//        insertSort(a);
-//        long end = System.currentTimeMillis();
-//        System.out.println("插入排序耗时： " + (end - start) + "ms");
+        long start = System.currentTimeMillis();
+        insertSort(a);
+        long end = System.currentTimeMillis();
+        System.out.println("插入排序耗时： " + (end - start) + "ms");
 
-//        printArray(a);
 
 //        long start = System.currentTimeMillis();
 //        selectSort(a);
@@ -306,10 +350,20 @@ public class Sort {
 //        long end = System.currentTimeMillis();
 //        System.out.println("系统排序耗时： " + (end - start) + "ms");
 
-        long start = System.currentTimeMillis();
-        mergeSort(a);
-        long end = System.currentTimeMillis();
-        System.out.println("归并排序耗时： " + (end - start) + "ms");
+//        long start = System.currentTimeMillis();
+//        mergeSort(a);
+//        long end = System.currentTimeMillis();
+//        System.out.println("归并排序耗时： " + (end - start) + "ms");
+
+//        long start = System.currentTimeMillis();
+//        shellInsertSort(a);
+//        long end = System.currentTimeMillis();
+//        System.out.println("希尔排序耗时： " + (end - start) + "ms");
+
+//        long start = System.currentTimeMillis();
+//        countingSort(a);
+//        long end = System.currentTimeMillis();
+//        System.out.println("计数（桶）排序耗时： " + (end - start) + "ms");
 
 //        printArray(a);
     }
