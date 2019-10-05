@@ -1,4 +1,4 @@
-package interview_tencent;
+package interview_tencent.round01;
 
 public class Problem02 {
     public int minSubArrayLen(int s, int[] nums) {

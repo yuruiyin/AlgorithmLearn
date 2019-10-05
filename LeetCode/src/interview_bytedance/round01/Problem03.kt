@@ -1,4 +1,4 @@
-package interview_bytedance
+package interview_bytedance.round01
 
 class Problem03 {
     fun maximumSwap(num: Int): Int {

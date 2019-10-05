@@ -1,4 +1,4 @@
-package interview_huawei;
+package interview_huawei.round01;
 
 public class Problem03 {
 
