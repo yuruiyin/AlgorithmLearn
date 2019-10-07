@@ -53,8 +53,8 @@ public class Problem03 {
     }
 
     public static void main(String[] args) {
-//        System.out.println(new Problem03().numDecodings("*"));
-//        System.out.println(new Problem03().numDecodings("1*"));
+//        System.out.println(new Problem5081().numDecodings("*"));
+//        System.out.println(new Problem5081().numDecodings("1*"));
         System.out.println(new Problem03().numDecodings("**"));
     }
 

@@ -3,9 +3,7 @@ package doubleContest.round10;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Problem03 {
-
-    private static final int MAX_NUM = (int) (2 * Math.pow(10, 9));
+public class Problem5081 {
 
     public List<Integer> countSteppingNumbers(int low, int high) {
         List<Integer> ansList = new ArrayList<>();
@@ -78,7 +76,7 @@ public class Problem03 {
 
     public static void main(String[] args) {
 
-        System.out.println(new Problem03().countSteppingNumbers(0, 21));
+        System.out.println(new Problem5081().countSteppingNumbers(0, 21));
 
     }
 }

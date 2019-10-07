@@ -99,10 +99,10 @@ public class Problem076 {
     }
 
     public static void main(String[] args) {
-//        System.out.println(new Problem03().minWindow("ADOBECODEBANC", "ABC"));
-//        System.out.println(new Problem03().minWindow("a", "aa"));
-//        System.out.println(new Problem03().minWindow("cabwefgewcwaefgcf", "cae"));
-//        System.out.println(new Problem03().minWindow("ask_not_what_your_country_can_do_for_you_ask_what_you_can_do_for_your_country", "ask_country"));
+//        System.out.println(new Problem5081().minWindow("ADOBECODEBANC", "ABC"));
+//        System.out.println(new Problem5081().minWindow("a", "aa"));
+//        System.out.println(new Problem5081().minWindow("cabwefgewcwaefgcf", "cae"));
+//        System.out.println(new Problem5081().minWindow("ask_not_what_your_country_can_do_for_you_ask_what_you_can_do_for_your_country", "ask_country"));
         System.out.println(new Problem076().minWindow("aa", "aa"));
 
     }

@@ -32,7 +32,7 @@ public class Problem01 {
     }
 
     public static void main(String[] args) {
-//        int[] ansList = new Problem01().intersection(new int[]{1,2,2,1}, new int[]{2,2});
+//        int[] ansList = new Problem5079().intersection(new int[]{1,2,2,1}, new int[]{2,2});
         int[] ansList = new Problem01().intersection(new int[]{4,9,5}, new int[]{9,4,9,8,4});
         for (int item: ansList) {
             System.out.print(item + " ");

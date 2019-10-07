@@ -3,7 +3,7 @@ package doubleContest.round10;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Problem01 {
+public class Problem5079 {
 
     public List<Integer> arraysIntersection(int[] arr1, int[] arr2, int[] arr3) {
         int[] map2 = new int[2001];
