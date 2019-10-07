@@ -1,4 +1,4 @@
-package interview01.round01
+package interview.round01
 
 class P001 {
 
