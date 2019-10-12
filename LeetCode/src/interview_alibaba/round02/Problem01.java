@@ -1,13 +1,8 @@
 package interview_alibaba.round02;
 
-public class Problem01 {
+import common.TreeNode;
 
-    public static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode(int x) { val = x; }
-    }
+public class Problem01 {
 
     private int max = 1;
 

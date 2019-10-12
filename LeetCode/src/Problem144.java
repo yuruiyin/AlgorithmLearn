@@ -1,15 +1,10 @@
+import common.TreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 
 public class Problem144 {
-
-    public static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode(int x) { val = x; }
-    }
 
     /**
      * 非递归（迭代)方法来实现二叉树的前序遍历

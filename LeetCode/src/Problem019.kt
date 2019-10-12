@@ -1,10 +1,6 @@
-
+import common.ListNode
 
 class Problem019 {
-
-    class ListNode(var `val`: Int) {
-        var next: ListNode? = null
-    }
 
     fun removeNthFromEnd(head: ListNode?, n: Int): ListNode? {
         if (head == null) {
@@ -48,11 +44,11 @@ class Problem019 {
 }
 
 fun main(args: Array<String>) {
-    val head = Problem019.ListNode(1)
-    head.next = Problem019.ListNode(2)
-    head.next?.next = Problem019.ListNode(3)
-    head.next?.next?.next = Problem019.ListNode(4)
-    head.next?.next?.next?.next = Problem019.ListNode(5)
+    val head = ListNode(1)
+    head.next = ListNode(2)
+    head.next?.next = ListNode(3)
+    head.next?.next?.next = ListNode(4)
+    head.next?.next?.next?.next = ListNode(5)
 
     val resHead = Problem019().removeNthFromEnd(head, 4)
 

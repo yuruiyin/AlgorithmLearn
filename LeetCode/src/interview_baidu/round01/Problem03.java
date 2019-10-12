@@ -1,15 +1,8 @@
 package interview_baidu.round01;
 
+import common.ListNode;
+
 public class Problem03 {
-
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
 
     /**
      * 一次遍历

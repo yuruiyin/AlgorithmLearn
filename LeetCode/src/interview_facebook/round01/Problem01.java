@@ -1,15 +1,8 @@
 package interview_facebook.round01;
 
+import common.ListNode;
+
 public class Problem01 {
-
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
 
     public ListNode deleteDuplicates(ListNode head) {
         ListNode curNode = head;

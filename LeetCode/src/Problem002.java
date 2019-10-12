@@ -1,13 +1,6 @@
+import common.ListNode;
+
 public class Problem002 {
-
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-    }
 
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode lastNextNode = null;

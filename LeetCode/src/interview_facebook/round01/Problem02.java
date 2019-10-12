@@ -1,15 +1,10 @@
 package interview_facebook.round01;
 
+import common.TreeNode;
+
 import java.util.LinkedList;
 
 public class Problem02 {
-
-    public static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode(int x) { val = x; }
-    }
 
     private void insertRight(TreeNode root, int val) {
         if (root == null) {

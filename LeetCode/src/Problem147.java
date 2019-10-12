@@ -1,12 +1,6 @@
-public class Problem147 {
+import common.ListNode;
 
-    static class ListNode {
-        int val;
-        ListNode next;
-        ListNode(int x) {
-            val = x;
-        }
-    }
+public class Problem147 {
 
     public ListNode insertionSortList(ListNode head) {
         if (head == null || head.next == null) {
@@ -51,10 +45,10 @@ public class Problem147 {
     }
 
     public static void main(String[] args) {
-        ListNode head = new Problem147.ListNode(4);
-        head.next = new Problem147.ListNode(2);
-        head.next.next = new Problem147.ListNode(1);
-        head.next.next.next = new Problem147.ListNode(3);
+        ListNode head = new ListNode(4);
+        head.next = new ListNode(2);
+        head.next.next = new ListNode(1);
+        head.next.next.next = new ListNode(3);
 
         ListNode sortedListNode = new Problem147().insertionSortList(head);
 

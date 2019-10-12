@@ -1,12 +1,6 @@
+import common.TreeNode;
+
 public class Problem687 {
-
-    public static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode(int x) { val = x; }
-    }
-
 
     private int max = 1;
 

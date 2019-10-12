@@ -1,10 +1,6 @@
+import common.TreeNode;
+
 public class Problem270 {
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode(int x) { val = x; }
-    }
 
     private double[] getClosestValue(TreeNode root, double target, double min) {
         double[] res = new double[2];

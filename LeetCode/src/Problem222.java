@@ -1,11 +1,6 @@
-public class Problem222 {
+import common.TreeNode;
 
-    public static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode(int x) { val = x; }
-    }
+public class Problem222 {
 
     public int countNodes(TreeNode root) {
         if (root == null) {

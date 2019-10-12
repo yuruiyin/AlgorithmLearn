@@ -1,3 +1,5 @@
+import common.ListNode
+
 class Problem023 {
 
     fun mergeKLists(lists: Array<ListNode?>): ListNode? {

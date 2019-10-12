@@ -1,16 +1,11 @@
 package interview_tencent.round02;
 
+import common.TreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Problem01 {
-
-    public static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode(int x) { val = x; }
-    }
 
     private void recursive(TreeNode root, List<Integer> ansList) {
         if (root == null) {

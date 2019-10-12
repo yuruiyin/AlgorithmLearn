@@ -1,16 +1,11 @@
+import common.TreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Problem103 {
 
-    public static class TreeNode {
-        int val;
-        Problem103.TreeNode left;
-        Problem103.TreeNode right;
-        TreeNode(int x) { val = x; }
-    }
-
-    private void binaryTree(Problem103.TreeNode root, List<List<Integer>> lists, int layer) {
+    private void binaryTree(TreeNode root, List<List<Integer>> lists, int layer) {
         if (root == null) {
             return;
         }
@@ -37,7 +32,7 @@ public class Problem103 {
 
     }
 
-    public List<List<Integer>> zigzagLevelOrder(Problem103.TreeNode root) {
+    public List<List<Integer>> zigzagLevelOrder(TreeNode root) {
         List<List<Integer>> ansLists = new ArrayList<>();
         if (root == null) {
             return ansLists;
@@ -60,14 +55,14 @@ public class Problem103 {
     }
 
     public static void main(String[] args) {
-        Problem103.TreeNode root = new Problem103.TreeNode(1);
-        root.left = new Problem103.TreeNode(2);
-        root.right = new Problem103.TreeNode(3);
-        root.left.left = new Problem103.TreeNode(4);
-        root.right.right = new Problem103.TreeNode(5);
-        root.left.left.left = new Problem103.TreeNode(6);
-        root.left.left.right = new Problem103.TreeNode(8);
-        root.right.right.left = new Problem103.TreeNode(7);
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.right.right = new TreeNode(5);
+        root.left.left.left = new TreeNode(6);
+        root.left.left.right = new TreeNode(8);
+        root.right.right.left = new TreeNode(7);
 
 
         List<List<Integer>> ansLists = new Problem103().zigzagLevelOrder(root);

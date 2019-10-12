@@ -1,16 +1,11 @@
 package interview_baidu.round01;
 
+import common.TreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Problem02 {
-
-    public static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode(int x) { val = x; }
-    }
 
     private void binaryTree(TreeNode root, List<List<Integer>> lists, int layer) {
         if (root == null) {

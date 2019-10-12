@@ -1,13 +1,8 @@
 package doubleContest.round10;
 
-public class Problem5080 {
+import common.TreeNode;
 
-    public static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode(int x) { val = x; }
-    }
+public class Problem5080 {
 
     private boolean find(TreeNode root, int value) {
         if (root == null) {

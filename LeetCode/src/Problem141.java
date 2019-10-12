@@ -1,13 +1,6 @@
-public class Problem141 {
+import common.ListNode;
 
-    static class ListNode {
-        int val;
-        ListNode next;
-        public ListNode(int x) {
-            val = x;
-            next = null;
-        }
-    }
+public class Problem141 {
 
     public boolean hasCycle(ListNode head) {
         if (head == null || head.next == null) {

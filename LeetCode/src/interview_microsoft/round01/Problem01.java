@@ -1,13 +1,8 @@
 package interview_microsoft.round01;
 
-public class Problem01 {
+import common.TreeNode;
 
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode(int x) { val = x; }
-    }
+public class Problem01 {
 
     private double[] getClosestValue(TreeNode root, double target, double min) {
         double[] res = new double[2];

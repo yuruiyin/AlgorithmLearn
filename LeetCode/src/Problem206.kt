@@ -1,3 +1,5 @@
+import common.ListNode
+
 /**
     反转一个单链表。
 

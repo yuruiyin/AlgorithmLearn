@@ -1,7 +1,4 @@
-
-class ListNode(var `val`: Int) {
-    var next: ListNode? = null
-}
+import common.ListNode
 
 class Problem021 {
 

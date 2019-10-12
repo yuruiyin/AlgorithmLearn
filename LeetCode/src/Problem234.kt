@@ -1,3 +1,5 @@
+import common.ListNode
+
 /**
     请判断一个链表是否为回文链表。
 

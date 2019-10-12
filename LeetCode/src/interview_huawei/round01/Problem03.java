@@ -1,14 +1,8 @@
 package interview_huawei.round01;
 
-public class Problem03 {
+import common.ListNode;
 
-    static class ListNode {
-        int val;
-        ListNode next;
-        ListNode(int x) {
-            val = x;
-        }
-    }
+public class Problem03 {
 
     public ListNode mergeKLists(ListNode[] lists) {
         ListNode ansListNode = null;

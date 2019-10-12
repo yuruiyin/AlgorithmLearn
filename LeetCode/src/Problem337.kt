@@ -1,9 +1,6 @@
+import common.TreeNode
 
 class Problem337 {
-    inner class TreeNode(var `val`: Int) {
-        var left: TreeNode? = null
-        var right: TreeNode? = null
-    }
 
     private val obtainRootMap = hashMapOf<TreeNode?, Int>()
     private val notObtainRootMap = hashMapOf<TreeNode?, Int>()
@@ -77,25 +74,25 @@ class Problem337 {
 }
 
 fun main(args: Array<String>) {
-    val treeNode = Problem337().TreeNode(3)
-    treeNode.left = Problem337().TreeNode(2)
-    treeNode.right = Problem337().TreeNode(3)
-    treeNode.left?.right = Problem337().TreeNode(3)
-    treeNode.right?.right = Problem337().TreeNode(1)
+    val treeNode = TreeNode(3)
+    treeNode.left = TreeNode(2)
+    treeNode.right = TreeNode(3)
+    treeNode.left?.right = TreeNode(3)
+    treeNode.right?.right = TreeNode(1)
     println(Problem337().rob(treeNode))
 
-    val treeNode1 = Problem337().TreeNode(3)
-    treeNode1.left = Problem337().TreeNode(4)
-    treeNode1.right = Problem337().TreeNode(5)
-    treeNode1.left?.left = Problem337().TreeNode(1)
-    treeNode1.left?.right = Problem337().TreeNode(3)
-    treeNode1.right?.right = Problem337().TreeNode(1)
+    val treeNode1 = TreeNode(3)
+    treeNode1.left = TreeNode(4)
+    treeNode1.right = TreeNode(5)
+    treeNode1.left?.left = TreeNode(1)
+    treeNode1.left?.right = TreeNode(3)
+    treeNode1.right?.right = TreeNode(1)
     println(Problem337().rob(treeNode1))
 
-    val treeNode2 = Problem337().TreeNode(4)
-    treeNode2.left = Problem337().TreeNode(1)
-    treeNode2.left?.left = Problem337().TreeNode(2)
-    treeNode2.left?.left?.left = Problem337().TreeNode(3)
+    val treeNode2 = TreeNode(4)
+    treeNode2.left = TreeNode(1)
+    treeNode2.left?.left = TreeNode(2)
+    treeNode2.left?.left?.left = TreeNode(3)
     println(Problem337().rob(treeNode2))
 }
 

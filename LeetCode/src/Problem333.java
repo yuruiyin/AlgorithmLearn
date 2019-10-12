@@ -1,11 +1,6 @@
-public class Problem333 {
+import common.TreeNode;
 
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-        TreeNode(int x) { val = x; }
-    }
+public class Problem333 {
 
     /**
      * 获取最大的BST，BST的要求是左子树的所有节点大小都小于当前节点，而右子树的所有节点大小都大于当前节点，
