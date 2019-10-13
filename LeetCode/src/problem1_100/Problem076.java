@@ -1,9 +1,9 @@
-package interview_alibaba.round01;
+package problem1_100;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Problem03 {
+public class Problem076 {
 
     /**
      * 判断map1与map2是否有相同的keyset，而且map1 values > map2 values
@@ -64,6 +64,9 @@ public class Problem03 {
         Map<Character, Integer> countMap = new HashMap<>();
         countMap.put(s.charAt(indexArr[right]), 1);
 
+        /**
+         * left指针负责收缩窗口，right指针负责扩张窗口。满足条件就开始缩窗口，不满足条件就开始扩窗口。
+         */
         while (left <= right && right <= indexCount - 1) {
             if (isMatch(countMap, tCountMap)) {
                 int len = indexArr[right] - indexArr[left] + 1;
@@ -101,8 +104,9 @@ public class Problem03 {
 //        System.out.println(new Problem1215().minWindow("a", "aa"));
 //        System.out.println(new Problem1215().minWindow("cabwefgewcwaefgcf", "cae"));
 //        System.out.println(new Problem1215().minWindow("ask_not_what_your_country_can_do_for_you_ask_what_you_can_do_for_your_country", "ask_country"));
-        System.out.println(new Problem03().minWindow("aa", "aa"));
+        System.out.println(new Problem076().minWindow("aa", "aa"));
 
     }
 
 }
+

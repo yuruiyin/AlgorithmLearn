@@ -1,11 +1,11 @@
-package interview_google.round01;
+package problem301_400;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Problem01 {
+public class Problem350 {
 
     public int[] intersect(int[] nums1, int[] nums2) {
         Map<Integer, Boolean> isDone = new HashMap<>();
@@ -32,13 +32,12 @@ public class Problem01 {
     }
 
     public static void main(String[] args) {
-        int[] ansArr = new Problem01().intersect(new int[]{1,2,2,1}, new int[]{2, 2});
-//        int[] ansArr = new Problem1217().intersect(new int[]{4,9,5}, new int[]{9,4,9,8,4});
+        int[] ansArr = new Problem350().intersect(new int[]{1,2,2,1}, new int[]{2, 2});
+//        int[] ansArr = new Problem350().intersect(new int[]{4,9,5}, new int[]{9,4,9,8,4});
 
 
         for (int item : ansArr) {
             System.out.print(item + ",");
         }
     }
-
 }

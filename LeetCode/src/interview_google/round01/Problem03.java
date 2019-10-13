@@ -185,8 +185,8 @@ public class Problem03 {
 
     public static void main(String[] args) {
         System.out.println(new Problem03().countOfAtoms("K4(ON(SO3)2)2"));
-//        System.out.println(new Problem03().countOfAtoms("Mg(OH)2"));
-//        System.out.println(new Problem03().countOfAtoms("K4(ON(SO3)2)2"));
+//        System.out.println(new Problem1219().countOfAtoms("Mg(OH)2"));
+//        System.out.println(new Problem1219().countOfAtoms("K4(ON(SO3)2)2"));
         System.out.println(new Problem03().countOfAtoms("H11He49NO35B7N46Li20"));
         System.out.println(new Problem03().countOfAtoms("Be32"));
 
