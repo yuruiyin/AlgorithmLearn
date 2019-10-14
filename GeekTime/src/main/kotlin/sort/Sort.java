@@ -1,10 +1,12 @@
 package sort;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Sort {
 
-    private static final int NUM = 1000000;
+    private static final int NUM = 100000;
 
     private static void swap(int[] a, int i, int j) {
         int tmp = a[i];
@@ -74,6 +76,46 @@ public class Sort {
             }
 
             a[j + 1] = value;
+        }
+    }
+
+    /**
+     * 二分查找第一个比目标值大的元素
+     */
+    private static int binarySearch(List<Integer> datas, int wantInsertedValue) {
+        if (datas.isEmpty()) {
+            return 0;
+        }
+        int low = 0;
+        int high = datas.size() - 1;
+        while (low <= high) {
+            int mid = (low + high) >> 1;
+            int midValue = datas.get(mid);
+            // 要插入的值跟数组中已有的值不会相等
+            if (midValue > wantInsertedValue) {
+                if (mid == 0 || datas.get(mid - 1) < wantInsertedValue) {
+                    return mid;
+                }
+
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+
+        return low;
+    }
+    private static void insertSortBinary(int[] a) {
+        int n = a.length;
+        List<Integer> list = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            int insertIndex = binarySearch(list, a[i]);
+            list.add(insertIndex, a[i]);
+        }
+
+        for (int i = 0; i < n; i++) {
+            a[i] = list.get(i);
         }
     }
 
@@ -365,8 +407,8 @@ public class Sort {
     }
 
     public static void main(String[] args) {
-//        int[] a = getArr();
-        int[] a = {3, 2, 1, 7, 4, 5, 10, 8, 9, 6, 12, 11};
+        int[] a = getArr();
+//        int[] a = {3, 2, 1, 7, 4, 5, 10, 8, 9, 6, 12, 11};
 
 //        long start = System.currentTimeMillis();
 //        bubbleSort2(a);
@@ -377,6 +419,11 @@ public class Sort {
 //        insertSort(a);
 //        long end = System.currentTimeMillis();
 //        System.out.println("插入排序耗时： " + (end - start) + "ms");
+
+        long start = System.currentTimeMillis();
+        insertSortBinary(a);
+        long end = System.currentTimeMillis();
+        System.out.println("二分插入排序耗时： " + (end - start) + "ms");
 
 
 //        long start = System.currentTimeMillis();
@@ -409,12 +456,12 @@ public class Sort {
 //        long end = System.currentTimeMillis();
 //        System.out.println("计数（桶）排序耗时： " + (end - start) + "ms");
 
-        long start = System.currentTimeMillis();
-        heapSort(a);
-        long end = System.currentTimeMillis();
-        System.out.println("堆排序耗时： " + (end - start) + "ms");
+//        long start = System.currentTimeMillis();
+//        heapSort(a);
+//        long end = System.currentTimeMillis();
+//        System.out.println("堆排序耗时： " + (end - start) + "ms");
 
-        printArray(a);
+//        printArray(a);
     }
 
 }
