@@ -5,35 +5,23 @@ public class Problem765 {
     public int minSwapsCouples(int[] row) {
         int ans = 0;
         int n = row.length;
-
         int[] indexArr = new int[n];
 
         for (int i = 0; i < n; i++) {
             indexArr[row[i]] = i;
         }
 
+        int next = 0;
         for (int i = 0; i < n; i += 2) {
-            if ((row[i] & 1) == 0 && row[i + 1] != row[i] + 1) {
-                // 交换
-                int swapedIndex = indexArr[row[i] + 1];
-                indexArr[row[swapedIndex]] = i + 1;
-                indexArr[row[i+1]] = swapedIndex;
-                int tmp = row[swapedIndex];
-                row[swapedIndex] = row[i + 1];
-                row[i + 1] = tmp;
-
-                ans++;
-            } else if ((row[i] & 1) == 1 && row[i + 1] != row[i] - 1) {
-                // 交换
-                int swapedIndex = indexArr[row[i] - 1];
-                indexArr[row[swapedIndex]] = i + 1;
-                indexArr[row[i+1]] = swapedIndex;
-                int tmp = row[swapedIndex];
-                row[swapedIndex] = row[i + 1];
-                row[i + 1] = tmp;
-
-                ans++;
+            next = (row[i] & 1) == 0 ? row[i] + 1 : row[i] - 1;
+            if (next == row[i + 1]) {
+                continue;
             }
+
+            int swapedIndex = indexArr[next];
+            indexArr[row[i+1]] = swapedIndex;
+            row[swapedIndex] = row[i + 1];
+            ans++;
         }
 
         return ans;
