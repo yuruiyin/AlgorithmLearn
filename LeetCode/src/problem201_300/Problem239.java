@@ -4,6 +4,9 @@ import java.util.LinkedList;
 
 public class Problem239 {
 
+    /**
+     * 单调队列
+     */
     class MonotonicQueue {
         private LinkedList<Integer> deque;
 

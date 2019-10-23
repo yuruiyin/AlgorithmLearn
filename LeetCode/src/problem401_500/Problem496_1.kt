@@ -8,7 +8,7 @@ package problem401_500
     链接：https://leetcode-cn.com/problems/next-greater-element-i
     著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-class Problem496 {
+class Problem496_1 {
 
     fun nextGreaterElement(nums1: IntArray, nums2: IntArray): IntArray {
         val list = mutableListOf<Int>()
@@ -48,12 +48,12 @@ class Problem496 {
 }
 
 fun main(args: Array<String>) {
-    var resIntArr = Problem496().nextGreaterElement(intArrayOf(4, 1, 2), intArrayOf(1, 3, 4, 2))
+    var resIntArr = Problem496_1().nextGreaterElement(intArrayOf(4, 1, 2), intArrayOf(1, 3, 4, 2))
     resIntArr.forEach {
         print("$it ")
     }
 
-    resIntArr = Problem496().nextGreaterElement(intArrayOf(2, 4), intArrayOf(1, 2, 3, 4))
+    resIntArr = Problem496_1().nextGreaterElement(intArrayOf(2, 4), intArrayOf(1, 2, 3, 4))
     resIntArr.forEach {
         print("$it ")
     }

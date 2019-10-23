@@ -1,22 +1,6 @@
-package problem001_100;
+package interview_bytedance.round09;
 
-public class Problem075 {
-
-    public void sortColorsCountSort(int[] nums) {
-        int[] countArr = new int[3];
-        int size = nums.length;
-
-        for (int i = 0; i < size; i++) {
-            countArr[nums[i]]++;
-        }
-
-        int count = 0;
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < countArr[i]; j++) {
-                nums[count++] = i;
-            }
-        }
-    }
+public class Problem02 {
 
     private void swap(int[] a, int i, int j) {
         int tmp = a[i];
@@ -24,9 +8,6 @@ public class Problem075 {
         a[j] = tmp;
     }
 
-    /**
-     * 空间复杂度为O(1), 时间复杂度为O(n)
-     */
     public void sortColors(int[] nums) {
         if (nums.length <= 1) {
             return;
@@ -76,15 +57,48 @@ public class Problem075 {
         }
 
     }
-
-
+    
     public static void main(String[] args) {
-        int[] nums = {2,0,2,1,1,0};
-        new Problem075().sortColors(nums);
+        int[] nums = new int[]{2,0,2,1,1,0};
+        new Problem02().sortColors(nums);
 
-        for (int i = 0; i < nums.length; i++) {
-            System.out.print(nums[i] + " ");
+        for (int num : nums) {
+            System.out.print(num + ",");
         }
-    }
+        System.out.println();
 
+        int[] nums1 = new int[]{1,2,0};
+        new Problem02().sortColors(nums1);
+
+        for (int num : nums1) {
+            System.out.print(num + ",");
+        }
+        System.out.println();
+
+        int[] nums2 = new int[]{2,1,0};
+        new Problem02().sortColors(nums2);
+
+        for (int num : nums2) {
+            System.out.print(num + ",");
+        }
+        System.out.println();
+
+        int[] nums3 = new int[]{2,1,2};
+        new Problem02().sortColors(nums3);
+
+        for (int num : nums3) {
+            System.out.print(num + ",");
+        }
+        System.out.println();
+
+//        [1,2,2,2,2,0,0,0,1,1]
+        int[] nums4 = new int[]{1,2,2,2,2,0,0,0,1,1};
+        new Problem02().sortColors(nums4);
+
+        for (int num : nums4) {
+            System.out.print(num + ",");
+        }
+        System.out.println();
+    }
+    
 }

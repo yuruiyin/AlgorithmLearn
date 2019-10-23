@@ -1,6 +1,6 @@
 package problem001_100
 
-class Problem029 {
+class Problem029_1 {
 
     fun divide(dividend: Int, divisor: Int): Int {
         if (divisor == 1) {
@@ -34,6 +34,6 @@ class Problem029 {
 }
 
 fun main(args: Array<String>) {
-    val res = Problem029().divide(-2147483648, 2)
+    val res = Problem029_1().divide(-2147483648, 2)
     println("res: $res")
 }
