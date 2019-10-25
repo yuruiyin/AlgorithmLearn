@@ -1,5 +1,8 @@
 package problem201_300;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Problem219 {
 
     public boolean containsNearbyDuplicate(int[] nums, int k) {
@@ -22,6 +25,23 @@ public class Problem219 {
             } else {
                 right++;
             }
+        }
+
+        return false;
+    }
+
+    public boolean containsNearbyDuplicate2(int[] nums, int k) {
+        int n = nums.length;
+        Map<Integer, Integer> indexMap = new HashMap<>();
+
+        for (int i = 0; i < n; i++) {
+            if (indexMap.containsKey(nums[i])) {
+                if (i - indexMap.get(nums[i]) <= k) {
+                    return true;
+                }
+            }
+
+            indexMap.put(nums[i], i);
         }
 
         return false;
