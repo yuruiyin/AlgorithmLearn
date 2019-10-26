@@ -1,4 +1,4 @@
-package contest155
+package contest.contest155
 
 /**
  * TODO 第155场周赛 第2道题

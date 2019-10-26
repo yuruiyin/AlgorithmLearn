@@ -1,4 +1,4 @@
-package contest158;
+package contest.contest158;
 
 public class Problem01 {
 

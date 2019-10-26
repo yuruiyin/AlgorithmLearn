@@ -1,4 +1,4 @@
-package contest102;
+package contest.contest102;
 
 import java.util.HashMap;
 import java.util.Map;

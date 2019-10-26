@@ -1,4 +1,4 @@
-package contest155
+package contest.contest155
 
 class Problem1200 {
 
