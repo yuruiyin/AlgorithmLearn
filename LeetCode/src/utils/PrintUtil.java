@@ -8,7 +8,7 @@ public class PrintUtil {
     
     public static void printIntList(List<Integer> list) {
         for (Integer num: list) {
-            System.out.print(num + ",");
+            System.out.print(num + ", ");
         }
         System.out.println();
     }
@@ -21,14 +21,21 @@ public class PrintUtil {
     
     public static void printStringList(List<String> list) {
         for (String str: list) {
-            System.out.print(str + ",");
+            System.out.print(str + ", ");
         }
         System.out.println();
     }
 
     public static void printIntArray(int[] nums) {
         for (int num: nums) {
-            System.out.print(num + ",");
+            System.out.print(num + ", ");
+        }
+        System.out.println();
+    }
+    
+    public static void printStringArray(String[] strs) {
+        for (String str: strs) {
+            System.out.print(str + ", ");
         }
         System.out.println();
     }
