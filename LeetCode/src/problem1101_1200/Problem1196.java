@@ -1,0 +1,30 @@
+package problem1101_1200;
+
+import java.util.Arrays;
+
+public class Problem1196 {
+
+    /**
+     * 贪心
+     */
+    public int maxNumberOfApples(int[] arr) {
+        Arrays.sort(arr);
+        int ans = 0;
+        int sum = 0;
+        for (int num : arr) {
+            if (sum + num <= 5000) {
+                sum += num;
+                ans++;
+            } else {
+                break;
+            }
+        }
+
+        return ans;
+    }
+
+    public static void main(String[] args) {
+
+    }
+
+}
