@@ -1,5 +1,7 @@
 package contest.contest156
 
+import kotlin.math.abs
+
 class Problem1208 {
 
     fun getMaxLength(diffList: List<Int>, maxCost: Int): Int {
@@ -24,7 +26,7 @@ class Problem1208 {
         val len = s.length
 
         for (i in 0 until len) {
-            diffList.add(Math.abs(s[i] - t[i]))
+            diffList.add(abs(s[i] - t[i]))
         }
 
 //        diffList.sort()
