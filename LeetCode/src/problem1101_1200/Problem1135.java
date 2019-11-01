@@ -23,7 +23,7 @@ public class Problem1135 {
         }
     }
 
-    private int getAns(List<Edge> edges, int nodeCount) {
+    private int kruskal(List<Edge> edges, int nodeCount) {
         // 用于存放每个节点所在的树（这里的set是上面set的地址），当存在树进行合并的时候，需要更新这个值
         List<Integer>[] nodeTreeSetMap = new ArrayList[nodeCount + 1];
 
@@ -97,11 +97,56 @@ public class Problem1135 {
         return ans;
     }
 
+    /**
+     * 通过BFS判断所有节点是否连通
+     */
+    private boolean isConnectedByBFS(int n, int[][] connections) {
+        ArrayList<Integer>[] adj = new ArrayList[n+1];
+
+        for (int i = 1; i <= n; i++) {
+            adj[i] = new ArrayList<>();
+        }
+
+        for (int[] connection: connections) {
+            int v1 = connection[0];
+            int v2 = connection[1];
+            adj[v1].add(v2);
+            adj[v2].add(v1);
+        }
+
+        LinkedList<Integer> queue = new LinkedList<>();
+        queue.addLast(1);
+
+        boolean[] visited = new boolean[n+1];
+        visited[1] = true;
+        int nodeCount = 0;
+
+        while (!queue.isEmpty()) {
+            int front = queue.removeFirst();
+            nodeCount++;
+
+            List<Integer> neighbors = adj[front];
+            for (int neighbor : neighbors) {
+                if (visited[neighbor]) {
+                    continue;
+                }
+                queue.addLast(neighbor);
+                visited[neighbor] = true;
+            }
+        }
+
+        return nodeCount == n;
+    }
+
     public int minimumCost(int n, int[][] connections) {
         // 最小生成树算法，kruskal，从最小权值的边开始将边加入到树里头，同时每次要加入的两个节点不能在一颗树里（否则会形成环，也就是变成多余的边）
         // 直到最后所有的顶点都在一颗树内或者有n-1条边为止
 
         if (connections.length < n - 1) {
+            return -1;
+        }
+
+        if (!isConnectedByBFS(n, connections)) {
             return -1;
         }
 
@@ -116,7 +161,7 @@ public class Problem1135 {
 
         edges.sort(new CustomCmp());
 
-        return getAns(edges, n);
+        return kruskal(edges, n);
     }
     
     public static void main(String[] args) {
