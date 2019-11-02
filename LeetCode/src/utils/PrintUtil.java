@@ -32,6 +32,13 @@ public class PrintUtil {
         }
         System.out.println();
     }
+
+    public static void printDoubleArray(double[] nums) {
+        for (double num: nums) {
+            System.out.print(num + ", ");
+        }
+        System.out.println();
+    }
     
     public static void printStringArray(String[] strs) {
         for (String str: strs) {
