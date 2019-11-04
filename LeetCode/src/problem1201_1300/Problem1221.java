@@ -1,6 +1,6 @@
-package contest.contest158;
+package problem1201_1300;
 
-public class Problem01 {
+public class Problem1221 {
 
     public int balancedStringSplit(String s) {
         int rSize = 0;
@@ -25,9 +25,9 @@ public class Problem01 {
     }
     
     public static void main(String[] args) {
-        System.out.println(new Problem01().balancedStringSplit("RLRRLLRLRL"));
-        System.out.println(new Problem01().balancedStringSplit("RLLLLRRRLR"));
-        System.out.println(new Problem01().balancedStringSplit("LLLLRRRR"));
+        System.out.println(new Problem1221().balancedStringSplit("RLRRLLRLRL"));
+        System.out.println(new Problem1221().balancedStringSplit("RLLLLRRRLR"));
+        System.out.println(new Problem1221().balancedStringSplit("LLLLRRRR"));
 
     }
 

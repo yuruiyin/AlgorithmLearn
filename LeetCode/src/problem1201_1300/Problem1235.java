@@ -1,9 +1,9 @@
-package contest.contest159;
+package problem1201_1300;
 
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class Problem04 {
+public class Problem1235 {
 
     private int ansMax = 0;
     private int[] memo;         //某个start开始的最大值
@@ -132,10 +132,10 @@ public class Problem04 {
     }
     
     public static void main(String[] args) {
-        System.out.println(new Problem04().jobScheduling(new int[]{1,2,3,3}, new int[]{3,4,5,6}, new int[]{50,10,40,70}));
-        System.out.println(new Problem04().jobScheduling(new int[]{1,2,3,4,6}, new int[]{3,5,10,6,9}, new int[]{20,20,100,70,60}));
-        System.out.println(new Problem04().jobScheduling(new int[]{1,1,1}, new int[]{2,3,4}, new int[]{5,6,4}));
-        System.out.println(new Problem04().jobScheduling(new int[]{4,2,4,8,2}, new int[]{5,5,5,10,8}, new int[]{1,2,8,10,4}));
+        System.out.println(new Problem1235().jobScheduling(new int[]{1,2,3,3}, new int[]{3,4,5,6}, new int[]{50,10,40,70}));
+        System.out.println(new Problem1235().jobScheduling(new int[]{1,2,3,4,6}, new int[]{3,5,10,6,9}, new int[]{20,20,100,70,60}));
+        System.out.println(new Problem1235().jobScheduling(new int[]{1,1,1}, new int[]{2,3,4}, new int[]{5,6,4}));
+        System.out.println(new Problem1235().jobScheduling(new int[]{4,2,4,8,2}, new int[]{5,5,5,10,8}, new int[]{1,2,8,10,4}));
     }
     
 }

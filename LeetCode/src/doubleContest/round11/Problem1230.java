@@ -3,7 +3,7 @@ package doubleContest.round11;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Problem03 {
+public class Problem1230 {
 
     private Map<Integer, Double> memoMap = new HashMap<>();
     private double[] tailMultiply1;
@@ -71,8 +71,8 @@ public class Problem03 {
     }
     
     public static void main(String[] args) {
-        System.out.println(new Problem03().probabilityOfHeads(new double[]{0.5,0.5,0.5,0.5,0.5}, 0));
-        System.out.println(new Problem03().probabilityOfHeads(new double[]{0.4}, 1));
-        System.out.println(new Problem03().probabilityOfHeads(new double[]{0.2,0.8,0,0.3,0.5}, 3));  //0.182
+        System.out.println(new Problem1230().probabilityOfHeads(new double[]{0.5,0.5,0.5,0.5,0.5}, 0));
+        System.out.println(new Problem1230().probabilityOfHeads(new double[]{0.4}, 1));
+        System.out.println(new Problem1230().probabilityOfHeads(new double[]{0.2,0.8,0,0.3,0.5}, 3));  //0.182
     }
 }

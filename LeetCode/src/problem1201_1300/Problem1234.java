@@ -1,6 +1,6 @@
-package contest.contest159;
+package problem1201_1300;
 
-public class Problem03 {
+public class Problem1234 {
 
     private boolean isObtain(int[] countArr, int[] baseCountArr) {
         for (int i = 0; i < baseCountArr.length; i++) {
@@ -103,13 +103,13 @@ public class Problem03 {
     }
     
     public static void main(String[] args) {
-        System.out.println(new Problem03().balancedString("QWER"));
-        System.out.println(new Problem03().balancedString("QQWE"));
-        System.out.println(new Problem03().balancedString("QQQW"));
-        System.out.println(new Problem03().balancedString("QQQQ"));
-        System.out.println(new Problem03().balancedString("QQQQWWWE"));
-        System.out.println(new Problem03().balancedString("WWEQERQWQWWRWWERQWEQ"));
-        System.out.println(new Problem03().balancedString(new Problem03().makeStr()));
+        System.out.println(new Problem1234().balancedString("QWER"));
+        System.out.println(new Problem1234().balancedString("QQWE"));
+        System.out.println(new Problem1234().balancedString("QQQW"));
+        System.out.println(new Problem1234().balancedString("QQQQ"));
+        System.out.println(new Problem1234().balancedString("QQQQWWWE"));
+        System.out.println(new Problem1234().balancedString("WWEQERQWQWWRWWERQWEQ"));
+        System.out.println(new Problem1234().balancedString(new Problem1234().makeStr()));
 
     }
     

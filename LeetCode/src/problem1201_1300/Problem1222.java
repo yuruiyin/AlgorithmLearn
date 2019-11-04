@@ -1,10 +1,10 @@
-package contest.contest158;
+package problem1201_1300;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class Problem02 {
+public class Problem1222 {
 
     class Data {
         int x;
@@ -222,7 +222,7 @@ public class Problem02 {
 
         int[] king = new int[]{3,3};
 
-        List<List<Integer>> ansList = new Problem02().queensAttacktheKing(queues, king);
+        List<List<Integer>> ansList = new Problem1222().queensAttacktheKing(queues, king);
         
         for (List<Integer> list : ansList) {
             for (Integer num : list) {

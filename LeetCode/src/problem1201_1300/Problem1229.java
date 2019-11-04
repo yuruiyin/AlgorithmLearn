@@ -1,11 +1,11 @@
-package doubleContest.round11;
+package problem1201_1300;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-public class Problem02 {
+public class Problem1229 {
 
     class Data {
         int start;
@@ -119,7 +119,7 @@ public class Problem02 {
                 {0,15},
                 {60,70}
         };
-        System.out.println(new Problem02().minAvailableDuration(slots1, slots2, 8));
+        System.out.println(new Problem1229().minAvailableDuration(slots1, slots2, 8));
 
 //        int[][] slots1 = new int[][] {
 //                {10,50},

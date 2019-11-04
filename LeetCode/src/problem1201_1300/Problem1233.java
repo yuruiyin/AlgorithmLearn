@@ -1,11 +1,10 @@
-package contest.contest159;
+package problem1201_1300;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 
-public class Problem02 {
+public class Problem1233 {
 
 //    class CustomCmp implements Comparator<String> {
 //
@@ -51,7 +50,7 @@ public class Problem02 {
     }
     
     public static void main(String[] args) {
-        List<String> ansList = new Problem02().removeSubfolders(new String[]{
+        List<String> ansList = new Problem1233().removeSubfolders(new String[]{
                 "/a","/a/b","/c/d","/c/d/e","/c/f"
         });
 
@@ -61,7 +60,7 @@ public class Problem02 {
 
         System.out.println();
 
-        List<String> ansList1 = new Problem02().removeSubfolders(new String[]{
+        List<String> ansList1 = new Problem1233().removeSubfolders(new String[]{
                 "/a","/a/b/c","/a/b/d"
         });
 
@@ -71,7 +70,7 @@ public class Problem02 {
 
         System.out.println();
 
-        List<String> ansList2 = new Problem02().removeSubfolders(new String[]{
+        List<String> ansList2 = new Problem1233().removeSubfolders(new String[]{
                 "/a/b/c","/a/b/d","/a/b/ca"
         });
 

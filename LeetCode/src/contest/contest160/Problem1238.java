@@ -5,7 +5,7 @@ import utils.PrintUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Problem02 {
+public class Problem1238 {
 
     private List<Integer> ansList;
 
@@ -61,10 +61,10 @@ public class Problem02 {
     }
     
     public static void main(String[] args) {
-        List<Integer> ansList = new Problem02().circularPermutation(2, 3);
+        List<Integer> ansList = new Problem1238().circularPermutation(2, 3);
         PrintUtil.printIntList(ansList);
 
-        List<Integer> ansList1 = new Problem02().circularPermutation(3, 2);
+        List<Integer> ansList1 = new Problem1238().circularPermutation(3, 2);
         PrintUtil.printIntList(ansList1);
     }
     

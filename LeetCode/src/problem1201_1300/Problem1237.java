@@ -1,4 +1,4 @@
-package contest.contest160;
+package problem1201_1300;
 
 import utils.PrintUtil;
 
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Problem01 {
+public class Problem1237 {
 
     interface CustomFunction {
         int f(int x, int y);
@@ -41,7 +41,7 @@ public class Problem01 {
     }
     
     public static void main(String[] args) {
-        List<List<Integer>> ansList = new Problem01().findSolution(new CustomFunctionImpl(), 5);
+        List<List<Integer>> ansList = new Problem1237().findSolution(new CustomFunctionImpl(), 5);
 
         PrintUtil.printIntListList(ansList);
     }

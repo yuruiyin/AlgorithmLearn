@@ -1,10 +1,10 @@
-package contest.contest160;
+package problem1201_1300;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Problem03 {
+public class Problem1239 {
 
     private int ansMax = 0;
 
@@ -71,13 +71,13 @@ public class Problem03 {
     public static void main(String[] args) {
         List<String> list = new ArrayList<>(Arrays.asList("un","iq","ue"));
 
-        System.out.println(new Problem03().maxLength(list));
+        System.out.println(new Problem1239().maxLength(list));
         List<String> list1 = new ArrayList<>(Arrays.asList("cha","r","act","ers"));
-        System.out.println(new Problem03().maxLength(list1));
+        System.out.println(new Problem1239().maxLength(list1));
 
         List<String> list2 = new ArrayList<>(Arrays.asList("abcdefghijklmnopqrstuvwxyz"));
 //        List<String> list2 = new ArrayList<>(Arrays.asList("abcdefghijklmnopqrstuvwxy", "z"));
-        System.out.println(new Problem03().maxLength(list2));
+        System.out.println(new Problem1239().maxLength(list2));
     }
     
 }

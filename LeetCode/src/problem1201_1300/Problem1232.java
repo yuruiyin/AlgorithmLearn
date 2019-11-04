@@ -1,6 +1,6 @@
-package contest.contest159;
+package problem1201_1300;
 
-public class Problem01 {
+public class Problem1232 {
 
     public boolean checkStraightLine(int[][] coordinates) {
         int n = coordinates.length;
