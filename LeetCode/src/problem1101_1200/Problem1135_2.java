@@ -8,7 +8,6 @@ import java.util.*;
  */
 public class Problem1135_2 {
 
-
     /**
      * 自定义链表list，用于存储Kruskal算法中森林中的树，一个list对应一棵树，主要是为了提升合并的效率。
      */
