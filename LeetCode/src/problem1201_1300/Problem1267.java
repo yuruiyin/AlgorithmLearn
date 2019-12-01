@@ -1,12 +1,6 @@
-package contest.contest164;
+package problem1201_1300;
 
-import com.sun.tools.internal.xjc.model.CTypeRef;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
-public class Problem02 {
+public class Problem1267 {
 
     public int countServers(int[][] grid) {
         int rowCount = grid.length;

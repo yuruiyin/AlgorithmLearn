@@ -1,6 +1,6 @@
-package contest.contest164;
+package problem1201_1300;
 
-public class Problem04 {
+public class Problem1269 {
 
     private static final int MOD = 1000000007;
 
@@ -50,7 +50,7 @@ public class Problem04 {
                 memo[i][j] = -1;
             }
         }
-        return (int) backTrack(0, steps);
+        return backTrack(0, steps);
     }
     
     public static void main(String[] args) {

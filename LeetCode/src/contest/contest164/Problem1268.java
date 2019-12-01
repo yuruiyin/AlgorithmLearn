@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Problem03 {
+public class Problem1268 {
 
     public List<List<String>> suggestedProducts(String[] products, String searchWord) {
         Arrays.sort(products);
