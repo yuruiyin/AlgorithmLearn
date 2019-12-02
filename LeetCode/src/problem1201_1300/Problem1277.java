@@ -1,6 +1,6 @@
-package contest.contest165;
+package problem1201_1300;
 
-public class Problem03 {
+public class Problem1277 {
 
     public int countSquares(int[][] matrix) {
         int m = matrix.length;
@@ -40,7 +40,7 @@ public class Problem03 {
     }
     
     public static void main(String[] args) {
-        System.out.println(new Problem03().countSquares(new int[][]{
+        System.out.println(new Problem1277().countSquares(new int[][]{
                 {1,0,1},{1,1,0},{1,1,0}
         }));
     }

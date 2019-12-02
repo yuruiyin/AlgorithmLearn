@@ -1,9 +1,9 @@
-package contest.contest163;
+package problem1201_1300;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Problem01 {
+public class Problem1260 {
 
     public List<List<Integer>> shiftGrid(int[][] grid, int k) {
         List<List<Integer>> ansList = new ArrayList<>();

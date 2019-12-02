@@ -1,10 +1,10 @@
-package doubleContest.round13;
+package problem1201_1300;
 
 import utils.PrintUtil;
 
 import java.util.*;
 
-public class Problem03 {
+public class Problem1258 {
 
     private List<List<String>> ansList = new ArrayList<>();
 
@@ -110,7 +110,7 @@ public class Problem03 {
         synonyms.add(list2);
         synonyms.add(list3);
         String text = "I am happy today but was sad yesterday";
-        PrintUtil.printStringList(new Problem03().generateSentences(synonyms, text));
+        PrintUtil.printStringList(new Problem1258().generateSentences(synonyms, text));
 
     }
     

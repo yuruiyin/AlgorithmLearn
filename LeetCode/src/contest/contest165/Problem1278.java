@@ -1,6 +1,6 @@
 package contest.contest165;
 
-public class Problem04 {
+public class Problem1278 {
 
     private int sLen;
     private int[][] memo;

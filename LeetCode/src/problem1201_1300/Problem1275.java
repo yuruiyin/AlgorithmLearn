@@ -1,6 +1,6 @@
-package contest.contest165;
+package problem1201_1300;
 
-public class Problem01 {
+public class Problem1275 {
 
     private String getAns(char[][] grid) {
         for (int i = 0; i < 3; i++) {
@@ -90,7 +90,7 @@ public class Problem01 {
     }
     
     public static void main(String[] args) {
-        System.out.println(new Problem01().tictactoe(new int[][]{
+        System.out.println(new Problem1275().tictactoe(new int[][]{
                 {0,0}, {0,1}, {0,2}, {1,0}, {1, 2}, {2, 0}, {2, 1}, {2, 2}
         }));
     }

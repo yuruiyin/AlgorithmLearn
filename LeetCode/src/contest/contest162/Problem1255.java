@@ -3,7 +3,7 @@ package contest.contest162;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Problem04 {
+public class Problem1255 {
 
     private int ansMax = Integer.MIN_VALUE;
 

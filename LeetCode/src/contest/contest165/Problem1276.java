@@ -3,7 +3,7 @@ package contest.contest165;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Problem02 {
+public class Problem1276 {
 
     public List<Integer> numOfBurgers(int tomatoSlices, int cheeseSlices) {
         List<Integer> ansList = new ArrayList<>();

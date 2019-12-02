@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Problem03 {
+public class Problem1262 {
 
     public int maxSumDivThree(int[] nums) {
         int sum = 0;

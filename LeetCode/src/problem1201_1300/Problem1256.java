@@ -1,6 +1,6 @@
-package doubleContest.round13;
+package problem1201_1300;
 
-public class Problem01 {
+public class Problem1256 {
 
     private StringBuilder convert(int num) {
         if (num == 0) {

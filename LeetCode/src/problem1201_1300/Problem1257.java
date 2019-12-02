@@ -1,8 +1,8 @@
-package doubleContest.round13;
+package problem1201_1300;
 
 import java.util.*;
 
-public class Problem02 {
+public class Problem1257 {
 
     public String findSmallestRegion(List<List<String>> regions, String region1, String region2) {
         Map<String, String> parentMap = new HashMap<>();

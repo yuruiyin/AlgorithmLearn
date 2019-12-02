@@ -1,6 +1,6 @@
 package contest.contest162;
 
-public class Problem01 {
+public class Problem1252 {
 
     public int oddCells(int n, int m, int[][] indices) {
         int[][] grid = new int[n][m];
