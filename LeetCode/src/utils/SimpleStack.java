@@ -1,10 +1,6 @@
 package utils;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.EmptyStackException;
-import java.util.Iterator;
-import java.util.List;
 
 /**
  * 非线程安全的Stack，比java自带的线程安全的stack效率更高
