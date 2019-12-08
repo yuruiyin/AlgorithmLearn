@@ -24,10 +24,8 @@ public class Problem146 {
 
     public void put(int key, int value) {
         if (map.keySet().size() == capacity && !map.containsKey(key)) {
-            for (Integer tmpKey : map.keySet()) {
-                map.remove(tmpKey);
-                break;
-            }
+            Integer oldestKey = map.keySet().iterator().next();
+            map.remove(oldestKey);
         }
 
         if (map.containsKey(key)) {
