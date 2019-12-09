@@ -1,6 +1,6 @@
-package contest.contest166;
+package problem1201_1300;
 
-public class Problem04 {
+public class Problem1284 {
 
     private int rowCount;
     private int colCount;

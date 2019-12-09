@@ -1,6 +1,6 @@
-package contest.contest166;
+package problem1201_1300;
 
-public class Problem01 {
+public class Problem1281 {
 
     public int subtractProductAndSum(int n) {
         int sum1 = 1;

@@ -3,7 +3,7 @@ package contest.contest166;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Problem02 {
+public class Problem1282 {
 
     public List<List<Integer>> groupThePeople(int[] groupSizes) {
         List<List<Integer>> ansList = new ArrayList<>();
