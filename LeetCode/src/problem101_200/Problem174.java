@@ -3,67 +3,34 @@ package problem101_200;
 public class Problem174 {
 
     public int calculateMinimumHP(int[][] dungeon) {
+        if (dungeon == null || dungeon.length == 0 || dungeon[0].length == 0) {
+            return 0;
+        }
+
         int m = dungeon.length;
-        if (m == 0) {
-            return 0;
-        }
-
         int n = dungeon[0].length;
+        // 右下角（公主的位置）开始dp, 求到达每个位置至少得有多少健康点数
+        int[][] dp = new int[m][n];
+        dp[m-1][n-1] = dungeon[m-1][n-1] >= 0 ? 1 : -dungeon[m-1][n-1] + 1;
 
-        if (n == 0) {
-            return 0;
+        // 最后一行, 只与右侧有关系
+        for (int j = n - 2; j >= 0; j--) {
+            dp[m-1][j] = Math.max(dp[m-1][j+1] - dungeon[m-1][j], 1);
         }
 
-        int[][] minDp = new int[m][n];
-        int[][] sumDp = new int[m][n];
+        // 最后一列，只与下侧有关系
+        for (int i = m - 2; i >= 0; i--) {
+            dp[i][n-1] = Math.max(dp[i+1][n-1] - dungeon[i][n-1], 1);
+        }
 
-        minDp[0][0] = dungeon[0][0] > 0 ? 0 : -dungeon[0][0];
-        sumDp[0][0] = dungeon[0][0];
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (i == 0 && j == 0) {
-                    continue;
-                }
-
-                if (i == 0) {
-                    sumDp[i][j] = sumDp[i][j - 1] + dungeon[i][j];
-                    minDp[i][j] = sumDp[i][j] >= -minDp[i][j - 1] ? minDp[i][j - 1] : -sumDp[i][j];
-                } else if (j == 0) {
-                    sumDp[i][j] = sumDp[i - 1][j] + dungeon[i][j];
-                    minDp[i][j] = sumDp[i][j] >= -minDp[i - 1][j] ? minDp[i - 1][j] : -sumDp[i][j];
-                } else {
-                    int leftSum = sumDp[i][j - 1] + dungeon[i][j];
-                    int topSum = sumDp[i - 1][j] + dungeon[i][j];
-
-                    int leftMin = leftSum >= -minDp[i][j - 1] ? minDp[i][j - 1] : -leftSum;
-                    int topMin = topSum >= -minDp[i - 1][j] ? minDp[i - 1][j] : -topSum;
-
-                    if (i == m - 1 && j == n - 1) {
-                        minDp[i][j] = Math.min(leftMin, topMin);
-                    } else {
-                        if (leftSum - leftMin == topSum - topMin) {
-                            minDp[i][j] = leftSum > topSum ? leftMin : topMin;
-                        } else if (leftSum - leftMin > topSum - topMin) {
-                            minDp[i][j] = leftMin;
-                        } else {
-                            minDp[i][j] = topMin;
-                        }
-                    }
-
-                    if (minDp[i][j] == leftMin) {
-                        sumDp[i][j] = leftSum;
-                    } else {
-                        sumDp[i][j] = topSum;
-                    }
-                }
+        // 非最后一行和最后一列
+        for (int i = m - 2; i >= 0; i--) {
+            for (int j = n - 2; j >= 0; j--) {
+                dp[i][j] = Math.min(Math.max(dp[i][j+1] - dungeon[i][j], 1), Math.max(dp[i+1][j] - dungeon[i][j], 1));
             }
         }
 
-        if (minDp[m - 1][n - 1] <= 0) {
-            return 1;
-        }
-
-        return minDp[m - 1][n - 1] + 1;
+        return dp[0][0];
     }
 
     public static void main(String[] args) {
