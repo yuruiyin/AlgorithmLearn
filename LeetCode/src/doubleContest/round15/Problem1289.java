@@ -1,6 +1,6 @@
 package doubleContest.round15;
 
-public class Problem04 {
+public class Problem1289 {
 
     private int[] getPrevRowMinArr(int[][] dp, int i) {
         int n = dp.length;

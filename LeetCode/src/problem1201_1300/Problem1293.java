@@ -1,10 +1,10 @@
-package contest.contest167;
+package problem1201_1300;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Problem04 {
+public class Problem1293 {
 
     class Node {
         int row;

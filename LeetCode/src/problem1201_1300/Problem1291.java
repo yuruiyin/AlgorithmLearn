@@ -1,9 +1,9 @@
-package contest.contest167;
+package problem1201_1300;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Problem02 {
+public class Problem1291 {
 
     public List<Integer> sequentialDigits(int low, int high) {
         List<Integer> list = new ArrayList<>();
@@ -30,7 +30,7 @@ public class Problem02 {
     }
     
     public static void main(String[] args) {
-        System.out.println(new Problem02().sequentialDigits(10, 10000));
+        System.out.println(new Problem1291().sequentialDigits(10, 10000));
     }
     
 }

@@ -1,9 +1,9 @@
-package doubleContest.round15;
+package problem1201_1300;
 
 import java.util.Arrays;
 import java.util.Comparator;
 
-public class Problem02_1 {
+public class Problem1288_1 {
 
     public int removeCoveredIntervals(int[][] intervals) {
         int len = intervals.length;

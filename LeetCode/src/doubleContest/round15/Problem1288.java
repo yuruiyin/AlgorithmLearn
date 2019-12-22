@@ -2,7 +2,7 @@ package doubleContest.round15;
 
 import java.util.List;
 
-public class Problem02 {
+public class Problem1288 {
 
     public int removeCoveredIntervals(int[][] intervals) {
         int len = intervals.length;

@@ -1,6 +1,6 @@
 package contest.contest167;
 
-public class Problem03 {
+public class Problem1292 {
 
     public int maxSideLength(int[][] mat, int threshold) {
         int m = mat.length;

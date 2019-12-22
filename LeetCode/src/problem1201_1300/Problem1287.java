@@ -1,6 +1,6 @@
-package doubleContest.round15;
+package problem1201_1300;
 
-public class Problem01 {
+public class Problem1287 {
 
     public  int findSpecialInteger(int[] arr) {
         int[] count = new int[100001];

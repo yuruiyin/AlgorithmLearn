@@ -23,8 +23,13 @@ public class ProblemD {
             int value = 0;
             int maxN = n;
             int i;
-            for (i = 0; i < n - 1; i++) {
-                if (arr[i] - value == 0) {
+            for (i = 0; i < n; i++) {
+                if (arr[i] - value <= 0) {
+                    break;
+                }
+
+                if (i == n - 1 || arr[i+1] - value <= 0) {
+                    ans += (arr[i] - value) / 2;
                     break;
                 }
 
@@ -36,14 +41,19 @@ public class ProblemD {
                 } else {
                     ans += (arr[i] - value) / 2;
                     if ((arr[i] - value) % 2 == 1) {
-                        ans += (maxN - i) / 2;
-                        value++;
-                        maxN -= countArr[value];
+                        if ((maxN - i) % 2 == 0) {
+                            ans += (maxN - i) / 2;
+                            value++;
+                            maxN -= countArr[value];
+                        } else if (i + 1 < n - 1 && arr[i+1] > arr[i+2]) {
+                            // 看下一个是不是比下下个多，如果是的话，底部横向算一个，下一个值减一
+                            ans++;
+                            arr[i+1]--;
+                        }
                     }
                 }
             }
 
-            ans += (arr[i] - value) / 2;
             System.out.println(ans);
         }
     }

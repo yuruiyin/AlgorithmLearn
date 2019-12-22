@@ -1,9 +1,9 @@
-package doubleContest.round15;
+package problem1201_1300;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Problem03 {
+public class Problem1286 {
 
     class CombinationIterator {
 

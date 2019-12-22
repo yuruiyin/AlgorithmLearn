@@ -1,8 +1,8 @@
-package contest.contest167;
+package problem1201_1300;
 
 import common.ListNode;
 
-public class Problem01 {
+public class Problem1290 {
 
     public int getDecimalValue(ListNode head) {
         ListNode cur = head;
