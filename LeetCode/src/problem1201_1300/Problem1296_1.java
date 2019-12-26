@@ -1,9 +1,8 @@
-package contest.contest168;
+package problem1201_1300;
 
-import java.util.Arrays;
 import java.util.PriorityQueue;
 
-public class Problem02_1 {
+public class Problem1296_1 {
 
     public boolean isPossibleDivide(int[] nums, int k) {
         int len = nums.length;

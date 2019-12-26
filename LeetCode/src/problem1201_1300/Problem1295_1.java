@@ -1,6 +1,6 @@
-package contest.contest168;
+package problem1201_1300;
 
-public class Problem01_1 {
+public class Problem1295_1 {
 
     public int findNumbers(int[] nums) {
         int ans = 0;

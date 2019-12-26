@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Problem04 {
+public class Problem1298 {
 
     private int ans = 0;
     private int[] status;

@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class Problem03 {
+public class Problem1297 {
 
 //    private boolean isMatch(String str, int maxLetters) {
 //        Set<Character> set = new HashSet<>();

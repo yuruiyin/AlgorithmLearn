@@ -1,10 +1,10 @@
-package contest.contest168;
+package problem1201_1300;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Problem02_2 {
+public class Problem1296_2 {
 
     public boolean isPossibleDivide(int[] nums, int k) {
         int len = nums.length;
@@ -50,7 +50,7 @@ public class Problem02_2 {
     }
     
     public static void main(String[] args) {
-        System.out.println(new Problem02_2().isPossibleDivide(new int[]{1,2,3,3,4,4,5,6}, 4));
+        System.out.println(new Problem1296_2().isPossibleDivide(new int[]{1,2,3,3,4,4,5,6}, 4));
     }
 
 }
