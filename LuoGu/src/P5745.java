@@ -1,14 +1,21 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.StringTokenizer;
 
 public class P5745 {
+
+    private static BufferedReader br;
+    private static StringTokenizer tokenizer;
     
-    public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        int n = scan.nextInt();
-        int m = scan.nextInt();
+    public static void main(String[] args) throws IOException {
+        br = new BufferedReader(new InputStreamReader(System.in));
+        int n = nextInt();
+        int m = nextInt();
         long[] arr = new long[n];
         for (int i = 0; i < n; i++) {
-            arr[i] = scan.nextLong();
+            arr[i] = nextLong();
         }
 
         int left = 0;
@@ -45,7 +52,31 @@ public class P5745 {
             }
         }
 
-        System.out.println((ansLeft + 1) + " " + (ansRight + 1) + " " + ansSum);
+        PrintWriter out = new PrintWriter(System.out);
+        out.println((ansLeft + 1) + " " + (ansRight + 1) + " " + ansSum);
+        out.close();
+    }
+
+    public static String next() throws IOException {
+        while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+            String line = br.readLine();
+            if (line == null)
+                throw new IOException();
+            tokenizer = new StringTokenizer(line);
+        }
+        return tokenizer.nextToken();
+    }
+
+    public static int nextInt() throws IOException {
+        return Integer.parseInt(next());
+    }
+
+    public static long nextLong() throws IOException {
+        return Long.parseLong(next());
+    }
+
+    public static double nextDouble() throws IOException {
+        return Double.parseDouble(next());
     }
     
 }
