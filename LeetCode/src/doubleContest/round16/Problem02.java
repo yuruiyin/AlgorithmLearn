@@ -4,9 +4,34 @@ import java.util.Arrays;
 
 public class Problem02 {
 
+    private int len;
+
+    private int find(int low, int high, int prevSum, int from, int target) {
+        while (low <= high) {
+            int mid = (low + high) >>> 1;
+            int sum = prevSum + mid * (len - from);
+            if (sum == target) {
+                return mid;
+            } else if (sum > target) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
+        }
+
+        int ans1 = Math.abs(prevSum + low * (len - from) - target);
+        int ans2 = Math.abs(prevSum + high * (len - from) - target);
+
+        if (ans1 < ans2) {
+            return low;
+        } else {
+            return high;
+        }
+    }
+
     public int findBestValue(int[] arr, int target) {
         Arrays.sort(arr);
-        int len = arr.length;
+        len = arr.length;
         int sum = 0;
 
         for (int i = 0; i < len; i++) {
@@ -22,20 +47,8 @@ public class Problem02 {
                         return target / len + 1;
                     }
                 } else {
-                    int low = arr[i-1];
-                    int high = arr[i];
-                    int min = Integer.MAX_VALUE;
-                    int ans = -1;
                     sum -= arr[i];
-                    for (int j = low; j <= high; j++) {
-                        int diff = Math.abs(sum + j * (len - i) - target);
-                        if (diff < min) {
-                            min = diff;
-                            ans = j;
-                        }
-                    }
-
-                    return ans;
+                    return find(arr[i-1], arr[i], sum, i, target);
                 }
             }
         }
