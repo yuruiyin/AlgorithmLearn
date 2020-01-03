@@ -21,7 +21,7 @@ public class Problem879 {
     }
 
     private int backTrack(int leftPCount, int leftProfit, int from) {
-        if (from == len) {
+        if (from == len || leftPCount < datas[from].personCount) {
             if (leftProfit > 0) {
                 return 0;
             } else {
@@ -53,7 +53,7 @@ public class Problem879 {
         Arrays.sort(datas, new Comparator<Data>() {
             @Override
             public int compare(Data o1, Data o2) {
-                return o1.profit - o2.profit;
+                return o1.personCount - o2.personCount;
             }
         });
 
