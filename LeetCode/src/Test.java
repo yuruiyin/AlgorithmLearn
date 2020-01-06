@@ -60,10 +60,15 @@ public class Test {
     }
     
     public static void main(String[] args) {
-        new Test().cmpV2(13, 5);
-        new Test().cmpV2(13, 13);
-        new Test().cmpV2(5, 6);
-        new Test().cmpV2(2, 3);
+//        new Test().cmpV2(13, 5);
+//        new Test().cmpV2(13, 13);
+//        new Test().cmpV2(5, 6);
+//        new Test().cmpV2(2, 3);
+
+        boolean a = true;
+        boolean[] arr = new boolean[5];
+        
+        System.out.println();
     }
     
 }
