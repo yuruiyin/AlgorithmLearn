@@ -2,7 +2,7 @@ package contest.contest169;
 
 import java.util.*;
 
-public class Problem04 {
+public class Problem1307 {
 
     private String[] words;
     private String result;

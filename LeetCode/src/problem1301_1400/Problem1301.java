@@ -1,8 +1,8 @@
-package doubleContest.round16;
+package problem1301_1400;
 
 import java.util.List;
 
-public class Problem04 {
+public class Problem1301 {
 
     private static final int MOD = 1000000007;
 

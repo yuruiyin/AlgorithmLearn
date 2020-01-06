@@ -2,7 +2,7 @@ package doubleContest.round16;
 
 import java.util.Stack;
 
-public class Problem01 {
+public class Problem1299 {
 
     public int[] replaceElements(int[] arr) {
         int len = arr.length;

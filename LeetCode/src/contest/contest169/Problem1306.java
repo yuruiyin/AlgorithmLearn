@@ -1,6 +1,6 @@
 package contest.contest169;
 
-public class Problem03 {
+public class Problem1306 {
 
     private int[] arr;
     private int len;

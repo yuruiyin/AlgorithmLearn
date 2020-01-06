@@ -1,30 +1,33 @@
-package contest.contest169;
+package problem1301_1400;
 
 import common.TreeNode;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
+import java.util.PriorityQueue;
 
-public class Problem02 {
+public class Problem1305_2 {
 
-    private List<Integer> ansList;
+    private PriorityQueue<Integer> priorityQueue;
 
     private void dfs(TreeNode root) {
         if (root == null) {
             return;
         }
 
-        ansList.add(root.val);
+        priorityQueue.offer(root.val);
         dfs(root.left);
         dfs(root.right);
     }
 
     public List<Integer> getAllElements(TreeNode root1, TreeNode root2) {
-        ansList = new ArrayList<>();
+        priorityQueue = new PriorityQueue<>();
         dfs(root1);
         dfs(root2);
-        Collections.sort(ansList);
+        List<Integer> ansList = new ArrayList<>();
+        while (!priorityQueue.isEmpty()) {
+            ansList.add(priorityQueue.poll());
+        }
         return ansList;
     }
 

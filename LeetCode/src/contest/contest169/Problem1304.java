@@ -1,6 +1,6 @@
 package contest.contest169;
 
-public class Problem01 {
+public class Problem1304 {
 
     public int[] sumZero(int n) {
         int[] ans = new int[n];

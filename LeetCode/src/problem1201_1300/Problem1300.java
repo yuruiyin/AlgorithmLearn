@@ -1,8 +1,8 @@
-package doubleContest.round16;
+package problem1201_1300;
 
 import java.util.Arrays;
 
-public class Problem02 {
+public class Problem1300 {
 
     private int len;
 

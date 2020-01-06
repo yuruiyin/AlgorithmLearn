@@ -1,10 +1,10 @@
-package doubleContest.round16;
+package problem1301_1400;
 
 import common.TreeNode;
 
 import java.util.LinkedList;
 
-public class Problem03 {
+public class Problem1302 {
 
     public int deepestLeavesSum(TreeNode root) {
         LinkedList<TreeNode> queue = new LinkedList<>();

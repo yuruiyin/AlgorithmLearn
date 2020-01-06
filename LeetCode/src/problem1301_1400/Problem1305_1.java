@@ -1,11 +1,11 @@
-package contest.contest169;
+package problem1301_1400;
 
 import common.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Problem02_1 {
+public class Problem1305_1 {
 
     private void dfs(TreeNode root, List<Integer> ansList) {
         if (root == null) {
