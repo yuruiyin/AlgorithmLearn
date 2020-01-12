@@ -1,21 +1,30 @@
-package round612;
+package round613;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class D {
+public class A {
 
     private static BufferedReader br;
     private static StringTokenizer tokenizer;
 
     private static void solve() throws IOException {
-        // TODO
+        int n = nextInt();
+        String s = next();
+//        char[] arr = s.toCharArray();
+//        int lCount = 0;
+//        for (char c : arr) {
+//            if (c == 'L') {
+//                lCount++;
+//            }
+//        }
+
+        System.out.println(n + 1);
     }
 
-
-
+    
 
     public static void main(String[] args) throws IOException {
         br = new BufferedReader(new InputStreamReader(System.in));
