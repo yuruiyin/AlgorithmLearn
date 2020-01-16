@@ -1,4 +1,4 @@
-package contest.contest115;
+package problem901_1000;
 
 import java.util.LinkedList;
 
