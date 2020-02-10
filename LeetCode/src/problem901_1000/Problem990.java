@@ -1,9 +1,9 @@
-package contest.contest123;
+package problem901_1000;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Problem02 {
+public class Problem990 {
 
     public boolean equationsPossible(String[] equations) {
         List<Integer>[] treeArr = new ArrayList[26];

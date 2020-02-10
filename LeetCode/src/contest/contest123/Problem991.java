@@ -1,6 +1,6 @@
 package contest.contest123;
 
-public class Problem03 {
+public class Problem991 {
 
 
     /**
@@ -21,7 +21,7 @@ public class Problem03 {
     }
     
     public static void main(String[] args) {
-        System.out.println(new Problem03().brokenCalc(1, 1000000000));
+        System.out.println(new Problem991().brokenCalc(1, 1000000000));
     }
 
 }
