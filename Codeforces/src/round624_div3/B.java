@@ -1,0 +1,89 @@
+package round624_div3;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class B {
+
+    private static BufferedReader br;
+    private static StringTokenizer tokenizer;
+
+    private static void swap(int[] arr , int i, int j) {
+        int tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
+    }
+
+    private static boolean getAns(int[] a, boolean[] indexFlag, int n) {
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (a[j] > a[j+1]) {
+                    if (!indexFlag[j]) {
+                        return false;
+                    }
+
+                    swap(a, j, j+1);
+                }
+            }
+        }
+
+        return true;
+    }
+
+    private static void solve() throws IOException {
+        int t = nextInt();
+        while ((t--) > 0) {
+            int n = nextInt();
+            int m = nextInt();
+            int[] a = new int[n];
+            for (int i = 0; i < n; i++) {
+                a[i] = nextInt();
+            }
+
+            int[] p = new int[m];
+            for (int i = 0; i < m; i++) {
+                p[i] = nextInt() - 1;
+            }
+
+            boolean[] indexFlag = new boolean[n];
+            for (int i = 0; i < m; i++) {
+                indexFlag[p[i]] = true;
+            }
+
+            System.out.println(getAns(a, indexFlag, n) ? "YES" : "NO");
+        }
+    }
+
+
+
+
+    public static void main(String[] args) throws IOException {
+        br = new BufferedReader(new InputStreamReader(System.in));
+        solve();
+    }
+
+    public static String next() throws IOException {
+        while (tokenizer == null || !tokenizer.hasMoreTokens()) {
+            String line = br.readLine();
+            if (line == null)
+                throw new IOException();
+            tokenizer = new StringTokenizer(line);
+        }
+        return tokenizer.nextToken();
+    }
+
+    public static int nextInt() throws IOException {
+        return Integer.parseInt(next());
+    }
+
+    public static long nextLong() throws IOException {
+        return Long.parseLong(next());
+    }
+
+    public static double nextDouble() throws IOException {
+        return Double.parseDouble(next());
+    }
+
+}
