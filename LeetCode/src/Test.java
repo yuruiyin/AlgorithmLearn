@@ -1,5 +1,8 @@
 import org.omg.CORBA.PRIVATE_MEMBER;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Test {
 
     private void cmpV2(long a, long b) {
@@ -58,6 +61,15 @@ public class Test {
             System.out.println("no response");
         }
     }
+
+    static class Data {
+        int num;
+        int id;
+        Data(int num, int id) {
+            this.num = num;
+            this.id = id;
+        }
+    }
     
     public static void main(String[] args) {
 //        new Test().cmpV2(13, 5);
@@ -67,7 +79,16 @@ public class Test {
 
         boolean a = true;
         boolean[] arr = new boolean[5];
-        
+
+        LinkedList<Data> queue = new LinkedList<>();
+        Data data1 = new Data(1, 2);
+        Data data2 = new Data(3, 4);
+        queue.add(data1);
+        queue.add(data2);
+
+        Data data = queue.poll();
+        data.num = 5;
+        System.out.println(data1.num);
         System.out.println();
     }
     

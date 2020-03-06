@@ -1,43 +1,44 @@
 package problem201_300;
 
 import java.util.LinkedList;
-import java.util.List;
+import java.util.Queue;
 
 public class Problem225 {
 
-    private List<Integer> queue;
+    private Queue<Integer> queue;
 
     /** Initialize your data structure here. */
     public Problem225() {
         queue = new LinkedList<>();
     }
 
-    private int top = 0;
-
     /** Push element x onto stack. */
     public void push(int x) {
-        if (queue.isEmpty()) {
-            top = 0;
-        } else {
-            top++;
-        }
-        queue.add(x);
+        queue.offer(x);
     }
 
     /** Removes the element on top of the stack and returns that element. */
     public int pop() {
-        if (queue.isEmpty()) {
-            return -1;
+        int n = queue.size();
+        // 先队列头的n-1个元素去除逐个插入到队列尾部，最后再去队列头的元素就是原先尾的元素。
+        for (int i = 0; i < n - 1; i++) {
+            queue.offer(queue.poll());
         }
 
-        int value = queue.remove(top);
-        top--;
-        return value;
+        return queue.poll();
     }
 
     /** Get the top element. */
     public int top() {
-        return queue.get(top);
+        int n = queue.size();
+        // 先队列头的n-1个元素去除逐个插入到队列尾部，最后再去队列头的元素就是原先尾的元素。
+        for (int i = 0; i < n - 1; i++) {
+            queue.offer(queue.poll());
+        }
+
+        int top = queue.poll();
+        queue.offer(top);
+        return top;
     }
 
     /** Returns whether the stack is empty. */

@@ -7,7 +7,6 @@ public class Lcof057_2 {
 
     public int[][] findContinuousSequence(int target) {
         List<List<Integer>> ansList = new ArrayList<>();
-        int maxSize = 0; // 所有list中最大的个数
 
         for (int i = 1; i <= target / 2; i++) {
             int sum = i;
@@ -21,7 +20,6 @@ public class Lcof057_2 {
                 }
 
                 if (sum == target) {
-                    maxSize = Math.max(maxSize, list.size());
                     ansList.add(list);
                     break;
                 }
