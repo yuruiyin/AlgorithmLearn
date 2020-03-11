@@ -1,16 +1,10 @@
-package utils;
+package round626;
 
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class InputTest {
-
-    static class Task {
-        public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
-        }
-    }
-
+public class B {
+    
     public static void main(String[] args) {
         InputStream inputStream = System.in;
         OutputStream outputStream = System.out;
@@ -19,6 +13,12 @@ public class InputTest {
         Task task = new Task();
         task.solve(1, in, out);
         out.close();
+    }
+
+    static class Task {
+        public void solve(int testNumber, InputReader in, PrintWriter out) {
+
+        }
     }
 
     static class InputReader {
@@ -42,7 +42,7 @@ public class InputTest {
             return tokenizer.nextToken();
         }
 
-        public int nextInt() {
+        public long nextInt() {
             return Integer.parseInt(next());
         }
 

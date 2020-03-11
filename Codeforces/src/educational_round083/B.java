@@ -1,16 +1,11 @@
-package utils;
+package educational_round083;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class InputTest {
-
-    static class Task {
-        public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
-        }
-    }
-
+public class B {
+    
     public static void main(String[] args) {
         InputStream inputStream = System.in;
         OutputStream outputStream = System.out;
@@ -19,6 +14,26 @@ public class InputTest {
         Task task = new Task();
         task.solve(1, in, out);
         out.close();
+    }
+
+    static class Task {
+        public void solve(int testNumber, InputReader in, PrintWriter out) {
+            int t = in.nextInt();
+            while ((t--) > 0) {
+                int n = in.nextInt();
+                int[] arr = new int[n];
+                for (int i = 0; i < n; i++) {
+                    arr[i] = in.nextInt();
+                }
+
+                Arrays.sort(arr);
+
+                for (int i = n - 1; i >= 0; i--) {
+                    out.print(arr[i] + " ");
+                }
+                out.println();
+            }
+        }
     }
 
     static class InputReader {

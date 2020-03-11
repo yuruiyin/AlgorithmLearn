@@ -1,16 +1,10 @@
-package utils;
+package educational_round083;
 
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class InputTest {
-
-    static class Task {
-        public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
-        }
-    }
-
+public class A {
+    
     public static void main(String[] args) {
         InputStream inputStream = System.in;
         OutputStream outputStream = System.out;
@@ -19,6 +13,21 @@ public class InputTest {
         Task task = new Task();
         task.solve(1, in, out);
         out.close();
+    }
+
+    static class Task {
+        public void solve(int testNumber, InputReader in, PrintWriter out) {
+            int t = in.nextInt();
+            while ((t--) > 0) {
+                int n = in.nextInt();
+                int m = in.nextInt();
+                if (n < 5) {
+                    out.println("NO");
+                } else {
+                    out.println(n % m == 0 ? "YES" : "NO");
+                }
+            }
+        }
     }
 
     static class InputReader {

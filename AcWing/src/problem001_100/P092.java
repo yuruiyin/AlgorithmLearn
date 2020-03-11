@@ -1,13 +1,35 @@
-package utils;
+package problem001_100;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 
-public class InputTest {
+public class P092 {
 
     static class Task {
+
+        private int n;
+
+        private void backTrack(int cur, List<Integer> list) {
+            if (cur == n + 1) {
+                for (Integer num: list) {
+                    System.out.print(num + " ");
+                }
+                System.out.println();
+                return;
+            }
+
+            // 每个数选或不选
+            backTrack(cur + 1, list);
+            list.add(cur);
+            backTrack(cur + 1, list);
+            list.remove(list.size() - 1);
+        }
+
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
+            n = in.nextInt();
+            backTrack(1, new ArrayList<>());
         }
     }
 

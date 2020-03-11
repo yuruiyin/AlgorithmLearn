@@ -1,13 +1,32 @@
-package utils;
+package problem001_100;
 
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class InputTest {
+public class P089 {
 
     static class Task {
+
+        private int pow(long x, long n, int mod) {
+            long res = 1;
+            x %= mod;
+            while (n > 0) {
+                if ((n & 1) == 1) {
+                    res = res * x % mod;
+                }
+
+                x = x * x % mod;
+                n >>>= 1;
+            }
+            return (int) res % mod;
+        }
+
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
+            int a = in.nextInt();
+            int b = in.nextInt();
+            int p = in.nextInt();
+
+            out.println(pow(a, b, p));
         }
     }
 

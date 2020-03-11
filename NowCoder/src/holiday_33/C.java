@@ -1,16 +1,10 @@
-package utils;
+package holiday_33;
 
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class InputTest {
-
-    static class Task {
-        public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
-        }
-    }
-
+public class C {
+    
     public static void main(String[] args) {
         InputStream inputStream = System.in;
         OutputStream outputStream = System.out;
@@ -19,6 +13,12 @@ public class InputTest {
         Task task = new Task();
         task.solve(1, in, out);
         out.close();
+    }
+
+    static class Task {
+        public void solve(int testNumber, InputReader in, PrintWriter out) {
+            // TODO
+        }
     }
 
     static class InputReader {

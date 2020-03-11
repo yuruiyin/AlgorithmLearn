@@ -1,13 +1,31 @@
-package utils;
+package problem001_100;
 
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class InputTest {
+public class P090 {
 
     static class Task {
+
+        // 64位整型相乘取模
+        private long longMulti(long a, long b, long mod) {
+            long res = 0;
+            while (b > 0) {
+                if ((b & 1) == 1) {
+                    res = (res + a) % mod;
+                }
+
+                a = (a << 1) % mod;
+                b >>>= 1;
+            }
+            return res;
+        }
+
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
+            long a = in.nextLong();
+            long b = in.nextLong();
+            long p = in.nextLong();
+            out.println(longMulti(a, b, p));
         }
     }
 
