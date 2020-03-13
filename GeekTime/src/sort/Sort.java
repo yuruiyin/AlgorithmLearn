@@ -386,9 +386,13 @@ public class Sort {
 
     private static int[] getArr() {
         int[] resArr = new int[NUM];
+//        for (int i = 0; i < NUM; i++) {
+//            int randomValue = (int) (1 + Math.random() * NUM);
+//            resArr[i] = randomValue;
+//        }
+
         for (int i = 0; i < NUM; i++) {
-            int randomValue = (int) (1 + Math.random() * NUM);
-            resArr[i] = randomValue;
+            resArr[i] = 10;
         }
 
 //        // 从大到小
@@ -420,10 +424,10 @@ public class Sort {
 //        long end = System.currentTimeMillis();
 //        System.out.println("插入排序耗时： " + (end - start) + "ms");
 
-        long start = System.currentTimeMillis();
-        insertSortBinary(a);
-        long end = System.currentTimeMillis();
-        System.out.println("二分插入排序耗时： " + (end - start) + "ms");
+//        long start = System.currentTimeMillis();
+//        insertSortBinary(a);
+//        long end = System.currentTimeMillis();
+//        System.out.println("二分插入排序耗时： " + (end - start) + "ms");
 
 
 //        long start = System.currentTimeMillis();
@@ -431,10 +435,10 @@ public class Sort {
 //        long end = System.currentTimeMillis();
 //        System.out.println("选择排序耗时： " + (end - start) + "ms");
 
-//        long start = System.currentTimeMillis();
-//        quickSort(a, 0, a.length - 1);
-//        long end = System.currentTimeMillis();
-//        System.out.println("快速排序耗时： " + (end - start) + "ms");
+        long start = System.currentTimeMillis();
+        quickSort(a, 0, a.length - 1);
+        long end = System.currentTimeMillis();
+        System.out.println("快速排序耗时： " + (end - start) + "ms");
 
 //        long start = System.currentTimeMillis();
 //        systemSort(a);

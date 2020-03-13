@@ -14,7 +14,6 @@ public class Problem127 {
 
     private boolean isOneCharDiff(String s1, String s2) {
         int len = s1.length();
-
         int diffCount = 0;
 
         for (int i = 0; i < len; i++) {
