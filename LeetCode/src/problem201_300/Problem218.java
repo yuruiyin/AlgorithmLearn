@@ -1,6 +1,8 @@
 package problem201_300;
 
 import javafx.util.Pair;
+import utils.PrintUtil;
+import utils.TreeMultiSet;
 
 import java.util.*;
 
@@ -20,30 +22,39 @@ public class Problem218 {
             pairs.add(new Pair<>(build[1], build[2]));
         }
 
-        PriorityQueue<Integer> heap = new PriorityQueue<>((o1, o2) -> o2 - o1); // 大顶堆
+        TreeMultiSet<Integer> multiSet = new TreeMultiSet<>((o1, o2) -> o2 - o1);
 
         for (Pair<Integer, Integer> pair : pairs) {
-            int curMaxHeight = heap.isEmpty() ? 0 : heap.peek();
+            int curMaxHeight = multiSet.isEmpty() ? 0 : multiSet.first();
             int curHeight = pair.getValue();
             if (curHeight < 0) {
                 // value小于0，代表左端点，高度要入堆的，先判断高度是否大于当前堆中最大高度，大的话，产生一拐点
                 if (-curHeight > curMaxHeight) {
                     ansList.add(new ArrayList<>(Arrays.asList(pair.getKey(), -curHeight)));
                 }
-                heap.offer(-curHeight);
+
+                multiSet.add(-curHeight);
             } else {
                 // value大于0，代表右端点，高度需要出堆
-                int beforeMaxHeight = heap.peek();
-                heap.remove(curHeight);
-                if (heap.isEmpty()) {
+                int beforeMaxHeight = multiSet.first();
+                multiSet.remove(curHeight);
+                if (multiSet.isEmpty()) {
                     ansList.add(new ArrayList<>(Arrays.asList(pair.getKey(), 0)));
-                } else if (heap.peek() != beforeMaxHeight) {
-                    ansList.add(new ArrayList<>(Arrays.asList(pair.getKey(), heap.peek())));
+                } else if (multiSet.first() != beforeMaxHeight) {
+                    ansList.add(new ArrayList<>(Arrays.asList(pair.getKey(), multiSet.first())));
                 }
             }
         }
 
         return ansList;
+    }
+    
+    public static void main(String[] args) {
+        int[][] buildings = new int[][]{
+                {2,9,10},{3,7,15},{5,12,12},{15,20,10},{19,24,8}
+        };
+        List<List<Integer>> ansList = new Problem218().getSkyline(buildings);
+        PrintUtil.printIntListList(ansList);
     }
 
 }

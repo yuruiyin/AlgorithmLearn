@@ -1,118 +1,98 @@
 package problem601_700;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-/**
- * 使用treeMap，然后获取ketSet，然后将set转成list，这样会超时。
- * 反而使用插入排序不会超时。
- */
 public class Problem638 {
 
-    class Data {
-        int flower;
-        int day;
-        Data(int flower, int day) {
-            this.flower = flower;
-            this.day = day;
+    private int[] memo;
+    private List<Integer> price;
+    private List<List<Integer>> giftList;
+    private int needSize;
+
+    private int dp(int[] needArr) {
+        int needs = listToInt(needArr);
+        if (needs == 0) {
+            return 0;
         }
-    }
 
-    private int arrayMethod(int[] bulbs, int k) {
-        int n = bulbs.length;
-        Data[] datas = new Data[n];
-        int count = 0;
+        if (memo[needs] != -1) {
+            return memo[needs];
+        }
 
-        for (int i = 0; i < n; i++) {
-            Data data = new Data(bulbs[i], i + 1);
-
-            int j;
-            for (j = count - 1; j >= 0; j--) {
-                if (data.flower < datas[j].flower) {
-                    datas[j + 1] = datas[j];
-                } else {
+        // 从礼包或单品中选一个，但是数量不能超出需要的数量
+        int minCost = Integer.MAX_VALUE;
+        for (List<Integer> gift : giftList) {
+            boolean isOk = true;
+            for (int j = 0; j < gift.size() - 1; j++) {
+                if (gift.get(j) > needArr[j]) {
+                    isOk = false;
                     break;
                 }
             }
 
-            datas[j + 1] = data;
-            count++;
-
-            // 右边
-            if (j + 2 < n && datas[j + 2] != null && datas[j + 2].flower == data.flower + k + 1) {
-                return data.day;
-            }
-
-            // 左边
-            if (j + 1 > 0 && datas[j].flower == data.flower - k - 1) {
-                return data.day;
-            }
-        }
-
-        return -1;
-    }
-
-    /**
-     * 二分查找第一个比他大的
-     */
-    private int binarySearch(List<Data> datas, int size, int wantInsertedValue) {
-        int low = 0;
-        int high = size - 1;
-        while (low <= high) {
-            int mid = (low + high) >> 1;
-            int midValue = datas.get(mid).flower;
-            // 要插入的值跟数组中已有的值不会相等
-            if (midValue > wantInsertedValue) {
-                if (mid == 0 || datas.get(mid - 1).flower < wantInsertedValue) {
-                    return mid;
-                }
-
-                high = mid - 1;
-            } else {
-                low = mid + 1;
-            }
-        }
-
-        return low;
-    }
-
-    private int listBinaryMethod(int[] bulbs, int k) {
-        int n = bulbs.length;
-        List<Data> datas = new ArrayList<>();
-
-        for (int i = 0; i < n; i++) {
-            Data data = new Data(bulbs[i], i + 1);
-            if (datas.isEmpty()) {
-                datas.add(data);
+            if (!isOk) {
                 continue;
             }
 
-            int insertIndex = binarySearch(datas, datas.size(), data.flower);
-            datas.add(insertIndex, data);
-
-            // 判断右边
-            if (insertIndex + 1 < datas.size() && datas.get(insertIndex + 1).flower == data.flower + k + 1) {
-                return data.day;
+            int[] nextNeedArr = Arrays.copyOf(needArr, needSize);
+            for (int j = 0; j < gift.size() - 1; j++) {
+                nextNeedArr[j] -= gift.get(j);
             }
 
-            // 判断左边
-            if (insertIndex > 0 && datas.get(insertIndex - 1).flower == data.flower - k - 1) {
-                return data.day;
+            int cost = gift.get(gift.size() - 1) + dp(nextNeedArr);
+            minCost = Math.min(minCost, cost);
+        }
+
+        if (minCost == Integer.MAX_VALUE) {
+            // 说明没有礼包可以满足要求了，则直接选择单品的价格购买即可
+            int cost = 0;
+            for (int i = 0; i < needSize; i++) {
+                cost += needArr[i] * price.get(i);
+            }
+
+            memo[needs] = cost;
+            return cost;
+        }
+
+        // 选单品
+        for (int i = 0; i < needSize; i++) {
+            int count = needArr[i];
+            if (count != 0) {
+                needArr[i]--;
+                int cost = price.get(i) + dp(needArr);
+                needArr[i]++;
+                minCost = Math.min(minCost, cost);
             }
         }
 
-        return -1;
+        memo[needs] = minCost;
+        return minCost;
     }
 
-    public int kEmptySlots(int[] bulbs, int k) {
-//        return arrayMethod(bulbs, k);
-        return listBinaryMethod(bulbs, k);
+    private int listToInt(int[] needs) {
+        int intNeeds = 0;
+        int size = needs.length;
+        for (int i = 0; i < size; i++) {
+            intNeeds *= 10;
+            intNeeds += needs[i];
+        }
+        return intNeeds;
     }
-    
-    public static void main(String[] args) {
-//        System.out.println(new Problem638().kEmptySlots(new int[]{1,3,2}, 1));
-//        System.out.println(new Problem638().kEmptySlots(new int[]{1,2,3}, 1));
-        System.out.println(new Problem638().kEmptySlots(new int[]{6,5,8,9,7,1,10,2,3,4}, 2));
+
+    public int shoppingOffers(List<Integer> price, List<List<Integer>> special, List<Integer> needs) {
+        this.price = price;
+        this.giftList = special;
+        needSize = needs.size();
+        int[] needArr = new int[needSize];
+        for (int i = 0; i < needSize; i++) {
+            needArr[i] = needs.get(i);
+        }
+
+        int maxNeeds = (int) Math.pow(10, needSize);
+        memo = new int[maxNeeds];
+        Arrays.fill(memo, -1);
+        return dp(needArr);
     }
-    
+
 }

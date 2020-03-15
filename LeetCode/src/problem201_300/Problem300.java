@@ -2,6 +2,7 @@ package problem201_300;
 
 public class Problem300 {
 
+    // 最长上升子序列（LIS）
     private int findFirstBiggerByBinarySearch(int[] tail, int n, int target) {
         int low = 0;
         int high = n - 1;
