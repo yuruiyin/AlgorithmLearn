@@ -1,8 +1,6 @@
 package utils;
 
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
+import java.util.TreeMap;
 
 /**
  * Test11
@@ -13,31 +11,30 @@ import java.util.Set;
 public class Test11 {
 
     public static void main(String[] args) {
-        Set<Integer> set = new HashSet<>();
-        set.add(1);
-        set.add(2);
-        set.add(3);
-//        Iterator<Integer> iterator = set.iterator();
-//        while (iterator.hasNext()) {
-//            int num = iterator.next();
-//            if (num == 2) {
-//                iterator.remove();
-//            }
-//            System.out.println(num);
-//        }
+        TreeMap<Integer, Integer> treeMap = new TreeMap<>();
+        treeMap.put(2, 1);
+        treeMap.put(1, 2);
+        treeMap.put(3, 4);
 
+        int size = 0;
+        for (Integer num : treeMap.keySet()) {
+            size += treeMap.get(num);
+        }
+        System.out.println(size);
 
-
-        for (Integer num : set) {
-            if (num == 2) {
-                set.remove(2);
+        for (Integer num : treeMap.keySet()) {
+            int count = treeMap.get(num);
+            while ((count--) > 0) {
+                // 需要使用循环将num输出count次
+                System.out.println(num);
             }
-            System.out.println(num);
         }
 
-        for (Integer num : set) {
-            System.out.println(num);
+        if (treeMap.containsKey(2)) {
+            treeMap.put(2, treeMap.get(2) - 1);
         }
+
+        treeMap.put(4, treeMap.getOrDefault(4, 0) + 2);
     }
 
 }

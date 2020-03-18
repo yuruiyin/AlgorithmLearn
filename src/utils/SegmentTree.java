@@ -1,6 +1,6 @@
 package utils;
 
-class SegmentTree {
+public class SegmentTree {
     class Node {
         int start;
         int end;
@@ -84,6 +84,58 @@ class SegmentTree {
         while (cur != null) {
             int mid = (cur.start + cur.end) >>> 1L;
             if (target <= mid) {
+                cur = cur.left;
+            } else {
+                if (cur.left != null) {
+                    ansCount += cur.left.count;
+                }
+                cur = cur.right;
+            }
+        }
+
+        return ansCount;
+    }
+
+    public int findBiggerOrEqualCount(int target) {
+        Node cur = root;
+        if (target <= cur.start) {
+            return cur.count;
+        }
+
+        if (target > cur.end) {
+            return 0;
+        }
+
+        int ansCount = 0;
+        while (cur != null) {
+            int mid = (cur.start + cur.end) >>> 1L;
+            if (target <= mid + 1) {
+                if (cur.right != null) {
+                    ansCount += cur.right.count;
+                }
+                cur = cur.left;
+            } else {
+                cur = cur.right;
+            }
+        }
+
+        return ansCount;
+    }
+
+    public int findSmallerOrEqualCount(int target) {
+        Node cur = root;
+        if (target >= cur.end) {
+            return cur.count;
+        }
+
+        if (target < cur.start) {
+            return 0;
+        }
+
+        int ansCount = 0;
+        while (cur != null) {
+            int mid = (cur.start + cur.end) >>> 1L;
+            if (target < mid) {
                 cur = cur.left;
             } else {
                 if (cur.left != null) {

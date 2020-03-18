@@ -23,7 +23,7 @@ public class TreeMultiSet<E> extends AbstractSet<E>
     }
 
     public TreeMultiSet() {
-        this(new TreeMap<>());
+        this(new TreeMap<E, Integer>());
     }
 
     public TreeMultiSet(Comparator<? super E> comparator) {
@@ -40,6 +40,9 @@ public class TreeMultiSet<E> extends AbstractSet<E>
         addAll(s);
     }
 
+    /**
+     * 可重复元素的迭代器
+     */
     private class Itr implements Iterator<E> {
         private int cursor;
         // 当前treeMap的key对应的
@@ -101,8 +104,8 @@ public class TreeMultiSet<E> extends AbstractSet<E>
     }
 
     /**
-     * 返回所有不相同的元素的正向迭代器
-     * @return 所有不相同的元素的正向迭代器
+     * 返回所有不相同的元素的反向迭代器
+     * @return 所有不相同的元素的反向迭代器
      */
     public Iterator<E> diffDescendingIterator() {
         return treeMap.descendingKeySet().iterator();
@@ -126,24 +129,61 @@ public class TreeMultiSet<E> extends AbstractSet<E>
         return new Itr(treeMap.descendingKeySet());
     }
 
+    /**
+     * 返回逆序集合
+     * @return 逆序集合
+     */
     @Override
     public NavigableSet<E> descendingSet() {
-        return new TreeMultiSet<>(treeMap.descendingMap());
+        TreeMultiSet<E> descendingSet = new TreeMultiSet<>(treeMap.descendingMap());
+        descendingSet.size = size;
+        return descendingSet;
     }
 
+    /**
+     * 计算map中的所有元素个数之和（并不是key的个数，而是sum(key * value)）
+     * @param countMap key为元素，value为count的map
+     * @return map的所有元素个数之和
+     */
+    private int calcMapSize(NavigableMap<E, Integer> countMap) {
+        int size = 0;
+        for (E e : countMap.keySet()) {
+            size += countMap.get(e);
+        }
+        return size;
+    }
+
+    /**
+     * 返回指定头尾元素的连续子集
+     */
     @Override
     public NavigableSet<E> subSet(E fromElement, boolean fromInclusive, E toElement, boolean toInclusive) {
-        return new TreeMultiSet<>(treeMap.subMap(fromElement, fromInclusive, toElement,toInclusive));
+        NavigableMap<E, Integer> subMap = treeMap.subMap(fromElement, fromInclusive, toElement, toInclusive);
+        TreeMultiSet<E> subSet = new TreeMultiSet<>(subMap);
+        subSet.size = calcMapSize(subMap);
+        return subSet;
     }
 
+    /**
+     * 返回头部连续子集
+     */
     @Override
     public NavigableSet<E> headSet(E toElement, boolean inclusive) {
-        return new TreeMultiSet<>(treeMap.headMap(toElement, inclusive));
+        NavigableMap<E, Integer> headMap = treeMap.headMap(toElement, inclusive);
+        TreeMultiSet<E> headSet = new TreeMultiSet<>(headMap);
+        headSet.size = calcMapSize(headMap);
+        return headSet;
     }
 
+    /**
+     * 返回尾部连续子集
+     */
     @Override
     public NavigableSet<E> tailSet(E fromElement, boolean inclusive) {
-        return new TreeMultiSet<>(treeMap.tailMap(fromElement, inclusive));
+        NavigableMap<E, Integer> tailMap = treeMap.tailMap(fromElement, inclusive);
+        TreeMultiSet<E> tailSet = new TreeMultiSet<>(tailMap);
+        tailSet.size = calcMapSize(tailMap);
+        return tailSet;
     }
 
     @Override
@@ -188,14 +228,21 @@ public class TreeMultiSet<E> extends AbstractSet<E>
      * @return 第一个元素
      */
     public E first() {
+        if (treeMap.isEmpty()) {
+            return null;
+        }
+
         return treeMap.firstKey();
     }
 
     /**
-     * 获取最后元素（如果比较器是从小到大的，第一个元素就是最大的，否则就是最小的）
+     * 获取最后一个元素（如果比较器是从小到大的，第一个元素就是最大的，否则就是最小的）
      * @return 最后一个元素
      */
     public E last() {
+        if (treeMap.isEmpty()) {
+            return null;
+        }
         return treeMap.lastKey();
     }
 
@@ -212,6 +259,7 @@ public class TreeMultiSet<E> extends AbstractSet<E>
     @Override
     public void clear() {
         treeMap.clear();
+        size = 0;
     }
 
     /**
@@ -251,21 +299,35 @@ public class TreeMultiSet<E> extends AbstractSet<E>
     }
 
     /**
-     * 获取到指定元素的个数
+     * 获取指定元素的个数
      * @param e 指定元素
      * @return 指定元素的个数
      */
     public int count(E e) {
-        return treeMap.get(e);
+        return treeMap.getOrDefault(e, 0);
     }
 
     /**
-     * 移除count个指定元素，比如集合为[2,3,3,3,2], 若调用removeCount(3,2)，也就是移除2两个2，那么集合就变成[2,3,2]
-     * @param e 要移除的元素
-     * @param count 要移除的指定元素的个数
-     * @return 是否移除成功，若移除的元素不存在，返回false, 若移除的元素存在，但是要移除的count大于存在的count，返回false。否则返回true
+     * 注意：一定要复写这个方法，目的是覆盖父类Collection的remove操作(复杂度是O(n))
+     * 删除1个指定元素
+     * @param e 要删除的元素
+     * @return 是否删除成功，若删除的元素不存在，返回false, 若删除的元素存在，但是要删除的count大于存在的count，返回false。否则返回true
+     */
+    public boolean remove(Object e) {
+        return remove((E) e, 1);
+    }
+
+    /**
+     * 删除count个指定元素，比如集合为[2,3,3,3,2], 若调用removeCount(3,2)，也就是删除2两个2，那么集合就变成[2,3,2]
+     * @param e 要删除的元素
+     * @param count 要删除的指定元素的个数
+     * @return 是否删除成功，若删除的元素不存在，返回false, 若删除的元素存在，但是要删除的count大于存在的count，返回false。否则返回true
      */
     public boolean remove(E e, int count) {
+        if (count <= 0) {
+            return false;
+        }
+
         if (!treeMap.containsKey(e)) {
             return false;
         }
@@ -284,19 +346,9 @@ public class TreeMultiSet<E> extends AbstractSet<E>
     }
 
     /**
-     * 注意：一定要复写这个方法，目的是覆盖父类Collection的remove操作(复杂度是O(n))
-     * 移除1个指定元素
-     * @param e 要移除的元素
-     * @return 是否移除成功，若移除的元素不存在，返回false, 若移除的元素存在，但是要移除的count大于存在的count，返回false。否则返回true
-     */
-    public boolean remove(Object e) {
-        return remove((E) e, 1);
-    }
-
-    /**
-     * 移除指定元素（包括所有的指定元素）。比如集合为[2,3,3,3,2]，若调用removeKey(3)，那么会移除所有的3，则集合变成[2,2]
-     * @param e 要移除的元素
-     * @return 是否移除成功，若移除的元素不存在，返回false，否则返回true
+     * 删除指定元素（包括所有的指定元素）。比如集合为[2,3,3,3,2]，若调用removeKey(3)，那么会删除所有的3，则集合变成[2,2]
+     * @param e 要删除的元素
+     * @return 是否删除成功，若删除的元素不存在，返回false，否则返回true
      */
     public boolean removeAll(Object e) {
         if (!treeMap.containsKey(e)) {
@@ -308,24 +360,44 @@ public class TreeMultiSet<E> extends AbstractSet<E>
         return true;
     }
 
+    /**
+     * 返回比给定元素严格小的最大元素
+     * @param e 给定元素
+     * @return 比给定元素严格小的最大元素，若不存在，则返回null
+     */
     @Override
     public E lower(E e) {
         return treeMap.lowerKey(e);
     }
 
+    /**
+     * 返回小于或等于给定元素的最大元素
+     * @param e 给定元素
+     * @return 小于或等于给定元素的最大元素，若不存在，则返回null
+     */
     @Override
     public E floor(E e) {
         return treeMap.floorKey(e);
     }
 
-    @Override
-    public E ceiling(E e) {
-        return treeMap.ceilingKey(e);
-    }
-
+    /**
+     * 返回比给定元素严格大的最小元素
+     * @param e 给定元素
+     * @return 比给定元素严格小的最大元素，若不存在，则返回null
+     */
     @Override
     public E higher(E e) {
         return treeMap.higherKey(e);
+    }
+
+    /**
+     * 返回大于或等于给定元素的最小元素
+     * @param e 给定元素
+     * @return 大于或等于给定元素的最小元素，若不存在，则返回null
+     */
+    @Override
+    public E ceiling(E e) {
+        return treeMap.ceilingKey(e);
     }
 
     /**
@@ -334,17 +406,32 @@ public class TreeMultiSet<E> extends AbstractSet<E>
      * @return 第一个元素
      */
     public E pollFirst(int count) {
+        if (treeMap.isEmpty()) {
+            return null;
+        }
         E firstKey = treeMap.firstKey();
         remove(firstKey, count);
         return firstKey;
     }
 
     /**
-     * 移除第一个元素(包括所有数量)
+     * 删除第一个元素(第一个元素有多个重复，仅删除其中一个)
      * @return 第一个元素
      */
     public E pollFirst() {
+        return pollFirst(1);
+    }
+
+    /**
+     * 删除第一个元素(包括所有数量)
+     * @return 第一个元素
+     */
+    public E pollFirstAll() {
         // firstKey如果不存在可能会抛异常
+        if (treeMap.isEmpty()) {
+            return null;
+        }
+
         E firstKey = treeMap.firstKey();
         size -= treeMap.get(firstKey);
         treeMap.remove(firstKey);
@@ -352,23 +439,35 @@ public class TreeMultiSet<E> extends AbstractSet<E>
     }
 
     /**
-     * 删除第一个元素（指定数量）
+     * 删除最后一个元素（若最后一个元素有多个重复，仅删除其中一个）
+     * @return 最后一个元素
+     */
+    public E pollLast() {
+        return pollLast(1);
+    }
+
+    /**
+     * 删除最后一个元素（指定数量）
      * @param count 指定数量
-     * @return 第一个元素
+     * @return 最后一个元素
      */
     public E pollLast(int count) {
-        // lastKey如果不存在可能会抛异常
+        if (treeMap.isEmpty()) {
+            return null;
+        }
         E lastKey = treeMap.lastKey();
-        size -= treeMap.get(lastKey);
         remove(lastKey, count);
         return lastKey;
     }
 
     /**
-     * 移除最后一个元素(包括所有数量)
+     * 删除最后一个元素(包括所有数量)
      * @return 最后一个元素
      */
-    public E pollLast() {
+    public E pollLastAll() {
+        if (treeMap.isEmpty()) {
+            return null;
+        }
         E lastKey = treeMap.lastKey();
         size -= treeMap.get(lastKey);
         treeMap.remove(lastKey);
@@ -380,14 +479,8 @@ public class TreeMultiSet<E> extends AbstractSet<E>
      * @return 浅拷贝后的TreeMultiSet
      */
     @SuppressWarnings("unchecked")
-    public Object clone() {
-        TreeMultiSet<E> clone;
-        try {
-            clone = (TreeMultiSet<E>) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new InternalError(e);
-        }
-
+    public Object clone() throws CloneNotSupportedException {
+        TreeMultiSet<E> clone = (TreeMultiSet<E>) super.clone();
         clone.treeMap = new TreeMap<>(treeMap);
         return clone;
     }

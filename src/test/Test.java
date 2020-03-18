@@ -40,7 +40,7 @@ public class Test {
         StringBuilder sb = new StringBuilder();
         sb.append("hello").append("\n");
         sb.append("world").append("\n");
-        
+
         System.out.println(sb.toString());
 
     }
