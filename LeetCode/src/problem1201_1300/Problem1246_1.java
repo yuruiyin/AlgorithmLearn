@@ -5,31 +5,30 @@ public class Problem1246_1 {
     private int[] arr;
     private int[][] memo;
 
-    private int backTrack(int left, int right) {
-        if (left == right) {
+    private int backTrack(int i, int j) {
+        if (i == j) {
             return 1;
         }
 
-        if (left == right - 1) {
+        if (i == j - 1) {
             // 两个数字
-            return arr[left] == arr[right] ? 1 : 2;
+            return arr[i] == arr[j] ? 1 : 2;
         }
 
-        if (memo[left][right] != 0) {
-            return memo[left][right];
-        }
-
-        if (arr[left] == arr[right]) {
-            memo[left][right] = backTrack(left + 1, right - 1);
-            return memo[left][right];
+        if (memo[i][j] != 0) {
+            return memo[i][j];
         }
 
         int min = Integer.MAX_VALUE;
-        for (int k = left; k < right; k++) {
-            min = Math.min(min, backTrack(left, k) + backTrack(k + 1, right));
+        if (arr[i] == arr[j]) {
+            min = backTrack(i + 1, j - 1);
         }
 
-        memo[left][right] = min;
+        for (int k = i; k < j; k++) {
+            min = Math.min(min, backTrack(i, k) + backTrack(k + 1, j));
+        }
+
+        memo[i][j] = min;
         return min;
     }
 

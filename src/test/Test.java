@@ -37,11 +37,13 @@ public class Test {
 //            System.out.println();
 //        }
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("hello").append("\n");
-        sb.append("world").append("\n");
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("hello").append("\n");
+//        sb.append("world").append("\n");
+//
+//        System.out.println(sb.toString());
 
-        System.out.println(sb.toString());
+        System.out.println(new StringTokenizer("a java program").countTokens());
 
     }
 

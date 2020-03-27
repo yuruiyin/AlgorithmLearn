@@ -40,7 +40,7 @@ public class OfficialDSU {
     }
 
     public int find(int p) {
-       return p == parent[p] ? p : (parent[p] = find(parent[p])); // 即算法4里头提到的路径压缩
+        return p == parent[p] ? p : (parent[p] = find(parent[p])); // 即算法4里头提到的路径压缩
 //
 //        while (p != parent[p]) {
 //            parent[p] = parent[parent[p]];

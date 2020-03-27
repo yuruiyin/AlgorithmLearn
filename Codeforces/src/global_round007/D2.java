@@ -97,7 +97,7 @@ public class D2 {
         }
     }
 
-    public static void main(String[] args) {
+    private static void solve() {
         InputStream inputStream = System.in;
         OutputStream outputStream = System.out;
         InputReader in = new InputReader(inputStream);
@@ -105,6 +105,10 @@ public class D2 {
         Task task = new Task();
         task.solve(1, in, out);
         out.close();
+    }
+
+    public static void main(String[] args) {
+        new Thread(null, D2::solve, "1", 1 << 26).start();
     }
 
     static class StrHash {

@@ -25,7 +25,7 @@ public class A {
         }
     }
 
-    public static void main(String[] args) {
+    private static void solve() {
         InputStream inputStream = System.in;
         OutputStream outputStream = System.out;
         InputReader in = new InputReader(inputStream);
@@ -33,6 +33,10 @@ public class A {
         Task task = new Task();
         task.solve(1, in, out);
         out.close();
+    }
+
+    public static void main(String[] args) {
+        new Thread(null, () -> solve(), "1", 1 << 26).start();
     }
 
     static class InputReader {

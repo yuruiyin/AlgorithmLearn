@@ -167,8 +167,6 @@ public class DSUTest {
             System.out.println("排序后：");
             doTest(edges);
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }

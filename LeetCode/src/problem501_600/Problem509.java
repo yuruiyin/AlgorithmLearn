@@ -25,4 +25,8 @@ public class Problem509 {
         return second;
     }
 
+    public static void main(String[] args) {
+        System.out.println(new Problem509().fib(40));
+    }
+
 }

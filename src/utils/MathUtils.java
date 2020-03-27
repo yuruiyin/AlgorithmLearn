@@ -17,6 +17,42 @@ public class MathUtils {
         return (int) res % mod;
     }
 
+    // 二分法求平方根
+    public static double sqrt(double n) {
+        double low = 0;
+        double high = n;
+        double epr = 1e-6;
+        double mid = low + (high - low) / 2;
+        while (Math.abs(mid * mid - n) > epr) {
+            if (mid > n / mid) {
+                high = mid;
+            } else {
+                low = mid;
+            }
+            mid = low + (high - low) / 2;
+        }
+        return mid;
+    }
 
+    public static int mySqrt(int n) {
+        double low = 0;
+        double high = n;
+        double epr = 1e-6;
+        double mid = low + (high - low) / 2;
+        while (Math.abs(mid * mid - n) > epr) {
+            if (mid > n / mid) {
+                high = mid;
+            } else {
+                low = mid;
+            }
+            mid = low + (high - low) / 2;
+        }
+        return (int) (mid + epr);
+    }
+    
+    public static void main(String[] args) {
+        System.out.println(sqrt(12.25));
+        System.out.println(sqrt(1));
+    }
 
 }

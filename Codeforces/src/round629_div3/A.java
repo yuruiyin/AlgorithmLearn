@@ -1,13 +1,19 @@
-package utils;
+package round629_div3;
 
 import java.io.*;
 import java.util.StringTokenizer;
 
-public class InputTest {
+public class A {
 
     static class Task {
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
+            int t = in.nextInt();
+            while ((t--) > 0) {
+                int a = in.nextInt();
+                int b = in.nextInt();
+                int count = b - (a % b);
+                out.println(a % b == 0 ? 0 : count);
+            }
         }
     }
 

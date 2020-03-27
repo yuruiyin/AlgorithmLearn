@@ -20,17 +20,16 @@ public class Problem1246 {
                 }
 
                 // 下面至少三个元素
+                int min = Integer.MAX_VALUE;
                 if (arr[i] == arr[j]) {
-                    // 头尾相等，那么就等于中间子数组最小删除次数
-                    dp[i][j] = dp[i+1][j-1];
-                } else {
-                    // 头尾不相等，那么遍历所有情况
-                    int min = Integer.MAX_VALUE;
-                    for (int k = i; k < j; k++) {
-                        min = Math.min(min, dp[i][k] + dp[k + 1][j]);
-                    }
-                    dp[i][j] = min;
+                    // 头尾相等，最小值有可能是出现在这对头尾最后被删的结果
+                    min = dp[i+1][j-1];
                 }
+
+                for (int k = i; k < j; k++) {
+                    min = Math.min(min, dp[i][k] + dp[k + 1][j]);
+                }
+                dp[i][j] = min;
             }
         }
 

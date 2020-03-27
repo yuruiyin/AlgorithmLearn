@@ -126,6 +126,11 @@ public class LinkDSU {
         if (x == y) {
             return true;
         }
+
+        if (trees[x] == null || trees[y] == null) {
+            return false;
+        }
+
         return trees[x] == trees[y];
     }
 
