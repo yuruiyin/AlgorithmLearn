@@ -74,7 +74,7 @@ public class PE011 {
                     ansMax = Math.max(ansMax, product);
                 }
 
-                // 对角线1
+                // 对角线2
                 if (j >= 3 && i <= len - 4) {
                     long product = 1;
                     for (int k = 0; k < 4; k++) {
