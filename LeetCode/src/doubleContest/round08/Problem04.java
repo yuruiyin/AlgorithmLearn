@@ -1,7 +1,5 @@
 package doubleContest.round08;
 
-import sun.tools.jstat.Literal;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;

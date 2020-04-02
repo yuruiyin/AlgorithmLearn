@@ -75,7 +75,7 @@ public class Problem855 {
         }
 
         public void leave(int p) {
-            list.remove(new Integer(p));
+            list.remove(Integer.valueOf(p));
         }
     }
 

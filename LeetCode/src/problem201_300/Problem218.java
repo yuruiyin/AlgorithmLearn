@@ -1,6 +1,5 @@
 package problem201_300;
 
-import javafx.util.Pair;
 import utils.PrintUtil;
 import utils.TreeMultiSet;
 
@@ -8,29 +7,38 @@ import java.util.*;
 
 public class Problem218 {
 
+    class Data {
+        int x;
+        int height;
+        Data(int x, int height) {
+            this.x = x;
+            this.height = height;
+        }
+    }
+
     // 使用扫描线算法，从左往右扫描，碰到某个建筑物的左端点，则将左端点对应的高度入堆，碰到某个建筑物的右端点，则将该建筑物的高度出堆。
     // 在高度入堆之前，判断要加入的高度是否大于当前堆中的最大高度，如果大的话，则说明产生了一个新拐点。
     // 在高度出堆的时候，出堆以后，判断剩下的堆中的最大高度是否等于出堆的那个高度，如果不等的话，说明也产生了一个拐点
     public List<List<Integer>> getSkyline(int[][] buildings) {
         List<List<Integer>> ansList = new ArrayList<>();
-        Set<Pair<Integer, Integer>> pairs = new TreeSet<>(
-                (o1, o2) -> !o1.getKey().equals(o2.getKey()) ? o1.getKey() - o2.getKey() : o1.getValue() - o2.getValue()
+        Set<Data> pairs = new TreeSet<>(
+                (o1, o2) -> o1.x != o2.x ? o1.x - o2.x : o1.height - o2.height
         );
 
         for (int[] build : buildings) {
-            pairs.add(new Pair<>(build[0], -build[2]));
-            pairs.add(new Pair<>(build[1], build[2]));
+            pairs.add(new Data(build[0], -build[2]));
+            pairs.add(new Data(build[1], build[2]));
         }
 
         TreeMultiSet<Integer> multiSet = new TreeMultiSet<>((o1, o2) -> o2 - o1);
 
-        for (Pair<Integer, Integer> pair : pairs) {
+        for (Data pair : pairs) {
             int curMaxHeight = multiSet.isEmpty() ? 0 : multiSet.first();
-            int curHeight = pair.getValue();
+            int curHeight = pair.height;
             if (curHeight < 0) {
                 // value小于0，代表左端点，高度要入堆的，先判断高度是否大于当前堆中最大高度，大的话，产生一拐点
                 if (-curHeight > curMaxHeight) {
-                    ansList.add(new ArrayList<>(Arrays.asList(pair.getKey(), -curHeight)));
+                    ansList.add(new ArrayList<>(Arrays.asList(pair.x, -curHeight)));
                 }
 
                 multiSet.add(-curHeight);
@@ -39,9 +47,9 @@ public class Problem218 {
                 int beforeMaxHeight = multiSet.first();
                 multiSet.remove(curHeight);
                 if (multiSet.isEmpty()) {
-                    ansList.add(new ArrayList<>(Arrays.asList(pair.getKey(), 0)));
+                    ansList.add(new ArrayList<>(Arrays.asList(pair.x, 0)));
                 } else if (multiSet.first() != beforeMaxHeight) {
-                    ansList.add(new ArrayList<>(Arrays.asList(pair.getKey(), multiSet.first())));
+                    ansList.add(new ArrayList<>(Arrays.asList(pair.x, multiSet.first())));
                 }
             }
         }

@@ -1,7 +1,5 @@
 package problem701_800;
 
-import sun.nio.ch.FileKey;
-
 import java.util.Arrays;
 
 public class Problem706_1 {

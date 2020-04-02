@@ -1,7 +1,5 @@
 package contest.contest176;
 
-import com.sun.tools.internal.xjc.model.CTypeRef;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

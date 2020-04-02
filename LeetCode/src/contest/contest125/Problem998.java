@@ -1,11 +1,6 @@
 package contest.contest125;
 
 import common.TreeNode;
-import sun.security.krb5.internal.PAData;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class Problem998 {
 
