@@ -1,39 +1,37 @@
-package utils;
+package acmsguru;
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class InputTest {
+public class P107 {
 
     static class Task {
-
+        // 最n位数的平方 末尾是987654321的 个数
+        // 思路，最后一位是1必须是1*1或者9*9
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
-        }
-    }
+            int n = in.nextInt();
 
-    private static void sort(double[] arr) {
-        Double[] objArr = Arrays.stream(arr).boxed().toArray(Double[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
-        }
-    }
+            // n <= 8， 没有数字
+            // n == 9, 有8个
+            // n >= 10 低9位是固定的8种，最高位是1-9, 中间n - 10位每位可以有10种
+//            for (long i = 30000; i <= 9999999999L; i++) {
+//                long x = i * i;
+//                if (x % 1000000000 == 987654321) {
+//                    System.out.print(i + " ");
+//                }
+//            }
 
-    private static void sort(int[] arr) {
-        Integer[] objArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
-        }
-    }
-
-    private static void sort(long[] arr) {
-        Long[] objArr = Arrays.stream(arr).boxed().toArray(Long[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
+            if (n <= 8) {
+                out.println(0);
+            } else if (n == 9) {
+                out.println(8);
+            } else {
+                out.print(72);
+                while ((n--) > 10) {
+                    out.print(0);
+                }
+                out.println();
+            }
         }
     }
 

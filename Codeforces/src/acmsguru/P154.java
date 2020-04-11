@@ -1,39 +1,53 @@
-package utils;
+package acmsguru;
 
 import java.io.*;
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.StringTokenizer;
 
-public class InputTest {
+public class P154 {
 
     static class Task {
 
+        // n阶乘的尾0个数，其实就是计算有多少个5
+        private int tailZeroCount(int n) {
+            int ans = 0;
+            while (n > 0) {
+                ans += n / 5;
+                n /= 5;
+            }
+            return ans;
+        }
+
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
-        }
-    }
+            int tailZeroCount = in.nextInt();
+            // 因子中5的个数 就是尾0的个数，因此5*2会产生0，而且5比2多, 但是25是有两个5、以此类推
+            if (tailZeroCount == 0) {
+                out.println(1);
+                return;
+            }
 
-    private static void sort(double[] arr) {
-        Double[] objArr = Arrays.stream(arr).boxed().toArray(Double[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
-        }
-    }
+            // 因此我们只要二分n即可
+            int low = 1;
+            int high = 5 * tailZeroCount;
+            int ans = 0;
+            while (low <= high) {
+                int mid = (low + high) >>> 1;
+                int count = tailZeroCount(mid);
+                if (count >= tailZeroCount) {
+                    ans = mid;
+                    high = mid - 1;
+                } else {
+                    low = mid + 1;
+                }
+            }
 
-    private static void sort(int[] arr) {
-        Integer[] objArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
-        }
-    }
+            if (tailZeroCount(ans) == tailZeroCount) {
+                out.println(ans);
+            } else {
+                out.println("No solution");
+            }
 
-    private static void sort(long[] arr) {
-        Long[] objArr = Arrays.stream(arr).boxed().toArray(Long[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
         }
     }
 

@@ -1,39 +1,21 @@
-package utils;
+package acmsguru;
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class InputTest {
+public class P184 {
 
     static class Task {
-
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
-        }
-    }
+            int p = in.nextInt();
+            int m = in.nextInt();
+            int c = in.nextInt();
+            int k = in.nextInt();
+            int r = in.nextInt();
+            int v = in.nextInt();
 
-    private static void sort(double[] arr) {
-        Double[] objArr = Arrays.stream(arr).boxed().toArray(Double[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
-        }
-    }
-
-    private static void sort(int[] arr) {
-        Integer[] objArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
-        }
-    }
-
-    private static void sort(long[] arr) {
-        Long[] objArr = Arrays.stream(arr).boxed().toArray(Long[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
+            int ans = Math.min(p / k, Math.min(m / r, c / v));
+            out.println(ans);
         }
     }
 

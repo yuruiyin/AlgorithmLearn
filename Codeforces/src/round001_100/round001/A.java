@@ -1,39 +1,20 @@
-package utils;
+package round001_100.round001;
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class InputTest {
+public class A {
 
     static class Task {
-
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
-        }
-    }
+            long n = in.nextLong();
+            long m = in.nextLong();
+            long a = in.nextLong();
 
-    private static void sort(double[] arr) {
-        Double[] objArr = Arrays.stream(arr).boxed().toArray(Double[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
-        }
-    }
+            long rowCount = n / a + (n % a != 0 ? 1 : 0);
+            long colCount = m / a + (m % a != 0 ? 1 : 0);
 
-    private static void sort(int[] arr) {
-        Integer[] objArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
-        }
-    }
-
-    private static void sort(long[] arr) {
-        Long[] objArr = Arrays.stream(arr).boxed().toArray(Long[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
+            out.println(rowCount * colCount);
         }
     }
 

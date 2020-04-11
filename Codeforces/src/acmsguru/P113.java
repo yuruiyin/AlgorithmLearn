@@ -1,39 +1,60 @@
-package utils;
+package acmsguru;
 
 import java.io.*;
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 
-public class InputTest {
+public class P113 {
 
     static class Task {
 
+        private boolean isPrime(int num) {
+            for (int i = 2; i * i <= num; i++) {
+                if (num % i == 0) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private boolean isNearlyPrime(int num) {
+            // 求因子
+            List<Integer> factorList = new ArrayList<>();
+            int i;
+            for (i = 2; i * i < num; i++) {
+                if (num % i == 0) {
+                    factorList.add(i);
+                    factorList.add(num / i);
+                    if (factorList.size() > 2) {
+                        return false;
+                    }
+
+                }
+            }
+
+            if (i * i == num) {
+                factorList.add(i);
+                factorList.add(i);
+            }
+
+            if (factorList.size() != 2) {
+                return false;
+            }
+
+            return isPrime(factorList.get(0)) && isPrime(factorList.get(1));
+        }
+
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
-        }
-    }
-
-    private static void sort(double[] arr) {
-        Double[] objArr = Arrays.stream(arr).boxed().toArray(Double[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
-        }
-    }
-
-    private static void sort(int[] arr) {
-        Integer[] objArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
-        }
-    }
-
-    private static void sort(long[] arr) {
-        Long[] objArr = Arrays.stream(arr).boxed().toArray(Long[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
+            int n = in.nextInt();
+            while ((n--) > 0) {
+                int num = in.nextInt();
+                if (isNearlyPrime(num)) {
+                    out.println("Yes");
+                } else {
+                    out.println("No");
+                }
+            }
         }
     }
 

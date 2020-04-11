@@ -1,39 +1,35 @@
-package utils;
+package acmsguru;
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class InputTest {
+public class P486 {
 
     static class Task {
-
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
-        }
-    }
+            int secret = in.nextInt();
+            int guess = in.nextInt();
+            String secretStr = String.format("%04d", secret);
+            String guessStr = String.format("%04d", guess);
 
-    private static void sort(double[] arr) {
-        Double[] objArr = Arrays.stream(arr).boxed().toArray(Double[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
-        }
-    }
+            int n = 0;
+            int m = 0;
+            boolean[] visited = new boolean[10];
+            for (int i = 0; i < 4; i++) {
+                visited[secretStr.charAt(i) - '0'] = true;
+            }
+            for (int i = 0; i < 4; i++) {
+                if (secretStr.charAt(i) == guessStr.charAt(i)) {
+                    n++;
+                    continue;
+                }
 
-    private static void sort(int[] arr) {
-        Integer[] objArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
-        }
-    }
+                if (visited[guessStr.charAt(i) - '0']) {
+                    m++;
+                }
+            }
 
-    private static void sort(long[] arr) {
-        Long[] objArr = Arrays.stream(arr).boxed().toArray(Long[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
+            out.println(n + " " + m);
         }
     }
 

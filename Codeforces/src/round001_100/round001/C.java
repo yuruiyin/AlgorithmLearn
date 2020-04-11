@@ -1,39 +1,23 @@
-package utils;
+package round001_100.round001;
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class InputTest {
+public class C {
 
     static class Task {
-
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
-        }
-    }
+            double x1 = in.nextDouble();
+            double y1 = in.nextDouble();
+            double x2 = in.nextDouble();
+            double y2 = in.nextDouble();
+            double x3 = in.nextDouble();
+            double y3 = in.nextDouble();
 
-    private static void sort(double[] arr) {
-        Double[] objArr = Arrays.stream(arr).boxed().toArray(Double[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
-        }
-    }
-
-    private static void sort(int[] arr) {
-        Integer[] objArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
-        }
-    }
-
-    private static void sort(long[] arr) {
-        Long[] objArr = Arrays.stream(arr).boxed().toArray(Long[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
+            // 先求外切圆的圆心
+            // 如果是等边三角形，就是六边形
+            // 如果是等腰直角三角形，就是四边形
+            // 如果是等腰非直角三角形，如果顶角小于90，则边长就是底边
         }
     }
 

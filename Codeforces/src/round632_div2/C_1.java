@@ -1,39 +1,45 @@
-package utils;
+package round632_div2;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.util.*;
 
-public class InputTest {
+public class C_1 {
 
     static class Task {
-
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
-        }
-    }
+            int n = in.nextInt();
+            long[] arr = new long[n];
+            for (int i = 0; i < n; i++) {
+                arr[i] = in.nextLong();
+            }
 
-    private static void sort(double[] arr) {
-        Double[] objArr = Arrays.stream(arr).boxed().toArray(Double[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
-        }
-    }
+            long ans = 0;
 
-    private static void sort(int[] arr) {
-        Integer[] objArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
-        }
-    }
+            long[] preSumArr = new long[n];
+            preSumArr[0] = arr[0];
+            if (preSumArr[0] != 0) {
+                ans++;
+            }
+            Map<Long, Integer> indexMap = new HashMap<>();
+            indexMap.put(preSumArr[0], 0);
+            int preIndex = arr[0] == 0 ? 0 : -1;
+            for (int i = 1; i < n; i++) {
+                preSumArr[i] = preSumArr[i-1] + arr[i];
+                if (indexMap.containsKey(preSumArr[i])) {
+                    preIndex = Math.max(preIndex, indexMap.get(preSumArr[i]) + 1);
+                    ans = ans + i - preIndex;
+                } else {
+                    if (preSumArr[i] == 0) {
+                        preIndex = Math.max(preIndex, 0);
+                        ans = ans + i - preIndex;
+                    } else {
+                        ans = ans + Math.min(i + 1, i - preIndex);
+                    }
+                }
+                indexMap.put(preSumArr[i], i);
+            }
 
-    private static void sort(long[] arr) {
-        Long[] objArr = Arrays.stream(arr).boxed().toArray(Long[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
+            out.println(ans);
         }
     }
 

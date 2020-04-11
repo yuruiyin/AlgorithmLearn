@@ -1,39 +1,27 @@
-package utils;
+package acmsguru;
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class InputTest {
+public class P460 {
 
     static class Task {
-
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
-        }
-    }
-
-    private static void sort(double[] arr) {
-        Double[] objArr = Arrays.stream(arr).boxed().toArray(Double[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
-        }
-    }
-
-    private static void sort(int[] arr) {
-        Integer[] objArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
-        }
-    }
-
-    private static void sort(long[] arr) {
-        Long[] objArr = Arrays.stream(arr).boxed().toArray(Long[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
+            int n = in.nextInt();
+            while ((n--) > 0) {
+                String word = in.next();
+                if (word.endsWith("ch") || word.endsWith("x") || word.endsWith("s") || word.endsWith("o")) {
+                    out.println(word + "es");
+                } else if (word.endsWith("f")) {
+                    out.println(word.substring(0, word.length() - 1) + "ves");
+                } else if (word.endsWith("fe")) {
+                    out.println(word.substring(0, word.length() - 2) + "ves");
+                } else if (word.endsWith("y")) {
+                    out.println(word.substring(0, word.length() - 1) + "ies");
+                } else {
+                    out.println(word + "s");
+                }
+            }
         }
     }
 

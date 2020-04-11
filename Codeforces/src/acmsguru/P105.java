@@ -1,39 +1,28 @@
-package utils;
+package acmsguru;
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class InputTest {
+public class P105 {
 
     static class Task {
 
+        private int getCount(int end) {
+            int count = 0;
+            int preSum = 0;
+            for (int i = 1; i <= end; i++) {
+                preSum += i;
+                if (preSum % 3 == 0) {
+                    count++;
+                }
+            }
+            return count;
+        }
+
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
-        }
-    }
-
-    private static void sort(double[] arr) {
-        Double[] objArr = Arrays.stream(arr).boxed().toArray(Double[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
-        }
-    }
-
-    private static void sort(int[] arr) {
-        Integer[] objArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
-        }
-    }
-
-    private static void sort(long[] arr) {
-        Long[] objArr = Arrays.stream(arr).boxed().toArray(Long[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
+            int n = in.nextInt();
+            int ans = (n / 9) * getCount(9) + getCount(n % 9);
+            out.println(ans);
         }
     }
 

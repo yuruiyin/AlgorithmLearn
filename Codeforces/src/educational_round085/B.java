@@ -1,15 +1,37 @@
-package utils;
+package educational_round085;
 
 import java.io.*;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class InputTest {
+public class B {
 
     static class Task {
 
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
+            int t = in.nextInt();
+            while ((t--) > 0) {
+                int n = in.nextInt();
+                int x = in.nextInt();
+                int[] arr = new int[n];
+                for (int i = 0; i < n; i++) {
+                    arr[i] = in.nextInt();
+                }
+
+//                Arrays.sort(arr);  // 会超时
+                sort(arr);
+                long sum = 0;
+                long count = 0;
+                for (int i = n - 1; i >= 0; i--) {
+                    sum += arr[i];
+                    if (sum < x * (count + 1)) {
+                        break;
+                    }
+                    count++;
+                }
+
+                out.println(count);
+            }
         }
     }
 

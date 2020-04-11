@@ -1,39 +1,52 @@
-package utils;
+package round632_div2;
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class InputTest {
+public class A {
 
     static class Task {
-
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
-        }
-    }
+            int t = in.nextInt();
+            while ((t--) > 0) {
+                int n = in.nextInt();
+                int m = in.nextInt();
+                boolean isFirstB = true;
+                char[][] grid = new char[n][m];
+                for (int i = 0; i < n; i++) {
+                    for (int j = 0; j < m; j++) {
+                        if (isFirstB) {
+                            if (j % 2 == 0) {
+                                grid[i][j] = 'B';
+                            } else {
+                                grid[i][j] = 'W';
+                            }
+                        } else {
+                            if (j % 2 == 0) {
+                                grid[i][j] = 'W';
+                            } else {
+                                grid[i][j] = 'B';
+                            }
+                        }
+                    }
+                    isFirstB = !isFirstB;
+                }
 
-    private static void sort(double[] arr) {
-        Double[] objArr = Arrays.stream(arr).boxed().toArray(Double[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
-        }
-    }
+                if ((n * m) % 2 == 0) {
+                    if (m % 2 == 0) {
+                        grid[0][m - 1] = 'B';
+                    } else {
+                        grid[n - 1][m-1] = 'B';
+                    }
+                }
 
-    private static void sort(int[] arr) {
-        Integer[] objArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
-        }
-    }
-
-    private static void sort(long[] arr) {
-        Long[] objArr = Arrays.stream(arr).boxed().toArray(Long[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
+                for (int i = 0; i < n; i++) {
+                    for (int j = 0; j < m; j++) {
+                        out.print(grid[i][j]);
+                    }
+                    out.println();
+                }
+            }
         }
     }
 

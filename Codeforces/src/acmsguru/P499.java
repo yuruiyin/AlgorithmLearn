@@ -1,39 +1,43 @@
-package utils;
+package acmsguru;
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class InputTest {
+public class P499 {
 
     static class Task {
 
+        private int maxGcd = 1;
+        private int[] factorCountArr;
+
+        private void calcMaxGcd(int j) {
+            if (factorCountArr[j] >= 2) {
+                maxGcd = Math.max(maxGcd, j);
+            }
+        }
+
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
-        }
-    }
+            int n = in.nextInt();
+            factorCountArr = new int[1000005];
+            for (int i = 0; i < n; i++) {
+                int a = in.nextInt();
+                for (int j = 1; j * j <= a; j++) {
+                    if (j * j == a) {
+                        factorCountArr[j]++;
+                        calcMaxGcd(j);
+                        continue;
+                    }
 
-    private static void sort(double[] arr) {
-        Double[] objArr = Arrays.stream(arr).boxed().toArray(Double[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
-        }
-    }
+                    if (a % j == 0) {
+                        factorCountArr[j]++;
+                        calcMaxGcd(j);
+                        factorCountArr[a / j]++;
+                        calcMaxGcd(a / j);
+                    }
+                }
+            }
 
-    private static void sort(int[] arr) {
-        Integer[] objArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
-        }
-    }
-
-    private static void sort(long[] arr) {
-        Long[] objArr = Arrays.stream(arr).boxed().toArray(Long[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[i];
+            out.println(maxGcd);
         }
     }
 
