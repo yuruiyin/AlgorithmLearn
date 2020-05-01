@@ -1,6 +1,30 @@
 package utils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MathUtils {
+
+    // 求n以内的所有素数
+    private List<Integer> getAllPrimes(int n, boolean[] isNotPrime) {
+        for (int i = 2; i * i <= n; i++) {
+            if (isNotPrime[i]) {
+                continue;
+            }
+
+            for (int j = i * i; j <= n; j += i) {
+                isNotPrime[j] = true;
+            }
+        }
+
+        List<Integer> primeList = new ArrayList<>();
+        for (int i = 2; i <= n; i++) {
+            if (!isNotPrime[i]) {
+                primeList.add(i);
+            }
+        }
+        return primeList;
+    }
 
     // 快速幂
     public static int pow(long x, long n, int mod) {

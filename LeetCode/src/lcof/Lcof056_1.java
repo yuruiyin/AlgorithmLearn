@@ -15,16 +15,14 @@ public class Lcof056_1 {
         }
 
         int mask = xor & (-xor);
-        int[] ans = new int[2];
+        int first = 0;
         for (int num : nums) {
             if ((num & mask) == 0) {
-                ans[0] ^= num;
-            } else {
-                ans[1] ^= num;
+                first ^= num;
             }
         }
 
-        return ans;
+        return new int[]{first, xor ^ first};
     }
 
 }

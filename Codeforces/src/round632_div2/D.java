@@ -1,13 +1,65 @@
 package round632_div2;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 
 public class D {
 
     static class Task {
+
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
+            int n = in.nextInt();
+            int k = in.nextInt();
+            String str = in.next();
+            char[] arr = str.toCharArray();
+            List<List<Integer>> ansList = new ArrayList<>();
+            long RLCount = 0;
+            while (true) {
+                List<Integer> list = new ArrayList<>();
+                for (int i = 0; i < n - 1; i++) {
+                    if (arr[i] == 'R' && arr[i + 1] == 'L') {
+                        RLCount++;
+                        list.add(i + 1);
+                        arr[i] = 'L';
+                        arr[i + 1] = 'R';
+                        i++;
+                    }
+                }
+
+                if (list.isEmpty()) {
+                    break;
+                }
+
+                ansList.add(list);
+            }
+
+            if (ansList.size() > k || RLCount < k) {
+                out.println(-1);
+                return;
+            }
+
+            // 类似  10， 7，4
+            int ansListSize = ansList.size();
+            for (int cur = 0; cur < ansList.size(); cur++) {
+                List<Integer> indexList = ansList.get(cur);
+                int indexSize = indexList.size();
+                for (int i = 0; i < indexSize; i++) {
+                    if (ansListSize - cur < k) {
+                        out.println(1 + " " + indexList.get(i));
+                        k--;
+                    } else {
+                        out.print(indexSize - i + " ");
+                        for (int j = i; j < indexSize; j++) {
+                            out.print(indexList.get(j) + " ");
+                        }
+                        out.println();
+                        k--;
+                        break;
+                    }
+                }
+            }
         }
     }
 
