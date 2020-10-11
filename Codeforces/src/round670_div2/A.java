@@ -1,18 +1,45 @@
-package utils;
+package round670_div2;
 
 import java.io.*;
 import java.util.Arrays;
+import java.util.Set;
 import java.util.StringTokenizer;
 
-public class InputTest {
+public class A {
 
-    // 注意不要用Arrays.sort()
-    // 注意Math.pow可能导致精度问题
-    // 注意int溢出问题
     static class Task {
 
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
+            int t = in.nextInt();
+            while ((t--) > 0) {
+                int n = in.nextInt();
+                int[] arr = new int[n];
+                int[] countArr = new int[102];
+                for (int i = 0; i < n; i++) {
+                    arr[i] = in.nextInt();
+                    countArr[arr[i]]++;
+                }
+
+                int ans = 0;
+                for (int i = 0; i <= 100; i++) {
+                    if (countArr[i] == 0) {
+                        ans = i * 2;
+                        break;
+                    } else if (countArr[i] == 1) {
+                        ans = i;
+                        for (int j = i + 1; j <= 100; j++) {
+                            if (countArr[j] == 0) {
+                                ans += j;
+                                break;
+                            }
+                        }
+
+                        break;
+                    }
+                }
+
+                out.println(ans);
+            }
         }
     }
 
@@ -24,14 +51,6 @@ public class InputTest {
         }
     }
 
-    private static void sortDesc(double[] arr) {
-        Double[] objArr = Arrays.stream(arr).boxed().toArray(Double[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[arr.length - i - 1];
-        }
-    }
-
     private static void sort(int[] arr) {
         Integer[] objArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);
         Arrays.sort(objArr);
@@ -40,27 +59,11 @@ public class InputTest {
         }
     }
 
-    private static void sortDesc(int[] arr) {
-        Integer[] objArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[arr.length - i - 1];
-        }
-    }
-
     private static void sort(long[] arr) {
         Long[] objArr = Arrays.stream(arr).boxed().toArray(Long[]::new);
         Arrays.sort(objArr);
         for (int i = 0; i < arr.length; i++) {
             arr[i] = objArr[i];
-        }
-    }
-
-    private static void sortDesc(long[] arr) {
-        Long[] objArr = Arrays.stream(arr).boxed().toArray(Long[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[arr.length - i - 1];
         }
     }
 

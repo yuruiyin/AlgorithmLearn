@@ -1,18 +1,28 @@
-package utils;
+package ABC174;
 
 import java.io.*;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class InputTest {
+public class C {
 
-    // 注意不要用Arrays.sort()
-    // 注意Math.pow可能导致精度问题
-    // 注意int溢出问题
     static class Task {
 
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
+            int k = in.nextInt();
+            if (k % 2 == 0 || k % 5 == 0) {
+                out.println(-1);
+                return;
+            }
+
+            long cur = 7;
+            int count = 1;
+            while (cur % k != 0) {
+                cur = (cur * 10 + 7) % k;
+                count++;
+            }
+
+            out.println(count);
         }
     }
 
@@ -24,14 +34,6 @@ public class InputTest {
         }
     }
 
-    private static void sortDesc(double[] arr) {
-        Double[] objArr = Arrays.stream(arr).boxed().toArray(Double[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[arr.length - i - 1];
-        }
-    }
-
     private static void sort(int[] arr) {
         Integer[] objArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);
         Arrays.sort(objArr);
@@ -40,27 +42,11 @@ public class InputTest {
         }
     }
 
-    private static void sortDesc(int[] arr) {
-        Integer[] objArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[arr.length - i - 1];
-        }
-    }
-
     private static void sort(long[] arr) {
         Long[] objArr = Arrays.stream(arr).boxed().toArray(Long[]::new);
         Arrays.sort(objArr);
         for (int i = 0; i < arr.length; i++) {
             arr[i] = objArr[i];
-        }
-    }
-
-    private static void sortDesc(long[] arr) {
-        Long[] objArr = Arrays.stream(arr).boxed().toArray(Long[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[arr.length - i - 1];
         }
     }
 

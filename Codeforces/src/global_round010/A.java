@@ -1,18 +1,33 @@
-package utils;
+package global_round010;
 
 import java.io.*;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.StringTokenizer;
 
-public class InputTest {
+public class A {
 
-    // 注意不要用Arrays.sort()
-    // 注意Math.pow可能导致精度问题
-    // 注意int溢出问题
     static class Task {
 
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
+            int t = in.nextInt();
+            while ((t--) > 0) {
+                int n = in.nextInt();
+                long[] arr = new long[n];
+                Set<Long> set = new HashSet<>();
+                for (int i = 0; i < n; i++) {
+                    arr[i] = in.nextLong();
+                    set.add(arr[i]);
+                }
+
+                if (set.size() == 1) {
+                    out.println(n);
+                    continue;
+                }
+
+                out.println(1);
+            }
         }
     }
 

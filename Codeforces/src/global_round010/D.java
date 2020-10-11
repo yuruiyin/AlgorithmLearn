@@ -1,18 +1,92 @@
-package utils;
+package global_round010;
 
 import java.io.*;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class InputTest {
+public class D {
 
-    // 注意不要用Arrays.sort()
-    // 注意Math.pow可能导致精度问题
-    // 注意int溢出问题
     static class Task {
 
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
+            int t = in.nextInt();
+            while ((t--) > 0) {
+                int n = in.nextInt();
+                char[] arr = in.next().toCharArray();
+
+                int count = 1;
+                int ans = 0;
+
+                for (int i = 1; i < n; i++) {
+                    if (arr[i] == arr[i - 1] && arr[i] == 'R') {
+                        count++;
+                        if (count == 3) {
+                            if (arr[(i + 1) % n] == 'R') {
+                                arr[i] = 'L';
+                            } else {
+                                arr[i-1] = 'L';
+                            }
+                        }
+                    } else {
+                        ans += count / 3;
+                        count = 1;
+                    }
+                }
+
+                ans += count / 3;
+
+                count = 1;
+                for (int i = n - 2; i >= 0; i--) {
+                    if (arr[i] == arr[i + 1] && arr[i] == 'L') {
+                        count++;
+                        if (count == 3) {
+                            if (arr[(i + n - 1) % n] == 'L') {
+                                arr[i] = 'R';
+                            } else {
+                                arr[i + 1] = 'R';
+                            }
+                        }
+                    } else {
+                        ans += count / 3;
+                        count = 1;
+                    }
+                }
+
+                ans += count / 3;
+
+                if (arr[n - 1] != arr[0]) {
+                    out.println(ans);
+                    continue;
+                }
+
+                int to = -1;
+                for (int i = n - 2; i >= 0; i--) {
+                    if (arr[i] != arr[i + 1]) {
+                        to = i + 1;
+                        break;
+                    }
+                }
+
+                if (to == -1) {
+                    // 都相等
+                    ans += count % 3 != 0 ? 1 : 0;
+                    out.println(ans);
+                    continue;
+                }
+
+                int from = -1;
+                for (int i = 1; i < n; i++) {
+                    if (arr[i] != arr[i -1]) {
+                        from = i - 1;
+                        break;
+                    }
+                }
+
+                int firstLastCount = n - to + from + 1;
+                ans += firstLastCount / 3;
+
+                out.println(ans);
+            }
         }
     }
 

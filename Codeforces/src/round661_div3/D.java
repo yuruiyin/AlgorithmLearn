@@ -1,18 +1,69 @@
-package utils;
+package round661_div3;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.util.*;
 
-public class InputTest {
+public class D {
 
-    // 注意不要用Arrays.sort()
-    // 注意Math.pow可能导致精度问题
-    // 注意int溢出问题
     static class Task {
 
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
+            int t = in.nextInt();
+            while ((t--) > 0) {
+                int n = in.nextInt();
+                char[] arr = in.next().toCharArray();
+
+                LinkedList<List<Integer>> oneList = new LinkedList<>();
+                LinkedList<List<Integer>> zeroList = new LinkedList<>();
+
+                for (int i = 0; i < n; i++) {
+                    if (arr[i] == '0') {
+                        // 找1
+                        if (oneList.isEmpty()) {
+                            List<Integer> list = new ArrayList<>();
+                            list.add(i);
+                            zeroList.add(list);
+                        } else {
+                            List<Integer> list = oneList.poll();
+                            list.add(i);
+                            zeroList.add(list);
+                        }
+                    } else {
+                        // 找0
+                        if (zeroList.isEmpty()) {
+                            List<Integer> list = new ArrayList<>();
+                            list.add(i);
+                            oneList.add(list);
+                        } else {
+                            List<Integer> list = zeroList.poll();
+                            list.add(i);
+                            oneList.add(list);
+                        }
+                    }
+                }
+
+                out.println(oneList.size() + zeroList.size());
+                int[] ansArr = new int[n];
+                int count = 1;
+                for (List<Integer> indexList : oneList) {
+                    for (Integer index : indexList) {
+                        ansArr[index] = count;
+                    }
+                    count++;
+                }
+
+                for (List<Integer> indexList : zeroList) {
+                    for (Integer index : indexList) {
+                        ansArr[index] = count;
+                    }
+                    count++;
+                }
+                
+                for (int i = 0; i < n; i++) {
+                    out.print(ansArr[i] + " ");
+                }
+                out.println();;
+            }
         }
     }
 
@@ -24,14 +75,6 @@ public class InputTest {
         }
     }
 
-    private static void sortDesc(double[] arr) {
-        Double[] objArr = Arrays.stream(arr).boxed().toArray(Double[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[arr.length - i - 1];
-        }
-    }
-
     private static void sort(int[] arr) {
         Integer[] objArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);
         Arrays.sort(objArr);
@@ -40,27 +83,11 @@ public class InputTest {
         }
     }
 
-    private static void sortDesc(int[] arr) {
-        Integer[] objArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[arr.length - i - 1];
-        }
-    }
-
     private static void sort(long[] arr) {
         Long[] objArr = Arrays.stream(arr).boxed().toArray(Long[]::new);
         Arrays.sort(objArr);
         for (int i = 0; i < arr.length; i++) {
             arr[i] = objArr[i];
-        }
-    }
-
-    private static void sortDesc(long[] arr) {
-        Long[] objArr = Arrays.stream(arr).boxed().toArray(Long[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[arr.length - i - 1];
         }
     }
 

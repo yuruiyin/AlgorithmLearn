@@ -1,18 +1,67 @@
-package utils;
+package round670_div2;
 
 import java.io.*;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class InputTest {
+public class B {
 
-    // 注意不要用Arrays.sort()
-    // 注意Math.pow可能导致精度问题
-    // 注意int溢出问题
     static class Task {
 
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
+            int t = in.nextInt();
+            while ((t--) > 0) {
+                int n = in.nextInt();
+                long[] arr = new long[n];
+                for (int i = 0; i < n; i++) {
+                    arr[i] = in.nextInt();
+                }
+
+                sort(arr);
+
+                if (n == 5) {
+                    long ans = 1;
+                    for (int i = 0; i < n; i++) {
+                        ans *= arr[i];
+                    }
+                    out.println(ans);
+                    continue;
+                }
+
+                if (arr[n - 1] <= 0) {
+                    // 没有正数
+                    long ans = 1;
+                    for (int i = n - 1; i >= n - 5; i--) {
+                        ans *= arr[i];
+                    }
+                    out.println(ans);
+                    continue;
+                }
+
+                int lastNegativeIdx = -1;
+                for (int i = 0; i < n; i++) {
+                    if (arr[i] >= 0) {
+                        break;
+                    }
+
+                    lastNegativeIdx = i;
+                }
+
+                long ansMax = 0;
+                long positiveSum = 1;
+                for (int i = n - 1; i > Math.max(n - 6, lastNegativeIdx); i--) {
+                    int positiveCount = n - i;
+                    positiveSum *= arr[i];
+                    long sum = positiveSum;
+                    for (int j = 0; j < 5 - positiveCount; j++) {
+                        sum *= arr[j];
+                    }
+
+                    ansMax = Math.max(ansMax, sum);
+                }
+
+                out.println(ansMax);
+            }
         }
     }
 
@@ -24,14 +73,6 @@ public class InputTest {
         }
     }
 
-    private static void sortDesc(double[] arr) {
-        Double[] objArr = Arrays.stream(arr).boxed().toArray(Double[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[arr.length - i - 1];
-        }
-    }
-
     private static void sort(int[] arr) {
         Integer[] objArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);
         Arrays.sort(objArr);
@@ -40,27 +81,11 @@ public class InputTest {
         }
     }
 
-    private static void sortDesc(int[] arr) {
-        Integer[] objArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[arr.length - i - 1];
-        }
-    }
-
     private static void sort(long[] arr) {
         Long[] objArr = Arrays.stream(arr).boxed().toArray(Long[]::new);
         Arrays.sort(objArr);
         for (int i = 0; i < arr.length; i++) {
             arr[i] = objArr[i];
-        }
-    }
-
-    private static void sortDesc(long[] arr) {
-        Long[] objArr = Arrays.stream(arr).boxed().toArray(Long[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[arr.length - i - 1];
         }
     }
 

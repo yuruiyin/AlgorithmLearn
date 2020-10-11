@@ -1,10 +1,10 @@
-package utils;
+package grakn_2020;
 
 import java.io.*;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class InputTest {
+public class A {
 
     // 注意不要用Arrays.sort()
     // 注意Math.pow可能导致精度问题
@@ -12,7 +12,56 @@ public class InputTest {
     static class Task {
 
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
+            int t = in.nextInt();
+            while ((t--) > 0) {
+                int n = in.nextInt();
+                int[] a = new int[n];
+                int[] b = new int[n];
+                int[] c = new int[n];
+
+                for (int i = 0; i < n; i++) {
+                    a[i] = in.nextInt();
+                }
+
+                for (int i = 0; i < n; i++) {
+                    b[i] = in.nextInt();
+                }
+
+                for (int i = 0; i < n; i++) {
+                    c[i] = in.nextInt();
+                }
+
+                int[] ansArr = new int[n];
+                ansArr[0] = a[0];
+
+                for (int i = 1; i < n - 1; i++) {
+                    if (a[i] != ansArr[i - 1]) {
+                        ansArr[i] = a[i];
+                        continue;
+                    }
+
+                    if (b[i] != ansArr[i - 1]) {
+                        ansArr[i] = b[i];
+                        continue;
+                    }
+
+                    ansArr[i] = c[i];
+                }
+
+                if (a[n - 1] != ansArr[n - 2] && a[n - 1] != ansArr[0]) {
+                    ansArr[n - 1] = a[n - 1];
+                } else if (b[n - 1] != ansArr[n - 2] && b[n - 1] != ansArr[0]) {
+                    ansArr[n - 1] = b[n - 1];
+                } else {
+                    ansArr[n - 1] = c[n - 1];
+                }
+
+                for (int i = 0; i < n; i++) {
+                    out.print(ansArr[i] + " ");
+                }
+
+                out.println();
+            }
         }
     }
 

@@ -1,18 +1,51 @@
-package utils;
+package round664_div2;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.StringTokenizer;
 
-public class InputTest {
+public class B {
 
-    // 注意不要用Arrays.sort()
-    // 注意Math.pow可能导致精度问题
-    // 注意int溢出问题
     static class Task {
 
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
+            int n = in.nextInt();
+            int m = in.nextInt();
+            int sx = in.nextInt();
+            int sy = in.nextInt();
+
+            List<int[]> list = new ArrayList<>();
+            list.add(new int[]{sx, sy});
+            for(int j = 1; j <= m; j++) {
+                if (j == sy) {
+                    continue;
+                }
+                list.add(new int[]{sx, j});
+            }
+
+            boolean isFromRight = true;
+            for (int i = 1; i <= n; i++) {
+                if (i == sx) {
+                    continue;
+                }
+
+                if (isFromRight) {
+                    for (int j = m; j >= 1; j--) {
+                        list.add(new int[]{i, j});
+                    }
+                } else {
+                    for (int j = 1; j <= m; j++) {
+                        list.add(new int[]{i, j});
+                    }
+                }
+                isFromRight = !isFromRight;
+            }
+
+            for (int[] pos : list) {
+                out.println(pos[0] + " " + pos[1]);
+            }
         }
     }
 
@@ -24,14 +57,6 @@ public class InputTest {
         }
     }
 
-    private static void sortDesc(double[] arr) {
-        Double[] objArr = Arrays.stream(arr).boxed().toArray(Double[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[arr.length - i - 1];
-        }
-    }
-
     private static void sort(int[] arr) {
         Integer[] objArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);
         Arrays.sort(objArr);
@@ -40,27 +65,11 @@ public class InputTest {
         }
     }
 
-    private static void sortDesc(int[] arr) {
-        Integer[] objArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[arr.length - i - 1];
-        }
-    }
-
     private static void sort(long[] arr) {
         Long[] objArr = Arrays.stream(arr).boxed().toArray(Long[]::new);
         Arrays.sort(objArr);
         for (int i = 0; i < arr.length; i++) {
             arr[i] = objArr[i];
-        }
-    }
-
-    private static void sortDesc(long[] arr) {
-        Long[] objArr = Arrays.stream(arr).boxed().toArray(Long[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[arr.length - i - 1];
         }
     }
 

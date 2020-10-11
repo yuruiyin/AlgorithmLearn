@@ -1,10 +1,10 @@
-package utils;
+package educational_round095;
 
 import java.io.*;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class InputTest {
+public class A {
 
     // 注意不要用Arrays.sort()
     // 注意Math.pow可能导致精度问题
@@ -12,7 +12,17 @@ public class InputTest {
     static class Task {
 
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
+            int t = in.nextInt();
+            while ((t--) > 0) {
+                long x = in.nextLong();
+                long y = in.nextLong();
+                long k = in.nextLong();
+
+                long totalSticks = k * y + k;
+                long ans = (totalSticks - 1) / (x - 1) + ((totalSticks - 1) % (x - 1) == 0 ? 0 : 1);
+                ans += k;
+                out.println(ans);
+            }
         }
     }
 

@@ -1,10 +1,10 @@
-package utils;
+package educational_round095;
 
 import java.io.*;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class InputTest {
+public class B {
 
     // 注意不要用Arrays.sort()
     // 注意Math.pow可能导致精度问题
@@ -12,7 +12,21 @@ public class InputTest {
     static class Task {
 
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
+            int t = in.nextInt();
+            while ((t--) > 0) {
+                int n = in.nextInt();
+                int[] arr = new int[n];
+                for (int i = 0; i < n; i++) {
+                    arr[i] = in.nextInt();
+                }
+
+                int[] lArr = new int[n];
+                for (int i = 0; i < n; i++) {
+                    lArr[i] = in.nextInt();
+                }
+
+                
+            }
         }
     }
 

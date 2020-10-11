@@ -1,18 +1,41 @@
-package utils;
+package global_round010;
 
 import java.io.*;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class InputTest {
+public class C {
 
-    // 注意不要用Arrays.sort()
-    // 注意Math.pow可能导致精度问题
-    // 注意int溢出问题
     static class Task {
 
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
+            int t = in.nextInt();
+            while ((t--) > 0) {
+                int n = in.nextInt();
+                int[] arr = new int[n];
+                for (int i = 0; i < n; i++) {
+                    arr[i] = in.nextInt();
+                }
+
+                if (n == 1) {
+                    out.println(0);
+                    continue;
+                }
+
+                long ans = 0;
+                int preMax = arr[0];
+                for (int i = 1; i < n; i++) {
+                    if (arr[i] == arr[i-1]) {
+                        continue;
+                    } else if (arr[i] < arr[i - 1]) {
+                        ans += arr[i - 1] - arr[i];
+                    } else {
+                        preMax = Math.max(preMax, arr[i]);
+                    }
+                }
+
+                out.println(ans);
+            }
         }
     }
 

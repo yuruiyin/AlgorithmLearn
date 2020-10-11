@@ -1,10 +1,10 @@
-package utils;
+package round671_div2;
 
 import java.io.*;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class InputTest {
+public class D_1 {
 
     // 注意不要用Arrays.sort()
     // 注意Math.pow可能导致精度问题
@@ -12,7 +12,32 @@ public class InputTest {
     static class Task {
 
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
+            int n = in.nextInt();
+            int[] arr = new int[n];
+            for (int i = 0; i < n; i++) {
+                arr[i] = in.nextInt();
+            }
+
+            out.println((n - 1) / 2);
+            if (n == 1) {
+                out.println(arr[0]);
+                return;
+            }
+
+            sort(arr);
+            int[] ansArr = new int[n];
+            for (int i = n / 2, j = 0; i < n; i++, j+=2) {
+                ansArr[j] = arr[i];
+            }
+
+            for (int i = 0, j = 1; i < n / 2; i++, j+=2) {
+                ansArr[j] = arr[i];
+            }
+
+            for (int num : ansArr) {
+                out.print(num + " ");
+            }
+            out.println();
         }
     }
 

@@ -1,10 +1,10 @@
-package utils;
+package grakn_2020;
 
 import java.io.*;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class InputTest {
+public class E {
 
     // 注意不要用Arrays.sort()
     // 注意Math.pow可能导致精度问题

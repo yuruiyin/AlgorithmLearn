@@ -1,10 +1,12 @@
-package utils;
+package grakn_2020;
 
 import java.io.*;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.StringTokenizer;
 
-public class InputTest {
+public class B {
 
     // 注意不要用Arrays.sort()
     // 注意Math.pow可能导致精度问题
@@ -12,7 +14,51 @@ public class InputTest {
     static class Task {
 
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
+            int t = in.nextInt();
+            while ((t--) > 0) {
+                int n = in.nextInt();
+                int k = in.nextInt();
+                int[] arr = new int[n];
+                Set<Integer> set = new HashSet<>();
+                for (int i = 0; i < n; i++) {
+                    arr[i] = in.nextInt();
+                    set.add(arr[i]);
+                }
+
+                if (k == 1) {
+                    if (set.size() != 1) {
+                        out.println(-1);
+                    } else {
+                        out.println(1);
+                    }
+                    continue;
+                }
+
+                if (set.size() <= k) {
+                    out.println(1);
+                    continue;
+                }
+
+                int ansCount = 0;
+                int count = 0;
+                for (int i = 0; i < n; i++) {
+                    if (i > 0 && arr[i] == arr[i - 1]) {
+                        continue;
+                    }
+
+                    count++;
+                    if (count == k) {
+                        ansCount++;
+                        count = 1;
+                    }
+                }
+
+                if (count < k && count > 1) {
+                    ansCount++;
+                }
+
+                out.println(ansCount);
+            }
         }
     }
 

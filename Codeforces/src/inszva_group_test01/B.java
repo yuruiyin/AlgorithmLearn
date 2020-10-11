@@ -1,18 +1,79 @@
-package utils;
+package inszva_group_test01;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.util.*;
 
-public class InputTest {
+public class B {
 
-    // 注意不要用Arrays.sort()
-    // 注意Math.pow可能导致精度问题
-    // 注意int溢出问题
     static class Task {
 
+        private static final int MAX = 1000001;
+
+        private boolean isOk(int[] arr, int k, int gcd) {
+            int count = 0;
+            for (int num : arr) {
+                if (num % gcd == 0) {
+                    count++;
+                    if (count >= k) {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        private List<Integer> getAllFactors(int[] arr) {
+            List<Integer> factorList = new ArrayList<>();
+            boolean[] visited = new boolean[MAX];
+            for (int i = arr.length - 1; i >= 0; i--) {
+                int num = arr[i];
+                if (visited[num])
+                for (int j = 1; j * j <= num; j++) {
+                    if (num % j == 0) {
+                        if (!visited[j]) {
+                            factorList.add(j);
+                            visited[j] = true;
+                        }
+
+                        if (!visited[num / j]) {
+                            factorList.add(num / j);
+                            visited[num / j] = true;
+                        }
+                    }
+                }
+            }
+
+            return factorList;
+        }
+
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            //TODO
+            int n = in.nextInt();
+            int k = in.nextInt();
+            int[] arr = new int[n];
+            for (int i = 0; i < n; i++) {
+                arr[i] = in.nextInt();
+            }
+
+            Arrays.sort(arr);
+
+//            List<Integer> factorList = getAllFactors(arr);
+//            Collections.sort(factorList);
+//            int l = 0;
+//            int r = n - 1;
+//            int ans = 1;
+//            while (l <= r) {
+//                int mid = (l + r) >>> 1;
+//                int gcd = factorList.get(mid);
+//                if (isOk(arr, k, gcd)) {
+//                    l = mid + 1;
+//                    ans = gcd;
+//                } else {
+//                    r = mid - 1;
+//                }
+//            }
+//
+//            out.println(ans);
         }
     }
 
@@ -24,14 +85,6 @@ public class InputTest {
         }
     }
 
-    private static void sortDesc(double[] arr) {
-        Double[] objArr = Arrays.stream(arr).boxed().toArray(Double[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[arr.length - i - 1];
-        }
-    }
-
     private static void sort(int[] arr) {
         Integer[] objArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);
         Arrays.sort(objArr);
@@ -40,27 +93,11 @@ public class InputTest {
         }
     }
 
-    private static void sortDesc(int[] arr) {
-        Integer[] objArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[arr.length - i - 1];
-        }
-    }
-
     private static void sort(long[] arr) {
         Long[] objArr = Arrays.stream(arr).boxed().toArray(Long[]::new);
         Arrays.sort(objArr);
         for (int i = 0; i < arr.length; i++) {
             arr[i] = objArr[i];
-        }
-    }
-
-    private static void sortDesc(long[] arr) {
-        Long[] objArr = Arrays.stream(arr).boxed().toArray(Long[]::new);
-        Arrays.sort(objArr);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = objArr[arr.length - i - 1];
         }
     }
 
