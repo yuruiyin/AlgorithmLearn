@@ -14,4 +14,16 @@ public class Test11 {
 
     }
 
+    public static void main(String[] args) {
+        boolean name = true;
+
+        if (name) {
+            System.out.println("yes");
+        }
+
+        if (true == name) {
+            System.out.println("no");
+        }
+    }
+
 }

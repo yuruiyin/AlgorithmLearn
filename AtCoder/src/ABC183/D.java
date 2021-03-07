@@ -1,82 +1,38 @@
-package problem;
+package ABC183;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.StringTokenizer;
 
-public class CF455A {
+public class D {
 
     static class Task {
 
-        class Data {
-            long num;
-            long count;
-            Data(long num, long count) {
-                this.num = num;
-                this.count = count;
-            }
-        }
-
-        private List<Data> list;
-        private int size;
-        private long[] memo;
-
-        private long dp(int curIdx) {
-            if (curIdx >= size) {
-                return 0;
-            }
-
-            Data data = list.get(curIdx);
-            if (curIdx == size - 1) {
-                return data.num * data.count;
-            }
-
-            if (memo[curIdx] != -1) {
-                return memo[curIdx];
-            }
-
-            Data nextData = list.get(curIdx + 1);
-
-            if (data.num + 1 != nextData.num) {
-                memo[curIdx] = data.num * data.count + dp(curIdx + 1);
-                return memo[curIdx];
-            }
-
-            long ans = 0;
-            ans = Math.max(ans, data.num * data.count + dp(curIdx + 2));
-            if (curIdx == size - 2) {
-                ans = Math.max(ans, nextData.num * nextData.count);
-            } else {
-                Data nextNextData = list.get(curIdx + 2);
-                long tmpAns = nextData.num * nextData.count + (nextData.num + 1 == nextNextData.num ? dp(curIdx + 3) : dp(curIdx + 2));
-                ans = Math.max(ans, tmpAns);
-            }
-
-            memo[curIdx] = ans;
-            return memo[curIdx];
-        }
-
         public void solve(int testNumber, InputReader in, PrintWriter out) {
             int n = in.nextInt();
-            list = new ArrayList<>();
-            int[] countArr = new int[100001];
+            long w = in.nextInt();
+            long[] diff = new long[200005];
             for (int i = 0; i < n; i++) {
-                int num = in.nextInt();
-                countArr[num]++;
+                int s = in.nextInt();
+                int t = in.nextInt();
+                long p = in.nextInt();
+                diff[s] += p;
+                diff[t] -= p;
             }
 
-            for (int i = 1; i <= 100000; i++) {
-                if (countArr[i] > 0) {
-                    list.add(new Data(i, countArr[i]));
+            for (int i = 1; i <= 200000; i++) {
+                diff[i] += diff[i - 1];
+            }
+
+            boolean isOk = true;
+            for (int i = 0; i <= 200000; i++) {
+                if (diff[i] > w) {
+                    isOk = false;
+                    break;
                 }
             }
 
-            this.size = list.size();
-            memo = new long[size];
-            Arrays.fill(memo, -1);
-            out.println(dp(0));
+            out.println(isOk ? "Yes" : "No");
         }
     }
 
