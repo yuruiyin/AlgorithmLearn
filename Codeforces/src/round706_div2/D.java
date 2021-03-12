@@ -1,58 +1,81 @@
-package educational_round105;
+package round706_div2;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.StringTokenizer;
 
-public class B {
+public class D {
 
     // 注意不要用Arrays.sort()
     // 注意Math.pow可能导致精度问题
     // 注意int溢出问题
     static class Task {
 
-        private boolean isFound(int[] arr, int n) {
-            for (int i = 0; i <= 15; i++) {
-                boolean[] visited = new boolean[4];
-                visited[0] = (i & 8) != 0;
-                visited[1] = (i & 4) != 0;
-                visited[2] = (i & 2) != 0;
-                visited[3] = (i & 1) != 0;
+        public void solve(int testNumber, InputReader in, PrintWriter out) {
+            int n = in.nextInt();
+            int[] arr = new int[n];
+            for (int i = 0; i < n; i++) {
+                arr[i] = in.nextInt();
+            }
 
-                boolean isOk = true;
-                for (int j = 0; j < 4; j++) {
-                    int count = (visited[j] ? 1 : 0) + (visited[(j + 1) % 4] ? 1 : 0);
-                    if (arr[j] < count || arr[j] > (n - 2) + count) {
-                        isOk = false;
-                        break;
+            int maxCount = 1;
+
+            int[] dp1 = new int[n];
+            Arrays.fill(dp1, 1);
+            for (int i = 1; i < n; i++) {
+                if (arr[i] > arr[i - 1]) {
+                    dp1[i] = dp1[i - 1] + 1;
+                } else {
+                    dp1[i] = 1;
+                }
+                maxCount = Math.max(maxCount, dp1[i]);
+            }
+
+            int[] dp2 = new int[n];
+            Arrays.fill(dp2, 1);
+            for (int i = n - 2; i >= 0; i--) {
+                if (arr[i] > arr[i + 1]) {
+                    dp2[i] = dp2[i + 1] + 1;
+                } else {
+                    dp2[i] = 1;
+                }
+                maxCount = Math.max(maxCount, dp2[i]);
+            }
+
+            List<Integer> maxIndexList = new ArrayList<>();
+            for (int i = 0; i < n; i++) {
+                if (dp1[i] == maxCount || dp2[i] == maxCount) {
+                    maxIndexList.add(i);
+                }
+            }
+
+            int ans = 0;
+            for (int i = 1; i < n - 1; i++) {
+                if (dp1[i] <= 1 || dp2[i] <= 1) {
+                    continue;
+                }
+
+                if (dp1[i] % 2 == 0 && dp2[i] % 2 == 0) {
+                    continue;
+                } else if (dp1[i] % 2 == 1 && dp2[i] % 2 == 1) {
+                    int oddMax = Math.max(dp1[i], dp2[i]);
+                    int oddMin = Math.min(dp1[i], dp2[i]);
+                    if (oddMax - 1 < oddMin && oddMax == maxCount && maxIndexList.size() == 1) {
+                        ans++;
+                    }
+                } else {
+                    int odd = dp1[i] % 2 == 1 ? dp1[i] : dp2[i];
+                    int even = dp1[i] % 2 == 0 ? dp1[i] : dp2[i];
+                    if (odd > even + 1 && even > 2 && odd == maxCount && maxIndexList.size() == 1) {
+                        ans++;
                     }
                 }
 
-                if (isOk) {
-                    return true;
-                }
             }
 
-            return false;
-        }
-
-        public void solve(int testNumber, InputReader in, PrintWriter out) {
-            int t = in.nextInt();
-            while ((t--) > 0) {
-                int n = in.nextInt();
-                int[] arr = new int[4];
-                for (int i = 0; i < 4; i++) {
-                    arr[i] = in.nextInt();
-                }
-
-                boolean isOk = isFound(arr, n);
-
-                if (isOk) {
-                    out.println("YES");
-                } else {
-                    out.println("NO");
-                }
-            }
+            out.println(ans);
         }
     }
 

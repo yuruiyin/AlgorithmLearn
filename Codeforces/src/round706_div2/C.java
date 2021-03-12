@@ -1,57 +1,80 @@
-package educational_round105;
+package round706_div2;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.StringTokenizer;
+import java.util.*;
 
-public class B {
+public class C {
 
     // 注意不要用Arrays.sort()
     // 注意Math.pow可能导致精度问题
     // 注意int溢出问题
     static class Task {
 
-        private boolean isFound(int[] arr, int n) {
-            for (int i = 0; i <= 15; i++) {
-                boolean[] visited = new boolean[4];
-                visited[0] = (i & 8) != 0;
-                visited[1] = (i & 4) != 0;
-                visited[2] = (i & 2) != 0;
-                visited[3] = (i & 1) != 0;
-
-                boolean isOk = true;
-                for (int j = 0; j < 4; j++) {
-                    int count = (visited[j] ? 1 : 0) + (visited[(j + 1) % 4] ? 1 : 0);
-                    if (arr[j] < count || arr[j] > (n - 2) + count) {
-                        isOk = false;
-                        break;
-                    }
-                }
-
-                if (isOk) {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
         public void solve(int testNumber, InputReader in, PrintWriter out) {
             int t = in.nextInt();
             while ((t--) > 0) {
                 int n = in.nextInt();
-                int[] arr = new int[4];
-                for (int i = 0; i < 4; i++) {
-                    arr[i] = in.nextInt();
+                long[] yArr = new long[n];
+                List<Long> xLeftList = new ArrayList<>();
+                List<Long> xRightList = new ArrayList<>();
+                int yIdx = 0;
+                for (int i = 0; i < 2 * n; i++) {
+                    long value1 = in.nextInt();
+                    long value2 = in.nextInt();
+                    if (value1 == 0) {
+                        yArr[yIdx++] = value2;
+                    } else if (value2 == 0) {
+                        if (value1 < 0) {
+                            xLeftList.add(value1);
+                        } else {
+                            xRightList.add(value1);
+                        }
+                    }
                 }
 
-                boolean isOk = isFound(arr, n);
+                sort(yArr);
 
-                if (isOk) {
-                    out.println("YES");
-                } else {
-                    out.println("NO");
+                Collections.sort(xRightList, (o1, o2) -> (int) (o2 - o1));
+                Collections.sort(xLeftList);
+
+//                Collections.sort(xRightList, (o1, o2) -> (int) (o2 - o1));
+//                Collections.sort(xLeftList);
+
+                int l = 0;
+                int r = n - 1;
+                double ans = 0;
+                int leftIdx = 0;
+                int rightIdx = 0;
+                while (l <= r) {
+                    long yValue = 0;
+                    if (Math.abs(yArr[l]) > Math.abs(yArr[r])) {
+                        yValue = yArr[l];
+                        l++;
+                    } else {
+                        yValue = yArr[r];
+                        r--;
+                    }
+
+                    long xValue = 0;
+                    if (leftIdx == xLeftList.size()) {
+                        xValue = xRightList.get(rightIdx++);
+                    } else if (rightIdx == xRightList.size()) {
+                        xValue = xLeftList.get(leftIdx++);
+                    } else {
+                        if (Math.abs(xLeftList.get(leftIdx)) > Math.abs(xRightList.get(rightIdx))) {
+                            xValue = xLeftList.get(leftIdx);
+                            leftIdx++;
+                        } else {
+                            xValue = xRightList.get(rightIdx);
+                            rightIdx++;
+                        }
+                    }
+
+                    ans += Math.sqrt(xValue * xValue + yValue * yValue);
                 }
+
+                out.println(ans);
+
             }
         }
     }

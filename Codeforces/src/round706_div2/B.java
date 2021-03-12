@@ -1,7 +1,9 @@
-package educational_round105;
+package round706_div2;
 
 import java.io.*;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 public class B {
@@ -11,46 +13,43 @@ public class B {
     // 注意int溢出问题
     static class Task {
 
-        private boolean isFound(int[] arr, int n) {
-            for (int i = 0; i <= 15; i++) {
-                boolean[] visited = new boolean[4];
-                visited[0] = (i & 8) != 0;
-                visited[1] = (i & 4) != 0;
-                visited[2] = (i & 2) != 0;
-                visited[3] = (i & 1) != 0;
-
-                boolean isOk = true;
-                for (int j = 0; j < 4; j++) {
-                    int count = (visited[j] ? 1 : 0) + (visited[(j + 1) % 4] ? 1 : 0);
-                    if (arr[j] < count || arr[j] > (n - 2) + count) {
-                        isOk = false;
-                        break;
-                    }
-                }
-
-                if (isOk) {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
         public void solve(int testNumber, InputReader in, PrintWriter out) {
             int t = in.nextInt();
             while ((t--) > 0) {
                 int n = in.nextInt();
-                int[] arr = new int[4];
-                for (int i = 0; i < 4; i++) {
+                int k = in.nextInt();
+                int[] arr = new int[n];
+                int max = 0;
+                Set<Integer> set = new HashSet<>();
+                for (int i = 0; i < n; i++) {
                     arr[i] = in.nextInt();
+                    max = Math.max(max, arr[i]);
+                    set.add(arr[i]);
                 }
 
-                boolean isOk = isFound(arr, n);
+                if (k == 0) {
+                    out.println(n);
+                    continue;
+                }
 
-                if (isOk) {
-                    out.println("YES");
+                if (max == n - 1) {
+                    // 0, 1, 2, 3, ... 连续的
+                    out.println(n + k);
                 } else {
-                    out.println("NO");
+                    int mex = 0;
+                    for (int i = 0; i < n ;i++) {
+                        if (!set.contains(i)) {
+                            mex = i;
+                            break;
+                        }
+                    }
+
+                    int value = (mex + max) / 2 + (mex + max) % 2;
+                    if (set.contains(value)) {
+                        out.println(n);
+                    } else {
+                        out.println(n + 1);
+                    }
                 }
             }
         }

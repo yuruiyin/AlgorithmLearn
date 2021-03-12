@@ -1,58 +1,18 @@
-package educational_round105;
+package round706_div2;
 
 import java.io.*;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class B {
+public class E {
 
     // 注意不要用Arrays.sort()
     // 注意Math.pow可能导致精度问题
     // 注意int溢出问题
     static class Task {
 
-        private boolean isFound(int[] arr, int n) {
-            for (int i = 0; i <= 15; i++) {
-                boolean[] visited = new boolean[4];
-                visited[0] = (i & 8) != 0;
-                visited[1] = (i & 4) != 0;
-                visited[2] = (i & 2) != 0;
-                visited[3] = (i & 1) != 0;
-
-                boolean isOk = true;
-                for (int j = 0; j < 4; j++) {
-                    int count = (visited[j] ? 1 : 0) + (visited[(j + 1) % 4] ? 1 : 0);
-                    if (arr[j] < count || arr[j] > (n - 2) + count) {
-                        isOk = false;
-                        break;
-                    }
-                }
-
-                if (isOk) {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            int t = in.nextInt();
-            while ((t--) > 0) {
-                int n = in.nextInt();
-                int[] arr = new int[4];
-                for (int i = 0; i < 4; i++) {
-                    arr[i] = in.nextInt();
-                }
-
-                boolean isOk = isFound(arr, n);
-
-                if (isOk) {
-                    out.println("YES");
-                } else {
-                    out.println("NO");
-                }
-            }
+            //TODO
         }
     }
 
