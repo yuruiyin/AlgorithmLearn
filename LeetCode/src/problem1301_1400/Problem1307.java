@@ -10,25 +10,26 @@ public class Problem1307 {
     private int charSize;
     private boolean[] nonZero;
 
+
     // 判断当前映射组合能否让方程可解。sum(word[i]) = result
     private boolean isMatch(int[] map) {
-        int sum = 0;
-        for (String word: words) {
-            int tmp = 0;
-            for (char c : word.toCharArray()) {
-                tmp *= 10;
-                tmp += map[c - 'A'];
+        int carry = 0;
+        for (int i = 0; i < result.length(); i++) {
+            int sum = carry;
+            for (String word : words) {
+                if (word.length() > i) {
+                    sum += map[word.charAt(i) - 'A'];
+                }
             }
-            sum += tmp;
+
+            if (sum % 10 != map[result.charAt(i) - 'A']) {
+                return false;
+            }
+
+            carry = sum / 10;
         }
 
-        int resultValue = 0;
-        for (char c : result.toCharArray()) {
-            resultValue *= 10;
-            resultValue += map[c - 'A'];
-        }
-
-        return sum == resultValue;
+        return carry == 0;
     }
 
     private boolean backTrack(int from, boolean[] visited, int[] map) {
@@ -54,24 +55,36 @@ public class Problem1307 {
         return false;
     }
 
-    public boolean isSolvable(String[] words, String result) {
-        this.words = words;
-        this.result = result;
+    private String reverse(String str) {
+        StringBuilder sb = new StringBuilder(str);
+        return sb.reverse().toString();
+    }
+
+    public boolean isSolvable(String[] wordArr, String res) {
+        this.words = new String[wordArr.length];
+        for (int i = 0; i < wordArr.length; i++) {
+            this.words[i] = reverse(wordArr[i]);
+        }
+        this.result = reverse(res);
         int resLen = result.length();
         Set<Character> set = new HashSet<>();
         nonZero = new boolean[26];
-        for (String word: words) {
+        for (String word : words) {
             if (word.length() > resLen) {
                 return false;
             }
 
-            nonZero[word.charAt(0) - 'A'] = true;
+            if (word.length() > 1) {
+                nonZero[word.charAt(word.length() - 1) - 'A'] = true;
+            }
             for (char c : word.toCharArray()) {
                 set.add(c);
             }
         }
 
-        nonZero[result.charAt(0) - 'A'] = true;
+        if (resLen > 1) {
+            nonZero[result.charAt(resLen - 1) - 'A'] = true;
+        }
         for (char c : result.toCharArray()) {
             set.add(c);
         }
@@ -82,6 +95,10 @@ public class Problem1307 {
         int[] map = new int[26];
         Arrays.fill(map, -1);
         return backTrack(0, new boolean[10], map);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new Problem1307().isSolvable(new String[]{"A", "B"}, "A"));
     }
 
 }
