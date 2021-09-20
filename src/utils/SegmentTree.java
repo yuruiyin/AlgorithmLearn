@@ -44,6 +44,19 @@ public class SegmentTree {
         }
     }
 
+    public void remove(int val) {
+        Node cur = root;
+        while (cur != null) {
+            int mid = (cur.start + cur.end) >>> 1;
+            cur.count--;
+            if (val <= mid) {
+                cur = cur.left;
+            } else {
+                cur = cur.right;
+            }
+        }
+    }
+
     public int findBiggerCount(int target) {
         Node cur = root;
         if (target < cur.start) {
