@@ -1,8 +1,5 @@
 package contest.contest259;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * A
  *
@@ -13,17 +10,16 @@ public class C {
 
     class DetectSquares {
 
-        private Map<Integer, Integer> countMap;
+        private int[][] countArr;
 
         public DetectSquares() {
-            countMap = new HashMap<>();
+            countArr = new int[1001][1001];
         }
 
         public void add(int[] point) {
             int x = point[0];
             int y = point[1];
-            int key = x * 1001 + y;
-            countMap.put(key, countMap.getOrDefault(key, 0) + 1);
+            countArr[x][y]++;
         }
 
         public int count(int[] point) {
@@ -37,9 +33,7 @@ public class C {
                 int y2 = y + l;
                 int x3 = x;
                 int y3 = y + l;
-                ans += countMap.getOrDefault(x1 * 1001 + y1, 0) *
-                        countMap.getOrDefault(x2 * 1001 + y2, 0) *
-                        countMap.getOrDefault(x3 * 1001 + y3, 0);
+                ans += countArr[x1 + 1000][y1 + 1000] * countArr[x2 + 1000][y2 + 1000] * countArr[x3 + 1000][y3 + 1000];
 
                 x1 = x + l;
                 y1 = y;
@@ -47,9 +41,7 @@ public class C {
                 y2 = y - l;
                 x3 = x;
                 y3 = y - l;
-                ans += countMap.getOrDefault(x1 * 1001 + y1, 0) *
-                        countMap.getOrDefault(x2 * 1001 + y2, 0) *
-                        countMap.getOrDefault(x3 * 1001 + y3, 0);
+                ans += countArr[x1 + 1000][y1 + 1000] * countArr[x2 + 1000][y2 + 1000] * countArr[x3 + 1000][y3 + 1000];
 
                 x1 = x - l;
                 y1 = y;
@@ -57,9 +49,7 @@ public class C {
                 y2 = y - l;
                 x3 = x;
                 y3 = y - l;
-                ans += countMap.getOrDefault(x1 * 1001 + y1, 0) *
-                        countMap.getOrDefault(x2 * 1001 + y2, 0) *
-                        countMap.getOrDefault(x3 * 1001 + y3, 0);
+                ans += countArr[x1 + 1000][y1 + 1000] * countArr[x2 + 1000][y2 + 1000] * countArr[x3 + 1000][y3 + 1000];
 
                 x1 = x - l;
                 y1 = y;
@@ -67,9 +57,7 @@ public class C {
                 y2 = y + l;
                 x3 = x;
                 y3 = y + l;
-                ans += countMap.getOrDefault(x1 * 1001 + y1, 0) *
-                        countMap.getOrDefault(x2 * 1001 + y2, 0) *
-                        countMap.getOrDefault(x3 * 1001 + y3, 0);
+                ans += countArr[x1 + 1000][y1 + 1000] * countArr[x2 + 1000][y2 + 1000] * countArr[x3 + 1000][y3 + 1000];
             }
             return ans;
         }
