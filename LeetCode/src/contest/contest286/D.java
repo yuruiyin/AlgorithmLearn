@@ -7,14 +7,14 @@ public class D {
 
     private int[][] arr;
     private int[][] memo;
-    private int[][] preSumArr;
+    private int[] sufCountArr;
 
     private int dp(int start, int k) {
         if (k <= 0) {
             return 0;
         }
 
-        if (start == arr.length) {
+        if (start == arr.length || k > sufCountArr[start]) {
             return -1;
         }
 
@@ -23,11 +23,12 @@ public class D {
         }
 
         int ansMax = 0;
+        int preSum = 0;
         for (int j = 0; j < arr[start].length; j++) {
             if (j + 1 > k) {
                 break;
             }
-            int preSum = preSumArr[start][j];
+            preSum += arr[start][j];
             int res = dp(start + 1, k - (j + 1));
             if (res == -1) {
                 continue;
@@ -40,15 +41,12 @@ public class D {
         return ansMax;
     }
 
-    private void calcPreSum(int[][] arr) {
-        int rowCount = arr.length;
-        preSumArr = new int[rowCount][];
-        for (int i = 0; i < rowCount; i++) {
-            preSumArr[i] = new int[arr[i].length];
-            preSumArr[i][0] = arr[i][0];
-            for (int j = 1; j < arr[i].length; j++) {
-                preSumArr[i][j] = preSumArr[i][j - 1] + arr[i][j];
-            }
+    private void calcSufCountArr(int[][] arr) {
+        int len = arr.length;
+        sufCountArr = new int[len];
+        sufCountArr[len - 1] = arr[len - 1].length;
+        for (int i = len - 2; i >= 0; i--) {
+            sufCountArr[i] = sufCountArr[i + 1] + arr[i].length;
         }
     }
 
@@ -62,7 +60,7 @@ public class D {
             }
         }
 
-        calcPreSum(arr);
+        calcSufCountArr(arr);
         memo = new int[rowCount][k + 1];
         for (int i = 0; i < rowCount; i++) {
             Arrays.fill(memo[i], -1);
