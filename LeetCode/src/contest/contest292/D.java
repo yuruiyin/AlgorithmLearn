@@ -8,17 +8,11 @@ public class D {
     private char[][] grid;
     private int rowCount;
     private int colCount;
+    private int pathNodeCount;
     private Map<Integer, Boolean> memoMap;
 
-    private int[] getCount(int r, int c) {
-        if (r < 0 || c < 0 || r >= rowCount || c >= colCount) {
-            return new int[]{0, 0};
-        }
-        return new int[]{grid[r][c] == '(' ? 1 : 0, grid[r][c] == '(' ? 0 : 1};
-    }
-
     private boolean rec(int r, int c, int leftCount, int rightCount) {
-        if (r >= rowCount || c >= colCount || rightCount > leftCount) {
+        if (rightCount > leftCount || rightCount + (pathNodeCount - r - c - 1) < leftCount) {
             return false;
         }
 
@@ -26,16 +20,26 @@ public class D {
             return leftCount == rightCount;
         }
 
-        int key = r * 100_00_00 + c * 100_00 + leftCount * 100 + rightCount;
+        int key = r * 100_00 + c * 100 + (leftCount - rightCount);
         if (memoMap.containsKey(key)) {
             return memoMap.get(key);
         }
 
-        int[] nextRightCount = getCount(r, c + 1);
-        boolean rightRes = rec(r, c + 1, leftCount + nextRightCount[0], rightCount + nextRightCount[1]);
-        int[] nextBottomCount = getCount(r + 1, c);
-        boolean bottomRes = rec(r + 1, c, leftCount + nextBottomCount[0], rightCount + nextBottomCount[1]);
-        boolean ans = bottomRes || rightRes;
+        boolean rightRes = false;
+        if (r < rowCount && c + 1 < colCount) {
+            rightRes = rec(r, c + 1, leftCount + ((grid[r][c + 1] - '(') ^ 1), rightCount + grid[r][c + 1] - '(');
+        }
+
+        if (rightRes) {
+            memoMap.put(key, true);
+            return true;
+        }
+
+        boolean ans = false;
+        if (r + 1 < rowCount && c < colCount) {
+            ans = rec(r + 1, c, leftCount + ((grid[r + 1][c] - '(') ^ 1), rightCount + grid[r + 1][c] - '(');
+        }
+
         memoMap.put(key, ans);
         return ans;
     }
@@ -45,7 +49,8 @@ public class D {
         this.rowCount = grid.length;
         this.colCount = grid[0].length;
         memoMap = new HashMap<>();
-        if (grid[0][0] == ')') {
+        pathNodeCount = rowCount + colCount - 1;
+        if (grid[0][0] == ')' || (pathNodeCount) % 2 == 1) {
             return false;
         }
         return rec(0, 0, 1, 0);
@@ -53,8 +58,10 @@ public class D {
 
     public static void main(String[] args) {
         System.out.println(new D().hasValidPath(new char[][]{
-                {'(',')'},{'(',')'}
+                {'(', ')'}, {'(', ')'}
         }));
+        System.out.println((int) '(');
+        System.out.println((int) ')');
     }
 
 }
