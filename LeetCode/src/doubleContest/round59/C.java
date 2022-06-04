@@ -1,6 +1,5 @@
 package doubleContest.round59;
 
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.Arrays;

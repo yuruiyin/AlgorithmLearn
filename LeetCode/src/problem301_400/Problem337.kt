@@ -59,7 +59,7 @@ class Problem337 {
                     leftFalse + rightTrue,
                     leftFalse + rightFalse
             )
-            valueList.max()!!
+            valueList.maxOrNull()!!
         }
     }
 

@@ -4,12 +4,12 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class InputReader {
+public class InputReader1 {
 
     public BufferedReader reader;
     public StringTokenizer tokenizer;
 
-    public InputReader(InputStream stream) {
+    public InputReader1(InputStream stream) {
         reader = new BufferedReader(new InputStreamReader(stream), 32768);
         tokenizer = null;
     }
