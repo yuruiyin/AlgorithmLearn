@@ -1,11 +1,6 @@
 package doubleContest.round26;
 
 import common.TreeNode;
-import utils.TreeMultiSet;
-
-import java.util.Comparator;
-import java.util.List;
-import java.util.PriorityQueue;
 
 /**
  * A
@@ -34,6 +29,10 @@ public class C {
     public int goodNodes(TreeNode root) {
         dfs(root, (int) -1e5);
         return ansCount;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("hello");
     }
 
 }

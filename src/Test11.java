@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * Test11
  *
@@ -24,6 +26,9 @@ public class Test11 {
         if (true == name) {
             System.out.println("no");
         }
+
+        String[] arr = new String[]{"hello", "world"};
+        System.out.println(Arrays.toString(arr));
     }
 
 }
