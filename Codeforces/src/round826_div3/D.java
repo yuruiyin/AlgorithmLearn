@@ -1,25 +1,59 @@
-package ABC042;
+package round826_div3;
 
 import java.io.*;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class A {
+public class D {
 
+    // 注意不要用Arrays.sort()
+    // 注意Math.pow可能导致精度问题
+    // 注意int溢出问题
     static class Task {
 
+        private void swap(int[] arr, int i, int j) {
+            int t = arr[i];
+            arr[i] = arr[j];
+            arr[j] = t;
+        }
+
         public void solve(int testNumber, InputReader in, PrintWriter out) {
-            int[] countArr = new int[11];
-            for (int i = 0; i < 3; i++) {
-                countArr[in.nextInt()]++;
-            }
+            int t = in.nextInt();
+            while ((t--) > 0) {
+                int m = in.nextInt();
+                int[] p = new int[m];
+                for (int i = 0; i < m; i++) {
+                    p[i] = in.nextInt();
+                }
 
-            if (countArr[5] == 2 && countArr[7] == 1) {
-                out.println("YES");
-            } else {
-                out.println("NO");
+                int ans = 0;
+                boolean isOk = true;
+                for (int i = 0; i < 20; i++) {
+                    int count = 1 << i;
+                    if (count > (m >>> 1)) {
+                        break;
+                    }
+                    for (int j = 0; j < m - count; j += (count << 1)) {
+                        int diff = p[j + count] - p[j];
+                        if (Math.abs(diff) != count) {
+                            isOk = false;
+                            break;
+                        }
+                        if (diff < 0) {
+                            swap(p, j , j + count);
+                            ans++;
+                        }
+                    }
+                    if (!isOk) {
+                        break;
+                    }
+                }
+                if (!isOk) {
+                    out.println(-1);
+                } else {
+                    out.println(ans);
+                }
             }
-
         }
     }
 
@@ -31,6 +65,14 @@ public class A {
         }
     }
 
+    private static void sortDesc(double[] arr) {
+        Double[] objArr = Arrays.stream(arr).boxed().toArray(Double[]::new);
+        Arrays.sort(objArr);
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = objArr[arr.length - i - 1];
+        }
+    }
+
     private static void sort(int[] arr) {
         Integer[] objArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);
         Arrays.sort(objArr);
@@ -39,11 +81,27 @@ public class A {
         }
     }
 
+    private static void sortDesc(int[] arr) {
+        Integer[] objArr = Arrays.stream(arr).boxed().toArray(Integer[]::new);
+        Arrays.sort(objArr);
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = objArr[arr.length - i - 1];
+        }
+    }
+
     private static void sort(long[] arr) {
         Long[] objArr = Arrays.stream(arr).boxed().toArray(Long[]::new);
         Arrays.sort(objArr);
         for (int i = 0; i < arr.length; i++) {
             arr[i] = objArr[i];
+        }
+    }
+
+    private static void sortDesc(long[] arr) {
+        Long[] objArr = Arrays.stream(arr).boxed().toArray(Long[]::new);
+        Arrays.sort(objArr);
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = objArr[arr.length - i - 1];
         }
     }
 
@@ -95,4 +153,5 @@ public class A {
         }
 
     }
+
 }

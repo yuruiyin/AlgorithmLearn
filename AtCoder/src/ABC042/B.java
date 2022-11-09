@@ -60,6 +60,7 @@ public class B {
 
     public static void main(String[] args) {
         new Thread(null, () -> solve(), "1", 1 << 26).start();
+        System.out.println("hello world");
     }
 
     static class InputReader {
