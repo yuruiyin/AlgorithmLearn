@@ -73,6 +73,16 @@ public class MathUtils {
         }
         return (int) (mid + epr);
     }
+
+    /**
+     * 除法取模 (a / b) % mod ，费马小定理
+     * @param a 被初始化
+     * @param b 除数
+     * @param mod 模
+     */
+    public static int div(long a, long b, int mod) {
+        return (int) (a * pow(b, mod - 2, mod) % mod);
+    }
     
     public static void main(String[] args) {
         System.out.println(sqrt(12.25));
