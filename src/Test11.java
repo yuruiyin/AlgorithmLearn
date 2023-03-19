@@ -17,18 +17,31 @@ public class Test11 {
     }
 
     public static void main(String[] args) {
-        boolean name = true;
+//        boolean name = true;
+//
+//        if (name) {
+//            System.out.println("yes");
+//        }
+//
+//        if (true == name) {
+//            System.out.println("no");
+//        }
+//
+//        String[] arr = new String[]{"hello", "world"};
+//        System.out.println(Arrays.toString(arr));
 
-        if (name) {
-            System.out.println("yes");
+        int[] arr = new int[1_0000_0000];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = i + 1;
         }
 
-        if (true == name) {
-            System.out.println("no");
+        long start = System.currentTimeMillis();
+        long sum = 0;
+        for (int num : arr) {
+            sum += num;
         }
-
-        String[] arr = new String[]{"hello", "world"};
-        System.out.println(Arrays.toString(arr));
+        System.out.println(sum);
+        System.out.println("java 耗时： " + (System.currentTimeMillis() - start) + "ms");
     }
 
 }
