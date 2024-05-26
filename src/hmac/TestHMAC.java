@@ -10,8 +10,6 @@ public class TestHMAC {
 
     /**
      * 签名
-     * @author qian xi
-     * @date 16:55 2023/2/24
      * @param data 数据
      * @param key 密钥
      * @return java.lang.String
