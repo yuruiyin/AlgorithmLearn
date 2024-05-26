@@ -1,9 +1,6 @@
 package utils;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.*;
 
 /**
  * 单源最短路径算法
@@ -11,6 +8,21 @@ import java.util.PriorityQueue;
 public class Dijkstra {
 
     private static long INF = 0x0FFFFFFFFFFFFFFFL;
+
+    private List<Edge>[] g;
+
+    public Dijkstra(int[][] edges, int n) {
+        g = new ArrayList[n];
+        Arrays.setAll(g, value -> new ArrayList<>());
+        for (int i = 0; i < edges.length; i++) {
+            int[] edge = edges[i];
+            int from = edge[0];
+            int to = edge[1];
+            int w = edge[2];
+            g[from].add(new Dijkstra.Edge(to, w));
+            g[to].add(new Dijkstra.Edge(from, w));
+        }
+    }
 
     static class Edge {
         int v;
@@ -22,7 +34,7 @@ public class Dijkstra {
         }
     }
 
-    private long[] dijkstra(int src1, List<Edge>[] g, int n) {
+    private long[] dijkstra(int src1, int n) {
         PriorityQueue<Edge> queue = new PriorityQueue<>(new Comparator<Edge>() {
             @Override
             public int compare(Edge o1, Edge o2) {

@@ -76,7 +76,7 @@ public class MathUtils {
 
     /**
      * 除法取模 (a / b) % mod ，费马小定理
-     * @param a 被初始化
+     * @param a 被除数
      * @param b 除数
      * @param mod 模
      */
@@ -85,8 +85,9 @@ public class MathUtils {
     }
     
     public static void main(String[] args) {
-        System.out.println(sqrt(12.25));
-        System.out.println(sqrt(1));
+//        System.out.println(sqrt(12.25));
+//        System.out.println(sqrt(1));
+        System.out.println(div(24, 2, 12345));
     }
 
 }

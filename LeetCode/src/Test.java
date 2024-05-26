@@ -1,4 +1,6 @@
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Set;
 
 public class Test {
 
@@ -88,6 +90,7 @@ public class Test {
         System.out.println(data1.num);
         System.out.println();
 
+        Set<Integer> set = new HashSet<>();
     }
     
 }
