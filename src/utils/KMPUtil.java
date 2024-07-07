@@ -4,40 +4,41 @@ public class KMPUtil {
 
     public static void main(String[] args) {
         String source = "abchhabchabchabchcaaaabceabddh";
-        String target = "abceab";
+//        String target = "abceab";
+        String target = "ddddd";
         System.out.println(kmpSearch(source, target));
     }
 
-    public static int kmpSearch(char[] s, char[] t) {
+    public static int kmpSearch(char[] target, char[] pattern) {
         // 转为字符型数组
         // 获取next数组
-        int[] next = next(t);
+        int[] next = next(pattern);
         int i = 0;// 主串下标
         int j = 0;// 模式串下标
-        while (i < s.length && j < t.length) {
-            if (j == -1 || s[i] == t[j]) {
+        while (i < target.length && j < pattern.length) {
+            if (j == -1 || target[i] == pattern[j]) {
                 i++;
                 j++;
             } else {
                 j = next[j];
             }
         }
-        if (j == t.length) {
-            return i - t.length;
+        if (j == pattern.length) {
+            return i - pattern.length;
         }
         return -1;
     }
 
-    public static int kmpSearch(String source, String target) {
+    public static int kmpSearch(String target, String pattern) {
         // 转为字符型数组
-        char[] s = source.toCharArray();
         char[] t = target.toCharArray();
-        return kmpSearch(s, t);
+        char[] p = pattern.toCharArray();
+        return kmpSearch(t, p);
     }
 
     //next数组优化版
-    public static int[] next(String target) {
-        char[] t = target.toCharArray();
+    public static int[] next(String pattern) {
+        char[] t = pattern.toCharArray();
         return next(t);
     }
 
