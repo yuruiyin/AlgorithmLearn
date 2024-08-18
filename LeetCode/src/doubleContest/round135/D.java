@@ -23,6 +23,7 @@ public class D {
         long chooseRes = 0;
         for (int row = 0; row < m; row++) {
             long cost = 0;
+            int nextPreRowIdx = row;
             if (preBlack == 0) {
                 // 前面是白色
                 if (colIdx > 0) {
@@ -33,6 +34,8 @@ public class D {
                         // 前面白色统计到preRowIdx
                         if (row > preRowIdx) {
                             cost = colPreSumArr[row][colIdx - 1] - colPreSumArr[preRowIdx][colIdx - 1];
+                        } else {
+                            nextPreRowIdx = preRowIdx;
                         }
                     }
                 }
@@ -42,9 +45,10 @@ public class D {
                     cost = colPreSumArr[row][colIdx - 1] - colPreSumArr[preRowIdx][colIdx - 1];
                 } else {
                     cost = colPreSumArr[preRowIdx][colIdx] - colPreSumArr[row][colIdx];
+                    nextPreRowIdx = preRowIdx;
                 }
             }
-            chooseRes = Math.max(chooseRes, cost + dp(colIdx + 1, 1, row));
+            chooseRes = Math.max(chooseRes, cost + dp(colIdx + 1, 1, nextPreRowIdx));
         }
 
         long nonChooseRes = 0;
